@@ -7,9 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,9 +19,9 @@ class User
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
-    private ?profile $profile = null;
+    private ?Profile $profile = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $pseudo = null;
 
     #[ORM\Column(length: 255)]
@@ -49,6 +51,9 @@ class User
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $birthday = null;
 
+    #[ORM\Column(type: 'json')]
+    private array $roles = [];
+
     /**
      * @var Collection<int, Rancking>
      */
@@ -72,12 +77,12 @@ class User
         return $this->id;
     }
 
-    public function getProfile(): ?profile
+    public function getProfile(): ?Profile
     {
         return $this->profile;
     }
 
-    public function setProfile(?profile $profile): static
+    public function setProfile(?Profile $profile): static
     {
         $this->profile = $profile;
 
@@ -94,6 +99,11 @@ class User
         $this->pseudo = $pseudo;
 
         return $this;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->pseudo;
     }
 
     public function getPassword(): ?string
@@ -204,6 +214,22 @@ class User
         return $this;
     }
 
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Rancking>
      */
@@ -262,5 +288,10 @@ class User
         }
 
         return $this;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // Clean sensible information of the user
     }
 }
