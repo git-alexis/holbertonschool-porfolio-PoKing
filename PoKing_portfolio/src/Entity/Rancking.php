@@ -14,10 +14,10 @@ class Rancking
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'ranckings')]
-    private ?event $event = null;
+    private ?Event $event = null;
 
     #[ORM\ManyToOne(inversedBy: 'ranckings')]
-    private ?user $user = null;
+    private ?User $user = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $season = null;
@@ -42,24 +42,24 @@ class Rancking
         return $this->id;
     }
 
-    public function getEvent(): ?event
+    public function getEvent(): ?Event
     {
         return $this->event;
     }
 
-    public function setEvent(?event $event): static
+    public function setEvent(?Event $event): static
     {
         $this->event = $event;
 
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): static
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 

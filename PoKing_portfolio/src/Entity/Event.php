@@ -18,11 +18,11 @@ class Event
 
     #[ORM\ManyToOne(inversedBy: 'events')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?place $place = null;
+    private ?Place $place = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?contact $contact = null;
+    private ?Contact $contact = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $season = null;
@@ -80,24 +80,24 @@ class Event
         return $this->id;
     }
 
-    public function getPlace(): ?place
+    public function getPlace(): ?Place
     {
         return $this->place;
     }
 
-    public function setPlace(?place $place): static
+    public function setPlace(?Place $place): static
     {
         $this->place = $place;
 
         return $this;
     }
 
-    public function getContact(): ?contact
+    public function getContact(): ?Contact
     {
         return $this->contact;
     }
 
-    public function setContact(?contact $contact): static
+    public function setContact(?Contact $contact): static
     {
         $this->contact = $contact;
 
