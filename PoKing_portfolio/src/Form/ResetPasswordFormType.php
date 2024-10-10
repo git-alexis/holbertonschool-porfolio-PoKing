@@ -9,7 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class ResetPasswordFormType extends AbstractType
 {
@@ -19,8 +20,9 @@ class ResetPasswordFormType extends AbstractType
             ->add('pseudo', TextType::class, [
                 'label' => '* Pseudo',
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer un pseudo',
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z0-9._-]+$/',
+                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, ., _ et -',
                     ]),
                 ],
             ])
@@ -28,8 +30,9 @@ class ResetPasswordFormType extends AbstractType
                 'label' => '* New password',
                 'mapped' => false,
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer un nouveau mot de passe',
+                    new Length([
+                        'min' => 8,
+                        'minMessage' => 'Minimum 8 caractères',
                     ]),
                 ],
             ])
@@ -37,8 +40,9 @@ class ResetPasswordFormType extends AbstractType
                 'label' => '* Confirm new password',
                 'mapped' => false,
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez confirmer votre nouveau mot de passe',
+                    new Length([
+                        'min' => 8,
+                        'minMessage' => 'Minimum 8 caractères',
                     ]),
                 ],
             ])

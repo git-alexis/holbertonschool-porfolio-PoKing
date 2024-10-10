@@ -3,7 +3,8 @@
 namespace App\Form;
 
 use App\Entity\User;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -16,80 +17,80 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class RegisterFormType extends AbstractType
 {
-    // Method to build the form fields and their configurations
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // Add 'name' field of type TextType with a custom label
         $builder
             ->add('pseudo', TextType::class, [
-                'label' => '* Pseudo',
+                'label' => '* Pseudo ',
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer un pseudo',
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z0-9._-]+$/',
+                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, ., _ et -',
                     ]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                'label' => '* Password',
-                'mapped' => false, // Not mapped to the User entity (will be hashed)
+                'label' => '* Password ',
+                'mapped' => false,
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer un mot de passe',
+                    new Length([
+                        'min' => 8,
+                        'minMessage' => 'Minimum 8 caractères',
                     ]),
                 ],
             ])
             ->add('name', TextType::class, [
-                'label' => '* Nom',
+                'label' => '* Nom ( exemple : BILLEMONT ) ',
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer un nom',
+                    new Regex([
+                        'pattern' => '/^[A-Z\'\- ]+$/',
+                        'message' => 'Caractères autorisés : A-Z, \', \'-\', et \' \'',
                     ]),
+
                 ],
             ])
             ->add('surname', TextType::class, [
-                'label' => '* Prénom',
+                'label' => '* Prénom ( exemple : Alexis ) ',
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer un prénom',
+                    new Regex([
+                        'pattern' => '/^[A-Z][a-z\'\- ]+$/',
+                        'message' => 'Caractères autorisés : A-Z, a-z, \', \'-\', et \' \'',
                     ]),
                 ],
             ])
             ->add('mail', EmailType::class, [
-                'label' => '* Adresse e-mail',
+                'label' => '* Adresse e-mail ',
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer une adresse e-mail',
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
+                        'message' => 'E-mail valide ( exemple : nom@exemple.com )',
                     ]),
                 ],
             ])
             ->add('address', TextType::class, [
-                'label' => 'Adresse',
+                'label' => 'Adresse ',
                 'required' => false,
             ])
             ->add('postcode', TextType::class, [
-                'label' => 'Code postal',
+                'label' => 'Code postal ',
                 'required' => false,
             ])
             ->add('city', TextType::class, [
-                'label' => 'Ville',
+                'label' => 'Ville ',
                 'required' => false,
             ])
             ->add('phoneNumber', TextType::class, [
-                'label' => '* Numéro de téléphone',
+                'label' => '* Numéro de téléphone ',
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer un numéro de téléphone',
+                    new Regex([
+                        'pattern' => '/^\d{10}$/',
+                        'message' => 'Numéro de téléphone valide : 10 chiffres',
                     ]),
                 ],
             ])
             ->add('birthday', DateType::class, [
-                'label' => '* Date de naissance',
+                'label' => '* Date de naissance ',
                 'widget' => 'single_text',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer une date de naissance',
-                    ]),
-                ],
             ])
             ->add('register', SubmitType::class, [
                 'label' => 'Save account',
@@ -97,7 +98,6 @@ class RegisterFormType extends AbstractType
         ;
     }
 
-    // Method to configure options for this form, setting the data_class to User
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
