@@ -3,18 +3,21 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+    <h1>Login to your account</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
-
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         <label for="username">Pseudo</label>
         <input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="username" required autofocus>
         <label for="password">Password</label>
@@ -24,18 +27,18 @@
                value="{{ csrf_token('authenticate') }}"
         >
 
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
+        <div class="checkbox mb-3">
+            <input type="checkbox" name="_remember_me" id="_remember_me">
+            <label for="_remember_me">Remember me</label>
+        </div>
 
-            <div class="checkbox mb-3">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
-            </div>
-        #}
 
         <button class="btn btn-lg btn-primary" type="submit">
             Sign in
         </button>
     </form>
+
+    <a href="{{ path('app_register') }}">No account ? Create one</a>
+    <br>
+    <a href="{{ path('app_reset_password') }}">Forgot your password ?</a>
 {% endblock %}
