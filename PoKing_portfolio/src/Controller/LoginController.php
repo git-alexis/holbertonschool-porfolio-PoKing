@@ -12,11 +12,13 @@ class LoginController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
+
+        if ($error) {
+            $this->addFlash('error', 'Erreur lors de la connexion. Veuillez vérifier vos identifiants.');
+        }
 
         return $this->render('login/login.html.twig', [
             'last_username' => $lastUsername,
