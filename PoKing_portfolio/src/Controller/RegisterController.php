@@ -18,35 +18,36 @@ class RegisterController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, Security $security): Response
     {
-        // Creation of a new User entity instance
         $new_user = new User();
-        // Creation of the registration form and linking it with the User entity
+
         $form = $this->createForm(RegisterFormType::class, $new_user);
-        // Handling the request for the form
+
         $form->handleRequest($request);
 
-        // Checking if the form has been submitted and is valid
         if ($form->isSubmitted() && $form->isValid()) {
+            $pseudo = $form->get('pseudo')->getData();
 
-            $profile = $entityManager->getRepository(Profile::class)->findOneBy(['label' => 'noMember']);
+            $existingUser = $entityManager->getRepository(User::class)->findOneBy(['pseudo' => $pseudo]);
 
-            if ($profile) {
-                // Associer le profil au nouvel utilisateur
+            if ($existingUser) {
+                $this->addFlash('error', 'Le pseudo est déjà utilisé. Veuillez en choisir un autre.');
+            } else {
+                $profile = $entityManager->getRepository(Profile::class)->findOneBy(['label' => 'noMember']);
+
                 $new_user->setProfile($profile);
+
+                $new_user->setPassword(
+                    $passwordHasher->hashPassword(
+                        $new_user,
+                        $form->get('plainPassword')->getData()
+                    )
+                );
+
+                $entityManager->persist($new_user);
+                $entityManager->flush();
+
+                $this->addFlash('success', 'Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter');
             }
-
-            // Hashing the user's password and setting it for the new User entity
-            $new_user->setPassword(
-                $passwordHasher->hashPassword(
-                    $new_user,
-                    $form->get('plainPassword')->getData() // Retrieving the plain password from the form
-                )
-            );
-
-            // Persisting the new User entity in the database
-            $entityManager->persist($new_user);
-            // Saving changes in the database
-            $entityManager->flush();
         }
 
         return $this->render('register/register.html.twig', [
