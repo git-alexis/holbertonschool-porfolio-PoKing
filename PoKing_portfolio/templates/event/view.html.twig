@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Event{% endblock %}
+
+{% block body %}
+    <h1>Event</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event.id }}</td>
+            </tr>
+            <tr>
+                <th>Season</th>
+                <td>{{ event.season }}</td>
+            </tr>
+            <tr>
+                <th>StartingDate</th>
+                <td>{{ event.startingDate ? event.startingDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>FinishDate</th>
+                <td>{{ event.finishDate ? event.finishDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>StartingTime</th>
+                <td>{{ event.startingTime ? event.startingTime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>FinishTime</th>
+                <td>{{ event.finishTime ? event.finishTime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Stack</th>
+                <td>{{ event.stack }}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ event.comment }}</td>
+            </tr>
+            <tr>
+                <th>RegistrationOpeningDate</th>
+                <td>{{ event.registrationOpeningDate ? event.registrationOpeningDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>RegistrationClosingDate</th>
+                <td>{{ event.registrationClosingDate ? event.registrationClosingDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>RegistrationOpeningTime</th>
+                <td>{{ event.registrationOpeningTime ? event.registrationOpeningTime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>RegistrationClosingTime</th>
+                <td>{{ event.registrationClosingTime ? event.registrationClosingTime|date('H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_event_update', {'id': event.id}) }}">Update</a>
+
+    {{ include('event/_delete_form.html.twig') }}
+{% endblock %}

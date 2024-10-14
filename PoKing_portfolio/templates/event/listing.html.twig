@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Event index{% endblock %}
+
+{% block body %}
+    <h1>All Events</h1>
+
+    <a href="{{ path('app_event_create') }}">Create new</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>Season</th>
+                <th>StartingDate</th>
+                <th>FinishDate</th>
+                <th>StartingTime</th>
+                <th>FinishTime</th>
+                <th>Stack</th>
+                <th>Comment</th>
+                <th>RegistrationOpeningDate</th>
+                <th>RegistrationClosingDate</th>
+                <th>RegistrationOpeningTime</th>
+                <th>RegistrationClosingTime</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event in events %}
+            <tr>
+                <td>{{ event.id }}</td>
+                <td>{{ event.label }}</td>
+                <td>{{ event.season }}</td>
+                <td>{{ event.startingDate ? event.startingDate|date('Y-m-d') : '' }}</td>
+                <td>{{ event.finishDate ? event.finishDate|date('Y-m-d') : '' }}</td>
+                <td>{{ event.startingTime ? event.startingTime|date('H:i:s') : '' }}</td>
+                <td>{{ event.finishTime ? event.finishTime|date('H:i:s') : '' }}</td>
+                <td>{{ event.stack }}</td>
+                <td>{{ event.comment }}</td>
+                <td>{{ event.registrationOpeningDate ? event.registrationOpeningDate|date('Y-m-d') : '' }}</td>
+                <td>{{ event.registrationClosingDate ? event.registrationClosingDate|date('Y-m-d') : '' }}</td>
+                <td>{{ event.registrationOpeningTime ? event.registrationOpeningTime|date('H:i:s') : '' }}</td>
+                <td>{{ event.registrationClosingTime ? event.registrationClosingTime|date('H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_event_view', {'id': event.id}) }}">View</a>
+                    <a href="{{ path('app_event_update', {'id': event.id}) }}">Update</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
