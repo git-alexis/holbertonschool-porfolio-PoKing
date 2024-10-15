@@ -62,6 +62,50 @@ final class EventController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/register', name: 'app_event_register', methods: ['POST'])]
+    public function register(Event $event, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+
+        $existingRegistration = $entityManager->getRepository(Registration::class)
+            ->findOneBy(['event' => $event, 'user' => $user]);
+
+        if (!$existingRegistration) {
+            $registration = new Registration();
+            $registration->setEvent($event);
+            $registration->setUser($user);
+
+            $entityManager->persist($registration);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Vous êtes inscrit à cet événement.');
+        } else {
+            $this->addFlash('error', 'Vous êtes déjà inscrit à cet événement.');
+        }
+
+        return $this->redirectToRoute('app_event_view', ['id' => $event->getId()]);
+    }
+
+    #[Route('/{id}/unregister', name: 'app_event_unregister', methods: ['POST'])]
+    public function unregister(Event $event, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+
+        $existingRegistration = $entityManager->getRepository(Registration::class)
+            ->findOneBy(['event' => $event, 'user' => $user]);
+
+        if ($existingRegistration) {
+            $entityManager->remove($existingRegistration);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre désinscription a été effectuée.');
+        } else {
+            $this->addFlash('error', 'Vous n\'êtes pas inscrit à cet événement.');
+        }
+
+        return $this->redirectToRoute('app_event_view', ['id' => $event->getId()]);
+    }
+
     #[Route('/{id}/update', name: 'app_event_update', methods: ['GET', 'POST'])]
     public function update(Request $request, Event $event, EntityManagerInterface $entityManager): Response
     {
