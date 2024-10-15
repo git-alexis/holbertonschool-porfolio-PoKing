@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Rankings{% endblock %}
+
+{% block body %}
+    <h1>All Rankings</h1>
+
+    <a href="{{ path('app_rancking_create') }}">Create new</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Season</th>
+                <th>Label</th>
+                <th>Points</th>
+                <th>RankingPosition</th>
+                <th>EliminatedBy</th>
+                <th>KillsNumber</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rancking in ranckings %}
+            <tr>
+                <td>{{ rancking.id }}</td>
+                <td>{{ rancking.season }}</td>
+                <td>{{ rancking.label }}</td>
+                <td>{{ rancking.points }}</td>
+                <td>{{ rancking.rankingPosition }}</td>
+                <td>{{ rancking.eliminatedBy }}</td>
+                <td>{{ rancking.killsNumber }}</td>
+                <td>
+                    <a href="{{ path('app_rancking_view', {'id': rancking.id}) }}">View</a>
+                    <a href="{{ path('app_rancking_update', {'id': rancking.id}) }}">Update</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

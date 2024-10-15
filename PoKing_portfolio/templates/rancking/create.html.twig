@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Rancking{% endblock %}
+
+{% block body %}
+    <h1>Create new Rancking</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <p><span>*</span> : mandatory field</p>
+
+    {{ include('rancking/_form.html.twig') }}
+{% endblock %}

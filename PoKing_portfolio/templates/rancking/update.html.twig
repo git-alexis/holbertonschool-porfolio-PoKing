@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update Rancking{% endblock %}
+
+{% block body %}
+    <h1>Update Rancking</h1>
+
+    <p><span>*</span> : mandatory field</p>
+
+    {{ include('rancking/_form.html.twig') }}
+
+    {{ include('rancking/_delete_form.html.twig') }}
+{% endblock %}
