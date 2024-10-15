@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Form\EventFormType;
 use App\Repository\EventRepository;
+use App\Repository\RegistrationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,10 +52,13 @@ final class EventController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_event_view', methods: ['GET'])]
-    public function view(Event $event): Response
+    public function view(Event $event, RegistrationRepository $registrationRepository): Response
     {
+        $registrations = $registrationRepository->findBy(['event' => $event]);
+
         return $this->render('event/view.html.twig', [
             'event' => $event,
+            'registrations' => $registrations,
         ]);
     }
 
@@ -67,7 +71,7 @@ final class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_event_view', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_event_view', ['id' => $event->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('event/update.html.twig', [
