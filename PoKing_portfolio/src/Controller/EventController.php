@@ -67,7 +67,7 @@ final class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_event_listing', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_event_view', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('event/update.html.twig', [
