@@ -5,6 +5,26 @@
 {% block body %}
     <h1>Event {{ event.label }}</h1>
 
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <form action="{{ path('app_event_register', {'id': event.id}) }}" method="post">
+        <button type="submit">Register</button>
+    </form>
+
+    <form action="{{ path('app_event_unregister', {'id': event.id}) }}" method="post">
+        <button type="submit">Unregister</button>
+    </form>
+
     <table class="table">
         <tbody>
             <tr>
@@ -55,6 +75,31 @@
                 <th>RegistrationClosingTime</th>
                 <td>{{ event.registrationClosingTime ? event.registrationClosingTime|date('H:i:s') : '' }}</td>
             </tr>
+        </tbody>
+    </table>
+
+    <h3>Registration list :</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Pseudo</th>
+                <th>Name</th>
+                <th>Surname</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for registration in registrations %}
+            <tr>
+                <td>{{ registration.user.pseudo }}</td>
+                <td>{{ registration.user.name }}</td>
+                <td>{{ registration.user.surname }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no people found</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
