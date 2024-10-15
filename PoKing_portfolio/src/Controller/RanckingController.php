@@ -66,7 +66,7 @@ final class RanckingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_rancking_view', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_rancking_view', ['id' => $rancking->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('rancking/update.html.twig', [
