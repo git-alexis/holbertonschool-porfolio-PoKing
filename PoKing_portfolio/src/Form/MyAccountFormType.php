@@ -79,14 +79,41 @@ class MyAccountFormType extends AbstractType
             ->add('address', TextType::class, [
                 'label' => 'Adresse ',
                 'required' => false,
+                'constraints' => [
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
+                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
+                    ]),
+                    new Length([
+                        'max' => 100,
+                        'maxMessage' => 'Maximum 100 caractères',
+                    ]),
+                ],
             ])
             ->add('city', TextType::class, [
                 'label' => 'Ville ',
                 'required' => false,
+                'constraints' => [
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
+                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
+                    ]),
+                    new Length([
+                        'max' => 100,
+                        'maxMessage' => 'Maximum 100 caractères',
+                    ]),
+                ],
             ])
             ->add('postcode', TextType::class, [
                 'label' => 'Code postal ',
                 'required' => false,
+                'constraints' => [
+                    new Positive(['message' => 'Le code postal doit être un entier positif']),
+                    new Regex([
+                        'pattern' => '/^\d{5}$/',
+                        'message' => 'Code postal valide : 5 chiffres',
+                    ]),
+                ],
             ])
             ->add('update', SubmitType::class, [
                 'label' => 'Update account',
