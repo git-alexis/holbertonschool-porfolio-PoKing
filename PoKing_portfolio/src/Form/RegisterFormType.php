@@ -25,7 +25,7 @@ class RegisterFormType extends AbstractType
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9._-]+$/',
-                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, ., _ et -',
+                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, \'.\', \'_\' et \'-\'',
                     ]),
                 ],
             ])
