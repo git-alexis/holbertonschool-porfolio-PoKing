@@ -43,7 +43,7 @@ class RegisterFormType extends AbstractType
                 'label' => '* Nom ( exemple : BILLEMONT ) ',
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[A-Z\'\- ]+$/',
+                        'pattern' => '/^[A-Z\'- ]+$/',
                         'message' => 'Caractères autorisés : A-Z, \', \'-\', et \' \'',
                     ]),
 
@@ -53,7 +53,7 @@ class RegisterFormType extends AbstractType
                 'label' => '* Prénom ( exemple : Alexis ) ',
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[A-Z][a-z\'\- ]+$/',
+                        'pattern' => '/^[A-Z][a-z\'- ]+$/',
                         'message' => 'Caractères autorisés : A-Z, a-z, \', \'-\', et \' \'',
                     ]),
                 ],
