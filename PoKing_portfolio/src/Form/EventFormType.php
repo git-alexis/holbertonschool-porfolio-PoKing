@@ -26,7 +26,7 @@ class EventFormType extends AbstractType
     {
         $builder
             ->add('season', TextType::class, [
-                'label' => '* Season',
+                'label' => '* Season ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
@@ -36,7 +36,7 @@ class EventFormType extends AbstractType
                 ],
             ])
             ->add('label', TextType::class, [
-                'label' => '* Label',
+                'label' => '* Label ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
@@ -46,13 +46,13 @@ class EventFormType extends AbstractType
                 ],
             ])
             ->add('stack', NumberType::class, [
-                'label' => '* Stack',
+                'label' => '* Stack ',
                 'constraints' => [
                     new Positive(['message' => 'Le stack doit être un entier positif']),
                 ],
             ])
             ->add('comment', TextType::class, [
-                'label' => 'Comment',
+                'label' => 'Comment ',
                 'required' => false,
                 'constraints' => [
                     new Length([
@@ -62,46 +62,46 @@ class EventFormType extends AbstractType
                 ],
             ])
             ->add('registrationOpeningDate', DateType::class, [
-                'label' => '* Opening date of registration',
+                'label' => '* Opening date of registration ',
                 'widget' => 'single_text',
             ])
             ->add('registrationOpeningTime', TimeType::class, [
-                'label' => '* Opening time of registration',
+                'label' => '* Opening time of registration ',
                 'widget' => 'single_text',
             ])
             ->add('registrationClosingDate', DateType::class, [
-                'label' => '* Closing date of registration',
+                'label' => '* Closing date of registration ',
                 'widget' => 'single_text',
             ])
             ->add('registrationClosingTime', TimeType::class, [
-                'label' => '* Closing time of registration',
+                'label' => '* Closing time of registration ',
                 'widget' => 'single_text',
             ])
             ->add('startingDate', DateType::class, [
-                'label' => '* Opening date of event',
+                'label' => '* Opening date of event ',
                 'widget' => 'single_text',
             ])
             ->add('startingTime', TimeType::class, [
-                'label' => '* Opening time of event',
+                'label' => '* Opening time of event ',
                 'widget' => 'single_text',
             ])
             ->add('finishDate', DateType::class, [
-                'label' => '* Closing date of event',
+                'label' => '* Closing date of event ',
                 'widget' => 'single_text',
             ])
             ->add('finishTime', TimeType::class, [
-                'label' => '* Closing time of event',
+                'label' => '* Closing time of event ',
                 'widget' => 'single_text',
             ])
             ->add('place', EntityType::class, [
-                'label' => '* Place',
+                'label' => '* Place ',
                 'class' => Place::class,
                 'choice_label' => function (Place $place) {
                     return $place->getName() . ' - ' . $place->getAddress() . ' - ' . $place->getCity() . ' - ' . $place->getPostcode();
                 },
             ])
             ->add('contact', EntityType::class, [
-                'label' => '* Contact',
+                'label' => '* Contact ',
                 'class' => Contact::class,
                 'choice_label' => function (Contact $contact) {
                     return $contact->getSurname() . ' - ' . $contact->getName() . ' - ' . $contact->getRole();

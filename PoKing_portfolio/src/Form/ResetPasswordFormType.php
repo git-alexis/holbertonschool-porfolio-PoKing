@@ -18,7 +18,7 @@ class ResetPasswordFormType extends AbstractType
     {
         $builder
             ->add('pseudo', TextType::class, [
-                'label' => '* Pseudo',
+                'label' => '* Pseudo ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9._-]+$/',
@@ -27,7 +27,7 @@ class ResetPasswordFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                'label' => '* New password',
+                'label' => '* New password ',
                 'mapped' => false,
                 'constraints' => [
                     new Length([
@@ -37,7 +37,7 @@ class ResetPasswordFormType extends AbstractType
                 ],
             ])
             ->add('confirmPassword', PasswordType::class, [
-                'label' => '* Confirm new password',
+                'label' => '* Confirm new password ',
                 'mapped' => false,
                 'constraints' => [
                     new Length([
