@@ -76,6 +76,10 @@ final class EventController extends AbstractController
             $registration->setEvent($event);
             $registration->setUser($user);
 
+            $registration->setRegistrationDate(new \DateTime());
+
+            $registration->setRegistrationTime(new \DateTime());
+
             $entityManager->persist($registration);
             $entityManager->flush();
 
@@ -129,6 +133,12 @@ final class EventController extends AbstractController
     public function delete(Request $request, Event $event, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$event->getId(), $request->getPayload()->getString('_token'))) {
+            $registrations = $entityManager->getRepository(Registration::class)->findBy(['event' => $event]);
+
+            foreach ($registrations as $registration) {
+                $entityManager->remove($registration);
+            }
+
             $entityManager->remove($event);
             $entityManager->flush();
         }
