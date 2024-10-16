@@ -46,7 +46,6 @@ class RegisterFormType extends AbstractType
                         'pattern' => '/^[A-Z\'- ]+$/',
                         'message' => 'Caractères autorisés : A-Z, \', \'-\', et \' \'',
                     ]),
-
                 ],
             ])
             ->add('name', TextType::class, [
