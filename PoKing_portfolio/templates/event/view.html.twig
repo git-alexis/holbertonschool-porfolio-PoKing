@@ -91,9 +91,9 @@
         <tbody>
         {% for registration in registrations %}
             <tr>
-                <td>{{ registration.user.pseudo }}</td>
-                <td>{{ registration.user.name }}</td>
-                <td>{{ registration.user.surname }}</td>
+                <td>{{ registration.user ? registration.user.pseudo : '' }}</td>
+                <td>{{ registration.user ? registration.user.name : '' }}</td>
+                <td>{{ registration.user ? registration.user.surname : '' }}</td>
             </tr>
         {% else %}
             <tr>
