@@ -35,7 +35,7 @@ class MyAccountFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('name', TextType::class, [
+            ->add('surname', TextType::class, [
                 'label' => '* Nom ( exemple : BILLEMONT ) ',
                 'constraints' => [
                     new Regex([
@@ -45,7 +45,7 @@ class MyAccountFormType extends AbstractType
 
                 ],
             ])
-            ->add('surname', TextType::class, [
+            ->add('name', TextType::class, [
                 'label' => '* Prénom ( exemple : Alexis ) ',
                 'constraints' => [
                     new Regex([
@@ -63,18 +63,6 @@ class MyAccountFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('address', TextType::class, [
-                'label' => 'Adresse ',
-                'required' => false,
-            ])
-            ->add('postcode', TextType::class, [
-                'label' => 'Code postal ',
-                'required' => false,
-            ])
-            ->add('city', TextType::class, [
-                'label' => 'Ville ',
-                'required' => false,
-            ])
             ->add('phoneNumber', TextType::class, [
                 'label' => '* Numéro de téléphone ',
                 'constraints' => [
@@ -87,6 +75,18 @@ class MyAccountFormType extends AbstractType
             ->add('birthday', DateType::class, [
                 'label' => '* Date de naissance ',
                 'widget' => 'single_text',
+            ])
+            ->add('address', TextType::class, [
+                'label' => 'Adresse ',
+                'required' => false,
+            ])
+            ->add('city', TextType::class, [
+                'label' => 'Ville ',
+                'required' => false,
+            ])
+            ->add('postcode', TextType::class, [
+                'label' => 'Code postal ',
+                'required' => false,
             ])
             ->add('update', SubmitType::class, [
                 'label' => 'Update account',
