@@ -112,9 +112,9 @@ class RegisterFormType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Positive(['message' => 'Le code postal doit être un entier positif']),
-                    new Length([
-                        'max' => 100,
-                        'maxMessage' => 'Maximum 100 caractères',
+                    new Regex([
+                        'pattern' => '/^\d{5}$/',
+                        'message' => 'Code postal valide : 5 chiffres',
                     ]),
                 ],
             ])
