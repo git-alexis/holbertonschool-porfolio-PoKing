@@ -3,7 +3,7 @@
 {% block title %}View Event{% endblock %}
 
 {% block body %}
-    <h1>Event {{ event.label }}</h1>
+    <h1>Event details : {{ event.label }}</h1>
 
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
@@ -25,58 +25,25 @@
         <button type="submit">Unregister</button>
     </form>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ event.id }}</td>
-            </tr>
-            <tr>
-                <th>Season</th>
-                <td>{{ event.season }}</td>
-            </tr>
-            <tr>
-                <th>StartingDate</th>
-                <td>{{ event.startingDate ? event.startingDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>FinishDate</th>
-                <td>{{ event.finishDate ? event.finishDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>StartingTime</th>
-                <td>{{ event.startingTime ? event.startingTime|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>FinishTime</th>
-                <td>{{ event.finishTime ? event.finishTime|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Stack</th>
-                <td>{{ event.stack }}</td>
-            </tr>
-            <tr>
-                <th>Comment</th>
-                <td>{{ event.comment }}</td>
-            </tr>
-            <tr>
-                <th>RegistrationOpeningDate</th>
-                <td>{{ event.registrationOpeningDate ? event.registrationOpeningDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>RegistrationClosingDate</th>
-                <td>{{ event.registrationClosingDate ? event.registrationClosingDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>RegistrationOpeningTime</th>
-                <td>{{ event.registrationOpeningTime ? event.registrationOpeningTime|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>RegistrationClosingTime</th>
-                <td>{{ event.registrationClosingTime ? event.registrationClosingTime|date('H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <p>Bouton Export PDF à venir</p>
+
+    <a href="{{ path('app_event_update', {'id': event.id}) }}">Update</a>
+
+    {{ include('event/_delete_form.html.twig') }}
+
+    <p>Registration opens on {{ event.registrationOpeningDate | date('d/m/Y') }} at {{ event.RegistrationOpeningTime | date('H:i') }}</p>
+    <p>registration closes on {{ event.registrationClosingDate | date('d/m/Y') }} at {{ event.registrationClosingTime | date('H:i') }}</p>
+    <p>start the {{ event.startingDate | date('d/m/Y') }} at {{ event.startingTime | date('H:i') }}</p>
+    <p>finish the {{ event.finishDate | date('d/m/Y') }} at {{ event.finishTime | date('H:i') }}</p>
+    <p>{{ event.place.name }}</p>
+    <p>{{ event.place.address }} {{ event.place.city }} {{ event.place.postcode }}</p>
+    <p>If you have specific questions or problems :</p>
+    <p>{{ event.contact.surname }} {{ event.contact.name }} {{ event.contact.role }}</p>
+    <p>Contact me :</p>
+    <p>my email {{ event.contact.mail }}</p>
+    <p>my phone number {{ event.contact.phoneNumber }}</p>
+
+    <p>Comment : {{ event.comment }}</p>
 
     <h3>Registration list :</h3>
 
@@ -84,16 +51,16 @@
         <thead>
             <tr>
                 <th>Pseudo</th>
-                <th>Name</th>
                 <th>Surname</th>
+                <th>Name</th>
             </tr>
         </thead>
         <tbody>
         {% for registration in registrations %}
             <tr>
                 <td>{{ registration.user ? registration.user.pseudo : '' }}</td>
-                <td>{{ registration.user ? registration.user.name : '' }}</td>
                 <td>{{ registration.user ? registration.user.surname : '' }}</td>
+                <td>{{ registration.user ? registration.user.name : '' }}</td>
             </tr>
         {% else %}
             <tr>
@@ -102,8 +69,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_event_update', {'id': event.id}) }}">Update</a>
-
-    {{ include('event/_delete_form.html.twig') }}
 {% endblock %}
