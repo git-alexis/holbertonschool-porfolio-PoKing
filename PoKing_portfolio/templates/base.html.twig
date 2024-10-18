@@ -13,17 +13,29 @@
     </head>
     <body>
         <header>
-            <a href={{ path('app_my_account') }}>My_Account</a> |
-            <a href={{ path('app_event_listing') }}>Events</a> |
-            <a href={{ path('app_rancking_listing') }}>Rankings</a> |
-            <a href={{ path('app_logout') }}>Log Out</a>
+            <ul>
+                <li><a href={{ path('app_my_account') }}>My_Account</a></li>
+                <li><a href={{ path('app_event_listing') }}>Events</a></li>
+                <li><a href={{ path('app_rancking_listing') }}>Rankings</a></li>
+                <li><a href={{ path('app_logout') }}>Log Out</a></li>
+            </ul>
         </header>
         <main>
             {% block body %}{% endblock %}
         </main>
         <footer>
-            <a href={{ path('app_contact_us') }}>Contact</a> |
-            <a href={{ path('app_legals_mentions') }}>Legal Mentions</a>
+            <ul>
+                <ul>
+                    <li><p>Maison de Quartier PASTEUR</p></li>
+                    <li><p>Find us</p></li>
+                    <li><p>More information</p></li>
+                </ul>
+                <ul>
+                    <li><p>107 Rue de Babylone, Villeneuve-d'Ascq 59650</p></li>
+                    <li><a href={{ path('app_contact_us') }}>Contact us</a></li>
+                    <li><a href={{ path('app_legals_mentions') }}>Legal Mentions</a></li>
+                </ul>
+            </ul>
         </footer>
     </body>
 </html>
