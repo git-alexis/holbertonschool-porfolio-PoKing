@@ -24,6 +24,8 @@ class EventFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $isEdit = $options['is_edit'];
+
         $builder
             ->add('season', TextType::class, [
                 'label' => '* Season ',
@@ -37,6 +39,9 @@ class EventFormType extends AbstractType
             ])
             ->add('label', TextType::class, [
                 'label' => '* Label ',
+                'attr' => [
+                    'readonly' => $isEdit ? true : false,
+                ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
@@ -114,6 +119,7 @@ class EventFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Event::class,
+            'is_edit' => false,
         ]);
     }
 }

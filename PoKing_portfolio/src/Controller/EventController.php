@@ -28,7 +28,11 @@ final class EventController extends AbstractController
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $event = new Event();
-        $form = $this->createForm(EventFormType::class, $event);
+
+        $form = $this->createForm(EventFormType::class, $event, [
+            'is_edit' => false,
+        ]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -114,7 +118,10 @@ final class EventController extends AbstractController
     #[Route('/{id}/update', name: 'app_event_update', methods: ['GET', 'POST'])]
     public function update(Request $request, Event $event, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(EventFormType::class, $event);
+        $form = $this->createForm(EventFormType::class, $event, [
+            'is_edit' => true,
+        ]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
