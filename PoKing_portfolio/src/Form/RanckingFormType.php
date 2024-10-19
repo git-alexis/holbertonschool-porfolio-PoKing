@@ -20,12 +20,6 @@ class RanckingFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('event', EntityType::class, [
-                'class' => Event::class,
-                'choice_label' => function (Event $event) {
-                    return $event->getLabel();
-                },
-            ])
             ->add('season', TextType::class, [
                 'label' => '* Season ',
                 'constraints' => [
@@ -36,48 +30,30 @@ class RanckingFormType extends AbstractType
                     new Length(['min' => 1, 'minMessage' => 'La saison doit être renseignée']),
                 ],
             ])
-            ->add('label', TextType::class, [
-                'label' => '* Label ',
-                'constraints' => [
-                    new Regex([
-                        'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
-                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
-                    ]),
-                    new Length(['min' => 1, 'minMessage' => 'Le libellé doit être renseigné']),
-                ],
-            ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => function (User $user) {
-                    return $user->getPseudo();
-                },
-            ])
             ->add('rankingPosition', NumberType::class, [
-                'label' => '* Ranking position ',
+                'label' => false,
                 'constraints' => [
                     new Positive(['message' => 'Le stack doit être un entier positif']),
                 ],
             ])
             ->add('points', NumberType::class, [
-                'label' => '* Points ',
+                'label' => false,
                 'constraints' => [
                     new Positive(['message' => 'Le stack doit être un entier positif']),
                 ],
             ])
             ->add('killsNumber', NumberType::class, [
-                'label' => '* Kills number ',
+                'label' => false,
                 'constraints' => [
                     new Positive(['message' => 'Le stack doit être un entier positif']),
                 ],
             ])
-            ->add('eliminatedBy', TextType::class, [
-                'label' => '* Eliminated by ',
-                'constraints' => [
-                    new Regex([
-                        'pattern' => '/^[a-zA-Z0-9._-]+$/',
-                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, \'.\', \'_\' et \'-\'',
-                    ]),
-                ],
+            ->add('eliminatedBy', EntityType::class, [
+                'label' => false,
+                'class' => User::class,
+                'choice_label' => function (User $user) {
+                    return $user->getPseudo();
+                },
             ])
         ;
     }
