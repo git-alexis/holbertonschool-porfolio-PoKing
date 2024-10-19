@@ -115,6 +115,49 @@ final class EventController extends AbstractController
         return $this->redirectToRoute('app_event_view', ['id' => $event->getId()]);
     }
 
+    #[Route('/{id}/export-pdf', name: 'app_event_pdf_export', methods: ['POST'])]
+    public function exportPdf(int $id, RegistrationRepository $registrationRepository): Response
+    {
+        $registrations = $registrationRepository->findBy(['event' => $id]);
+
+        $html = $this->renderView('event/registration_list.html.twig', [
+            'registrations' => $registrations,
+        ]);
+
+        $apiUrl = 'https://us1.pdfgeneratorapi.com/api/v3/templates';
+
+        $apiKey = 'TON_API_KEY';
+
+        $client = HttpClient::create();
+
+        $response = $client->request('POST', $apiUrl, [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $apiKey,
+            ],
+            'json' => [
+                'template' => [
+                    'format' => 'pdf',
+                    'name' => 'Liste des inscrits',
+                ],
+                'data' => [
+                    'content' => $html,
+                ],
+            ],
+        ]);
+
+        if ($response->getStatusCode() !== 200) {
+            throw new \Exception('Erreur lors de la génération du PDF');
+        }
+
+        $pdfContent = $response->getContent();
+
+        return new Response($pdfContent, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="inscrits.pdf"',
+        ]);
+    }
+
     #[Route('/{id}/update', name: 'app_event_update', methods: ['GET', 'POST'])]
     public function update(Request $request, Event $event, EntityManagerInterface $entityManager): Response
     {
