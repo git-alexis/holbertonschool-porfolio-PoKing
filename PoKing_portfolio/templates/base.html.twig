@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
@@ -17,25 +18,32 @@
                 <li><a href={{ path('app_my_account') }}>My_Account</a></li>
                 <li><a href={{ path('app_event_listing') }}>Events</a></li>
                 <li><a href={{ path('app_rancking_listing') }}>Rankings</a></li>
-                <li><a href={{ path('app_logout') }}>Log Out</a></li>
+                <li class="right_navbar"><a href={{ path('app_logout') }}>Log Out</a></li>
             </ul>
         </header>
         <main>
             {% block body %}{% endblock %}
         </main>
         <footer>
-            <ul>
-                <ul>
-                    <li><p>Maison de Quartier PASTEUR</p></li>
-                    <li><p>Find us</p></li>
-                    <li><p>More information</p></li>
-                </ul>
-                <ul>
-                    <li><p>107 Rue de Babylone, Villeneuve-d'Ascq 59650</p></li>
-                    <li><a href={{ path('app_contact_us') }}>Contact us</a></li>
-                    <li><a href={{ path('app_legals_mentions') }}>Legal Mentions</a></li>
-                </ul>
-            </ul>
+            <div id="footer_parent">
+                <div class="footer_child">
+                    <p class="footer_p">PoKing club</p>
+                    <p class="footer_p">107 Rue de Babylone,</p>
+                    <p class="footer_p">Villeneuve-d'Ascq 59650</p>
+                </div>
+                <div class="footer_child">
+                    <p class="footer_p">Find us</p>
+                    <p class="footer_p">
+                        <a href={{ path('app_contact_us') }}>Contact us</a>
+                    </p>
+                </div>
+                <div class="footer_child">
+                    <p class="footer_p">More information</p>
+                    <p class="footer_p">
+                        <a href={{ path('app_legals_mentions') }}>Legal Mentions</a>
+                    </p>
+                </div>
+            </div>
         </footer>
     </body>
 </html>
