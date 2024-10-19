@@ -25,7 +25,7 @@ class RegisterFormType extends AbstractType
                 'label' => '* Pseudo ',
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[a-zA-Z0-9._-]+$/',
+                        'pattern' => '/^[a-zA-Z0-9._\-]+$/',
                         'message' => 'Caractères autorisés : a-z, A-Z, 0-9, \'.\', \'_\' et \'-\'',
                     ]),
                 ],
@@ -44,7 +44,7 @@ class RegisterFormType extends AbstractType
                 'label' => '* Nom ( exemple : BILLEMONT ) ',
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[A-Z\'- ]+$/',
+                        'pattern' => '/^[A-Z\'\- ]+$/',
                         'message' => 'Caractères autorisés : A-Z, \', \'-\', et \' \'',
                     ]),
                 ],
@@ -53,7 +53,7 @@ class RegisterFormType extends AbstractType
                 'label' => '* Prénom ( exemple : Alexis ) ',
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[A-Z][a-z\'- ]+$/',
+                        'pattern' => '/^[A-Z][a-z\'\- ]+$/',
                         'message' => 'Caractères autorisés : A-Z, a-z, \', \'-\', et \' \'',
                     ]),
                 ],
@@ -62,7 +62,7 @@ class RegisterFormType extends AbstractType
                 'label' => '* Adresse e-mail ',
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
+                        'pattern' => '/^[a-zA-Z0-9._\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/',
                         'message' => 'E-mail valide ( exemple : nom@exemple.com )',
                     ]),
                 ],

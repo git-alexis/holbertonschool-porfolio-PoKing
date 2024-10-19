@@ -21,7 +21,7 @@ class ResetPasswordFormType extends AbstractType
                 'label' => '* Pseudo ',
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[a-zA-Z0-9._-]+$/',
+                        'pattern' => '/^[a-zA-Z0-9._\-]+$/',
                         'message' => 'Caractères autorisés : a-z, A-Z, 0-9, ., _ et -',
                     ]),
                 ],

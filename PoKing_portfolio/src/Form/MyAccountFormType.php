@@ -59,7 +59,7 @@ class MyAccountFormType extends AbstractType
                 'label' => '* Adresse e-mail ',
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
+                        'pattern' => '/^[a-zA-Z0-9._\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/',
                         'message' => 'E-mail valide ( exemple : nom@exemple.com )',
                     ]),
                 ],
