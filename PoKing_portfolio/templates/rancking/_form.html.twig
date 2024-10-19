@@ -1,4 +1,29 @@
+{{ form_row(form.season) }}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Pseudo</th>
+            <th>Rank</th>
+            <th>Points</th>
+            <th>Kills</th>
+            <th>Eliminated by</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for pseudo in pseudoList %}
+        <tr>
+            <td>{{ pseudo }}</td>
+            <td>{{ form_row(form.rankingPosition) }}</td>
+            <td>{{ form_row(form.points) }}</td>
+            <td>{{ form_row(form.killsNumber) }}</td>
+            <td>{{ form_row(form.eliminatedBy) }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<button class="btn">{{ button_label|default('Save') }}</button>
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
