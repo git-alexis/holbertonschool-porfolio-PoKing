@@ -22,9 +22,6 @@ class Rancking
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $season = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $label = null;
-
     #[ORM\Column]
     private ?int $points = null;
 
@@ -74,18 +71,6 @@ class Rancking
     public function setSeason(?string $season): static
     {
         $this->season = $season;
-
-        return $this;
-    }
-
-    public function getLabel(): ?string
-    {
-        return $this->label;
-    }
-
-    public function setLabel(string $label): static
-    {
-        $this->label = $label;
 
         return $this;
     }
