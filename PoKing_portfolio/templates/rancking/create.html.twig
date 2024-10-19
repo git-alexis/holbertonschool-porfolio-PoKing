@@ -3,7 +3,7 @@
 {% block title %}New Rancking{% endblock %}
 
 {% block body %}
-    <h1>Create new Rancking</h1>
+    <h1>{{ event.label }} ranking</h1>
 
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
