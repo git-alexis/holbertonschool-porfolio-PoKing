@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Entity\Rancking;
 use App\Form\RanckingFormType;
+use App\Repository\UserRepository;
 use App\Repository\EventRepository;
 use App\Repository\RanckingRepository;
 use App\Repository\RegistrationRepository;
@@ -34,32 +35,46 @@ final class RanckingController extends AbstractController
     }
 
     #[Route('/{id}/create', name: 'app_rancking_create', methods: ['GET', 'POST'])]
-    public function create(Event $event, RegistrationRepository $registrationRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function create(Event $event, RegistrationRepository $registrationRepository, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $rancking = new Rancking();
-        $form = $this->createForm(RanckingFormType::class, $rancking);
-        $form->handleRequest($request);
-
         $registrations = $registrationRepository->findBy(['event' => $event]);
         $pseudoList = [];
 
         foreach ($registrations as $registration) {
-            $pseudo = $registration->getUser()->getPseudo();
-            $pseudoList[] = $pseudo;
+            $pseudoList[] = $registration->getUser()->getPseudo();
         }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $rancking->setEvent($event);
-            $entityManager->persist($rancking);
-            $entityManager->flush();
+        if ($request->isMethod('POST')) {
+            $season = $request->request->get('season');
 
-            return $this->redirectToRoute('app_rancking_listing', [], Response::HTTP_SEE_OTHER);
+            for ($index = 1; $index <= count($pseudoList); $index++) {
+                $pseudo = $request->request->get('pseudo_'.$index);
+                $rank = $request->request->get('rank_'.$index);
+                $point = $request->request->get('points_'.$index);
+                $kill = $request->request->get('kills_'.$index);
+                $eliminatedBy = $request->request->get('eliminated_by_'.$index);
+
+                $user = $userRepository->findOneBy(['pseudo' => $pseudo]);
+
+                $rancking = new Rancking();
+                $rancking->setEvent($event);
+                $rancking->setUser($user);
+                $rancking->setSeason($season);
+                $rancking->setRankingPosition($rank);
+                $rancking->setPoints($point);
+                $rancking->setKillsNumber($kill);
+                $rancking->setEliminatedBy($eliminatedBy);
+
+                $entityManager->persist($rancking);
+                $entityManager->flush();
+            }
+
+            return $this->redirectToRoute('app_rancking_listing');
         }
 
         return $this->render('rancking/create.html.twig', [
             'pseudoList' => $pseudoList,
             'event' => $event,
-            'form' => $form,
         ]);
     }
 
