@@ -28,9 +28,6 @@ class Rancking
     #[ORM\Column]
     private ?int $rankingPosition = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $eliminatedBy = null;
-
     #[ORM\Column]
     private ?int $killsNumber = null;
 
@@ -95,18 +92,6 @@ class Rancking
     public function setRankingPosition(int $rankingPosition): static
     {
         $this->rankingPosition = $rankingPosition;
-
-        return $this;
-    }
-
-    public function getEliminatedBy(): ?string
-    {
-        return $this->eliminatedBy;
-    }
-
-    public function setEliminatedBy(string $eliminatedBy): static
-    {
-        $this->eliminatedBy = $eliminatedBy;
 
         return $this;
     }
