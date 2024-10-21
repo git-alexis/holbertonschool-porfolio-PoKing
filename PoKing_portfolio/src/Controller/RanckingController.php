@@ -44,37 +44,58 @@ final class RanckingController extends AbstractController
             $pseudoList[] = $registration->getUser()->getPseudo();
         }
 
+        $points = [];
+        $formData = [];
+
         if ($request->isMethod('POST')) {
-            $season = $request->request->get('season');
+            $formData = $request->request->all();
 
-            for ($index = 1; $index <= count($pseudoList); $index++) {
-                $pseudo = $request->request->get('pseudo_'.$index);
-                $rank = $request->request->get('rank_'.$index);
-                $point = $request->request->get('points_'.$index);
-                $kill = $request->request->get('kills_'.$index);
-                $eliminatedBy = $request->request->get('eliminated_by_'.$index);
+            if ($request->request->has('calculate')) {
+                $size = count($pseudoList);
 
-                $user = $userRepository->findOneBy(['pseudo' => $pseudo]);
+                for ($index = 1; $index <= count($pseudoList); $index++) {
+                    $rank = $request->request->get('rank_'.$index);
+                    $points[$index] = $size - $rank + 1;
+                }
 
-                $rancking = new Rancking();
-                $rancking->setEvent($event);
-                $rancking->setUser($user);
-                $rancking->setSeason($season);
-                $rancking->setRankingPosition($rank);
-                $rancking->setPoints($point);
-                $rancking->setKillsNumber($kill);
-                $rancking->setEliminatedBy($eliminatedBy);
+                return $this->render('rancking/create.html.twig', [
+                    'pseudoList' => $pseudoList,
+                    'event' => $event,
+                    'points' => $points,
+                    'formData' => $formData,
+                ]);
+            } else {
+                $season = $request->request->get('season');
 
-                $entityManager->persist($rancking);
-                $entityManager->flush();
+                for ($index = 1; $index <= count($pseudoList); $index++) {
+                    $pseudo = $request->request->get('pseudo_'.$index);
+                    $rank = $request->request->get('rank_'.$index);
+                    $point = $request->request->get('points_'.$index);
+                    $kill = $request->request->get('kills_'.$index);
+
+                    $user = $userRepository->findOneBy(['pseudo' => $pseudo]);
+
+                    $rancking = new Rancking();
+                    $rancking->setEvent($event);
+                    $rancking->setUser($user);
+                    $rancking->setSeason($season);
+                    $rancking->setRankingPosition($rank);
+                    $rancking->setPoints($point);
+                    $rancking->setKillsNumber($kill);
+
+                    $entityManager->persist($rancking);
+                    $entityManager->flush();
+                }
+
+                return $this->redirectToRoute('app_rancking_listing');
             }
-
-            return $this->redirectToRoute('app_rancking_listing');
         }
 
         return $this->render('rancking/create.html.twig', [
             'pseudoList' => $pseudoList,
             'event' => $event,
+            'points' => $points,
+            'formData' => $formData,
         ]);
     }
 
