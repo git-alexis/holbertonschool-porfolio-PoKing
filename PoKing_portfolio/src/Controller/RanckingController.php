@@ -26,11 +26,69 @@ final class RanckingController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_rancking_view', methods: ['GET'])]
-    public function view(Rancking $rancking): Response
+    #[Route('/view', name: 'app_rancking_view_general', methods: ['GET'])]
+    public function viewGeneral(UserRepository $userRepository, RanckingRepository $ranckingRepository, EventRepository $eventRepository): Response
     {
+        $users = $userRepository->findAll();
+        $events = $eventRepository->findAll();
+
+        $ranking = [];
+
+        foreach ($users as $user) {
+            $pseudo = $user->getPseudo();
+            $pointsPerEvent = [];
+            $totalPoints = 0;
+            $totalKills = 0;
+
+            foreach ($events as $event) {
+                $rancking = $ranckingRepository->findOneBy(['user' => $user, 'event' => $event]);
+
+                if ($rancking) {
+                    $points = $rancking->getPoints();
+                    $kills = $rancking->getKillsNumber();
+                } else {
+                    $points = 0;
+                    $kills = 0;
+                }
+
+                $pointsPerEvent[$event->getId()] = $points;
+                $totalPoints += $points;
+                $totalKills += $kills;
+            }
+
+            $ranking[] = [
+                'pseudo' => $pseudo,
+                'pointsPerEvent' => $pointsPerEvent,
+                'totalPoints' => $totalPoints,
+                'totalKills' => $totalKills,
+            ];
+        }
+
+        usort($ranking, function ($a, $b) {
+            if ($a['totalPoints'] === $b['totalPoints']) {
+                return $b['totalKills'] <=> $a['totalKills'];
+            }
+            return $b['totalPoints'] <=> $a['totalPoints'];
+        });
+
+        return $this->render('rancking/view_general.html.twig', [
+            'ranking' => $ranking,
+            'events' => $events,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_rancking_view', methods: ['GET'])]
+    public function view(Event $event, RanckingRepository $ranckingRepository): Response
+    {
+        $ranckings = $ranckingRepository->findBy(['event' => $event]);
+
+        usort($ranckings, function ($a, $b) {
+            return $b->getPoints() <=> $a->getPoints();
+        });
+
         return $this->render('rancking/view.html.twig', [
-            'rancking' => $rancking,
+            'ranckings' => $ranckings,
+            'event' => $event,
         ]);
     }
 
@@ -99,30 +157,17 @@ final class RanckingController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/update', name: 'app_rancking_update', methods: ['GET', 'POST'])]
-    public function update(Request $request, Rancking $rancking, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(RanckingFormType::class, $rancking);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_rancking_view', ['id' => $rancking->getId()], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('rancking/update.html.twig', [
-            'rancking' => $rancking,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_rancking_delete', methods: ['POST'])]
-    public function delete(Request $request, Rancking $rancking, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Event $event, RanckingRepository $ranckingRepository, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$rancking->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($rancking);
-            $entityManager->flush();
+        if ($this->isCsrfTokenValid('delete'.$event->getId(), $request->getPayload()->getString('_token'))) {
+            $ranckings = $ranckingRepository->findBy(['event' => $event]);
+
+            foreach ($ranckings as $rancking) {
+                $entityManager->remove($rancking);
+
+                $entityManager->flush();
+            }
         }
 
         return $this->redirectToRoute('app_rancking_listing', [], Response::HTTP_SEE_OTHER);
