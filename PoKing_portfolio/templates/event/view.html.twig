@@ -3,7 +3,7 @@
 {% block title %}View Event{% endblock %}
 
 {% block body %}
-    <h1>Event details : {{ event.label }}</h1>
+    <h2>Event details : {{ event.label }}</h2>
 
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
@@ -18,18 +18,18 @@
     {% endfor %}
 
     <form action="{{ path('app_event_register', {'id': event.id}) }}" method="post">
-        <button type="submit">Register</button>
+        <button type="submit" class="btn">Register</button>
     </form>
 
     <form action="{{ path('app_event_unregister', {'id': event.id}) }}" method="post">
-        <button type="submit">Unregister</button>
+        <button type="submit" class="btn">Unregister</button>
     </form>
 
     <form action="{{ path('app_event_pdf_export', {'id': event.id}) }}" method="post">
-        <button type="submit">Registration list PDF export</button>
+        <button type="submit" class="btn">Registration list PDF export</button>
     </form>
 
-    <a href="{{ path('app_event_update', {'id': event.id}) }}">Update</a>
+    <button onclick="window.location.href='{{ path('app_event_update', {'id': event.id}) }}'" class="btn_href">Update</button>
 
     {{ include('event/_delete_form.html.twig') }}
 
