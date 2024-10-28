@@ -3,39 +3,45 @@
 {% block title %}All Events{% endblock %}
 
 {% block body %}
-    <h1>All Events</h1>
-
-    <a href="{{ path('app_event_create') }}">Create new</a>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Label</th>
-                <th>StartingDate</th>
-                <th>Stack</th>
-                <th>State</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for event in events %}
-            <tr>
-                <td>
-                    <a href="{{ path('app_event_view', {'id': event.id}) }}">{{ event.label }}</a>
-                </td>
-                <td>{{ event.startingDate ? event.startingDate|date('Y-m-d') : '' }}</td>
-                <td>{{ event.stack }}</td>
-                <td>à compléter</td>
-                <td>
-                    <a href="{{ path('app_event_update', {'id': event.id}) }}">Update</a>
-                    {{ include('event/_delete_form.html.twig') }}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no events found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h2>All Events</h2>
+    <div class="right_button">
+        <a href="{{ path('app_event_create') }}" class="btn_href">Create new</a>
+    </div>
+    </br>
+    </br>
+    <div class="table_div">
+        <table>
+            <thead>
+                <tr>
+                    <th>Label</th>
+                    <th>StartingDate</th>
+                    <th>Stack</th>
+                    <th>State</th>
+                    <th colspan="2">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>
+                        <a href="{{ path('app_event_view', {'id': event.id}) }}">{{ event.label }}</a>
+                    </td>
+                    <td>{{ event.startingDate ? event.startingDate|date('Y-m-d') : '' }}</td>
+                    <td>{{ event.stack }}</td>
+                    <td>à compléter</td>
+                    <td>
+                        <a href="{{ path('app_event_update', {'id': event.id}) }}" class="btn_href">Update</a>
+                    </td>
+                    <td>
+                        {{ include('event/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no events found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
