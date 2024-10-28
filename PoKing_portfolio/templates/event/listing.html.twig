@@ -3,6 +3,9 @@
 {% block title %}All Events{% endblock %}
 
 {% block body %}
+    {% set today = "now"|date("Ymd") %}
+    {% set currentTime = "now"|date("H:i") %}
+
     <h2>All Events</h2>
     <div class="right_button">
         <a href="{{ path('app_event_create') }}" class="btn_href">Create new</a>
@@ -14,21 +17,47 @@
             <thead>
                 <tr>
                     <th>Label</th>
-                    <th>StartingDate</th>
+                    <th>RegistrationOpeningDate</th>
+                    <th>RegistrationClosingDate</th>
                     <th>Stack</th>
-                    <th>State</th>
+                    <th>Status</th>
                     <th colspan="2">actions</th>
                 </tr>
             </thead>
             <tbody>
             {% for event in events %}
+                {% set registrationOpeningDate = event.registrationOpeningDate|date('Ymd') %}
+                {% set registrationOpeningTime = event.registrationOpeningTime|date("H:i") %}
+                {% set registrationClosingDate = event.registrationClosingDate|date('Ymd') %}
+                {% set registrationClosingTime = event.registrationClosingTime|date("H:i") %}
                 <tr>
                     <td>
                         <a href="{{ path('app_event_view', {'id': event.id}) }}">{{ event.label }}</a>
                     </td>
-                    <td>{{ event.startingDate ? event.startingDate|date('Y-m-d') : '' }}</td>
+                    <td>
+                        {{ event.registrationOpeningDate ? event.registrationOpeningDate|date('Y-m-d') : '' }}
+                    </td>
+                    <td>
+                        {{ event.registrationClosingDate ? event.registrationClosingDate|date('Y-m-d') : '' }}
+                    </td>
                     <td>{{ event.stack }}</td>
-                    <td>à compléter</td>
+                    {% if today < registrationOpeningDate %}
+                        <td>not opened registrations</td>
+                    {% elseif today == registrationOpeningDate %}
+                        {% if currentTime < registrationOpeningTime %}
+                            <td>not opened registrations</td>
+                        {% else %}
+                            <td>current registrations</td>
+                        {% endif %}
+                    {% elseif today == registrationClosingDate %}
+                        {% if currentTime < registrationClosingTime %}
+                            <td>current registrations</td>
+                        {% else %}
+                            <td>closed registrations</td>
+                        {% endif %}
+                    {% elseif today > registrationClosingDate %}
+                        <td>closed registrations</td>
+                    {% endif %}
                     <td>
                         <a href="{{ path('app_event_update', {'id': event.id}) }}" class="btn_href">Update</a>
                     </td>
