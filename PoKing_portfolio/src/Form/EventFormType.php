@@ -32,28 +32,28 @@ class EventFormType extends AbstractType
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
-                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
+                        'message' => 'Allowed characters : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
                     ]),
-                    new Length(['min' => 1, 'minMessage' => 'La saison doit être renseignée']),
+                    new Length(['min' => 1, 'minMessage' => 'Season must be filled in']),
                 ],
             ])
             ->add('label', TextType::class, [
-                'label' => '* Label ',
+                'label' => '* Label ( example : MTT of the 28/10/2024 )',
                 'attr' => [
                     'readonly' => $isEdit ? true : false,
                 ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
-                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
+                        'message' => 'Allowed characters : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
                     ]),
-                    new Length(['min' => 1, 'minMessage' => 'Le libellé doit être renseigné']),
+                    new Length(['min' => 1, 'minMessage' => 'Label must be filled in']),
                 ],
             ])
             ->add('stack', NumberType::class, [
                 'label' => '* Stack ',
                 'constraints' => [
-                    new Positive(['message' => 'Le stack doit être un entier positif']),
+                    new Positive(['message' => 'Stack must be a positive number']),
                 ],
             ])
             ->add('comment', TextType::class, [
@@ -62,40 +62,40 @@ class EventFormType extends AbstractType
                 'constraints' => [
                     new Length([
                         'max' => 1000,
-                        'maxMessage' => 'Maximum 1000 caractères',
+                        'maxMessage' => '1000 characters maximum',
                     ]),
                 ],
             ])
             ->add('registrationOpeningDate', DateType::class, [
-                'label' => '* Opening date of registration ',
+                'label' => '* Registration opening date ',
                 'widget' => 'single_text',
             ])
             ->add('registrationOpeningTime', TimeType::class, [
-                'label' => '* Opening time of registration ',
+                'label' => '* Registration opening time ',
                 'widget' => 'single_text',
             ])
             ->add('registrationClosingDate', DateType::class, [
-                'label' => '* Closing date of registration ',
+                'label' => '* Registration closing date ',
                 'widget' => 'single_text',
             ])
             ->add('registrationClosingTime', TimeType::class, [
-                'label' => '* Closing time of registration ',
+                'label' => '* Registration closing time ',
                 'widget' => 'single_text',
             ])
             ->add('startingDate', DateType::class, [
-                'label' => '* Opening date of event ',
+                'label' => '* Event opening date ',
                 'widget' => 'single_text',
             ])
             ->add('startingTime', TimeType::class, [
-                'label' => '* Opening time of event ',
+                'label' => '* Event opening time ',
                 'widget' => 'single_text',
             ])
             ->add('finishDate', DateType::class, [
-                'label' => '* Closing date of event ',
+                'label' => '* Event closing date ',
                 'widget' => 'single_text',
             ])
             ->add('finishTime', TimeType::class, [
-                'label' => '* Closing time of event ',
+                'label' => '* Event closing time ',
                 'widget' => 'single_text',
             ])
             ->add('place', EntityType::class, [

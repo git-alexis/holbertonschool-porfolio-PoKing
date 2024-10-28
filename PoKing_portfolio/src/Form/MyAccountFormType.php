@@ -32,86 +32,86 @@ class MyAccountFormType extends AbstractType
                 'constraints' => [
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Minimum 8 caractères',
+                        'minMessage' => '8 characters minimum',
                     ]),
                 ],
             ])
             ->add('surname', TextType::class, [
-                'label' => '* Nom ( example : BILLEMONT ) ',
+                'label' => '* Name ( example : BILLEMONT ) ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[A-Z\'\- ]+$/',
-                        'message' => 'Caractères autorisés : A-Z, \', \'-\', et \' \'',
+                        'message' => 'Allowed characters : A-Z, \', \'-\', et \' \'',
                     ]),
                 ],
             ])
             ->add('name', TextType::class, [
-                'label' => '* Prénom ( example : Alexis ) ',
+                'label' => '* Surname ( example : Alexis ) ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[A-Z][a-z\'\- ]+$/',
-                        'message' => 'Caractères autorisés : A-Z, a-z, \', \'-\', et \' \'',
+                        'message' => 'Allowed characters : A-Z, a-z, \', \'-\', et \' \'',
                     ]),
                 ],
             ])
             ->add('mail', EmailType::class, [
-                'label' => '* Adresse e-mail ',
+                'label' => '* E-mail ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9._\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/',
-                        'message' => 'E-mail valide ( example : nom@example.com )',
+                        'message' => 'Valid e-mail ( example : nom@example.com )',
                     ]),
                 ],
             ])
             ->add('phoneNumber', TextType::class, [
-                'label' => '* Numéro de téléphone ',
+                'label' => '* Phone number ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^\d{10}$/',
-                        'message' => 'Numéro de téléphone valide : 10 chiffres',
+                        'message' => 'Valid phone number : 10 numbers',
                     ]),
                 ],
             ])
             ->add('birthday', DateType::class, [
-                'label' => '* Date de naissance ',
+                'label' => '* Birthday ',
                 'widget' => 'single_text',
             ])
             ->add('address', TextType::class, [
-                'label' => 'Adresse ',
+                'label' => 'Address ',
                 'required' => false,
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
-                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
+                        'message' => 'Allowed characters : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
                     ]),
                     new Length([
                         'max' => 100,
-                        'maxMessage' => 'Maximum 100 caractères',
+                        'maxMessage' => '100 characters maximum',
                     ]),
                 ],
             ])
             ->add('city', TextType::class, [
-                'label' => 'Ville ',
+                'label' => 'City ',
                 'required' => false,
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
-                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
+                        'message' => 'Allowed characters : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
                     ]),
                     new Length([
                         'max' => 100,
-                        'maxMessage' => 'Maximum 100 caractères',
+                        'maxMessage' => '100 characters maximum',
                     ]),
                 ],
             ])
             ->add('postcode', TextType::class, [
-                'label' => 'Code postal ',
+                'label' => 'Postcode ',
                 'required' => false,
                 'constraints' => [
-                    new Positive(['message' => 'Le code postal doit être un entier positif']),
+                    new Positive(['message' => 'Postcode must be a positive number']),
                     new Regex([
                         'pattern' => '/^\d{5}$/',
-                        'message' => 'Code postal valide : 5 chiffres',
+                        'message' => 'Valid postcode : 5 numbers',
                     ]),
                 ],
             ])
