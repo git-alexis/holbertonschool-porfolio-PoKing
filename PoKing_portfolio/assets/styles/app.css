@@ -1,9 +1,45 @@
-ul {
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-image: url("../images/tapis_poker.jpg");
+}
+
+main {
+    flex: 1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+#header {
+    display: flex;
+    width: 100%;
+    position: relative;
+    background-color: #000000;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#poking {
+    flex: 1;
+    text-align: center;
+}
+
+#nav_list {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
     overflow: hidden;
-    background-color: #333;
+    background-color: #000000;
 }
 
 li {
@@ -26,16 +62,184 @@ li a:hover {
     float: right;
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+input:not([type="checkbox"]), select, textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     width: 100%;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+}
+
+#length_season {
+    width: 20%;
+}
+
+.checkbox {
+    margin-bottom: 10px;
+}
+
+.btn, #register_form_register, #my_account_form_update, #reset_password_form_reinitialize {
+    background-color: #99001b;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+.btn:hover, #register_form_register:hover, #my_account_form_update:hover, #reset_password_form_reinitialize:hover {
+    background-color: #5d0513;
+}
+
+.btn_href {
+    background-color: #2f5db3;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+.btn_href:hover {
+    background-color: #00085d;
+    text-decoration: underline;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #bde778;
+    color: #0d4a0a;
+    border: 1px solid #709a39;
+}
+
+.alert-danger {
+    background-color: #f4b2b8;
+    color: #721c24;
+    border: 1px solid #ff4f60;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+h3 {
+    color: white;
+}
+
+p {
+    text-align: justify;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.login_links {
+    text-align: center;
+}
+
+.login_links > a {
+    color: white;
+}
+
+a {
+    color: #5100ff;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+span {
+    color: #99001b;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.right_button {
+    float: right;
+}
+
+.table_div {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 100%;
+    border-left: 2px solid #000000;
+    border-right: 2px solid #000000;
+}
+
+table input {
+    margin-top: 20px;
+}
+
+tbody > tr {
+    height: 65px;
+}
+
+th, td {
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    border-bottom: 2px solid #000000;
+}
+
+th {
+    padding-bottom: 10px;
+}
+
+thead > tr {
+    background-color: #000000;
+    color: white;
+}
+
+tbody > tr {
+    background-color: white;
+}
+
+tbody > tr:hover {
+    background-color: rgb(53, 119, 22);
+    color: white;
 }
 
 #footer_parent {
     display: flex;
     width: 100%;
-    background-color: #333;
+    position: relative;
+    background-color: #000000;
 }
 
 .footer_child {
