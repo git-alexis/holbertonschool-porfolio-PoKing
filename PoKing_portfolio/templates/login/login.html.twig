@@ -3,10 +3,10 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <h1>Login to your account</h1>
+    <h2>Login to your account</h2>
 
     {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">
+        <div class="alert">
             {{ message }}
         </div>
     {% endfor %}
@@ -31,12 +31,16 @@
         </div>
 
 
-        <button class="btn btn-lg btn-primary" type="submit">
+        <button class="btn" type="submit">
             Sign in
         </button>
     </form>
 
-    <a href="{{ path('app_register') }}">No account ? Create one</a>
-    <br>
-    <a href="{{ path('app_reset_password') }}">Forgot your password ?</a>
+    </br>
+    <p class="login_links">
+        <a href="{{ path('app_register') }}">No account ? Create one</a>
+    </p>
+    <p class="login_links">
+        <a href="{{ path('app_reset_password') }}">Forgot your password ?</a>
+    </p>
 {% endblock %}

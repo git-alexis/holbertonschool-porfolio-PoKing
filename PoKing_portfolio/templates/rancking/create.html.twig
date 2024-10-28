@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Rancking{% endblock %}
+{% block title %}New Ranking{% endblock %}
 
 {% block body %}
-    <h1>{{ event.label }} ranking</h1>
+    <h2>{{ event.label }} ranking</h2>
 
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">

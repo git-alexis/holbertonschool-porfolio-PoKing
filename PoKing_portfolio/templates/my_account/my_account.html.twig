@@ -3,7 +3,7 @@
 {% block title %}Mon compte{% endblock %}
 
 {% block body %}
-    <h1>My account</h1>
+    <h2>My account</h2>
 
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
@@ -25,7 +25,7 @@
     <br>
     <form method="post" action="{{ path('app_delete_account') }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
         <input type="hidden" name="_method" value="DELETE">
-        <button type="submit" class="btn btn-danger">Supprimer le compte</button>
+        <button type="submit" class="btn">Delete account</button>
     </form>
 
 {% endblock %}
