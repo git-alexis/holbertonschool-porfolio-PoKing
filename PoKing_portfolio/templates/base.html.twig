@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
         {% endblock %}
@@ -14,7 +14,12 @@
     </head>
     <body>
         <header>
-            <ul>
+            <div id="header">
+                <div id="poking">
+                    <img src="{{ asset('images/poking.svg') }}" alt="Logo PoKing Club">
+                </div>
+            </div>
+            <ul id="nav_list">
                 <li><a href={{ path('app_my_account') }}>My_Account</a></li>
                 <li><a href={{ path('app_event_listing') }}>Events</a></li>
                 <li><a href={{ path('app_rancking_listing') }}>Rankings</a></li>
@@ -22,7 +27,12 @@
             </ul>
         </header>
         <main>
-            {% block body %}{% endblock %}
+            <style>
+                .wrapper { margin: 1em auto; max-width: 1200px; font: 18px/1.5 sans-serif; }
+            </style>
+            <div class="wrapper">
+                {% block body %}{% endblock %}
+            </div>
         </main>
         <footer>
             <div id="footer_parent">
@@ -32,13 +42,17 @@
                     <p class="footer_p">Villeneuve-d'Ascq 59650</p>
                 </div>
                 <div class="footer_child">
-                    <p class="footer_p">Find us</p>
+                    <h1>
+                        <p class="footer_p">Find us :</p>
+                    </h1>
                     <p class="footer_p">
                         <a href={{ path('app_contact_us') }}>Contact us</a>
                     </p>
                 </div>
                 <div class="footer_child">
-                    <p class="footer_p">More information</p>
+                    <h1>
+                        <p class="footer_p">More information :</p>
+                    </h1>
                     <p class="footer_p">
                         <a href={{ path('app_legals_mentions') }}>Legal Mentions</a>
                     </p>
