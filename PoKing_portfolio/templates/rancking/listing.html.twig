@@ -3,29 +3,37 @@
 {% block title %}All Rankings{% endblock %}
 
 {% block body %}
-    <h1>All Rankings</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Label</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for event in events %}
-            <tr>
-                <td>{{ event.label }}</td>
-                <td>
-                    <a href="{{ path('app_rancking_create', {'id': event.id}) }}">Create ranking</a>
-                    <a href="{{ path('app_rancking_view', {'id': event.id}) }}">View ranking</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="2">no rankings found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h2>All Rankings</h2>
+    <div class="right_button">
+        <a href="{{ path('app_rancking_view_general') }}" class="btn_href">View general Ranking</a>
+    </div>
+    </br>
+    </br>
+    <div class="table_div">
+        <table>
+            <thead>
+                <tr>
+                    <th>Label</th>
+                    <th colspan="2">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>{{ event.label }}</td>
+                    <td>
+                        <a href="{{ path('app_rancking_create', {'id': event.id}) }}" class="btn_href">Create ranking</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('app_rancking_view', {'id': event.id}) }}" class="btn_href">View ranking</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">no rankings found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
