@@ -37,17 +37,16 @@ class MyAccountFormType extends AbstractType
                 ],
             ])
             ->add('surname', TextType::class, [
-                'label' => '* Nom ( exemple : BILLEMONT ) ',
+                'label' => '* Nom ( example : BILLEMONT ) ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[A-Z\'\- ]+$/',
                         'message' => 'Caractères autorisés : A-Z, \', \'-\', et \' \'',
                     ]),
-
                 ],
             ])
             ->add('name', TextType::class, [
-                'label' => '* Prénom ( exemple : Alexis ) ',
+                'label' => '* Prénom ( example : Alexis ) ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[A-Z][a-z\'\- ]+$/',
@@ -60,7 +59,7 @@ class MyAccountFormType extends AbstractType
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9._\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/',
-                        'message' => 'E-mail valide ( exemple : nom@exemple.com )',
+                        'message' => 'E-mail valide ( example : nom@example.com )',
                     ]),
                 ],
             ])

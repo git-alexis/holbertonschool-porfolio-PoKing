@@ -47,7 +47,7 @@ class ResetPasswordFormType extends AbstractType
                 ],
             ])
             ->add('reinitialize', SubmitType::class, [
-                'label' => 'reinitialize',
+                'label' => 'Reinitialize',
             ])
         ;
     }
