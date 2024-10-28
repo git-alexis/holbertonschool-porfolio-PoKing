@@ -1,0 +1,201 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StatisticsController!{% endblock %}
+
+{% block body %}
+<form method="post" action="{{ path('app_statistics') }}">
+		<p>Board</p>
+		<table>
+			<thead>
+				<tr>
+					<th></th>
+					<th>first card</th>
+					<th>second card</th>
+					<th>third card</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>numbers</td>
+					<td>
+						<select name="numbersboard1" id="numbersboard1select" onchange="afficherCarte1Board()">
+							<option value="Ace" {% if numbersboard1 is not empty and numbersboard1 == "Ace" %} selected {% endif %}>Ace</option>
+							<option value="King" {% if numbersboard1 is not empty and numbersboard1 == "King" %} selected {% endif %}>King</option>
+							<option value="Queen" {% if numbersboard1 is not empty and numbersboard1 == "Queen" %} selected {% endif %}>Queen</option>
+							<option value="Jack" {% if numbersboard1 is not empty and numbersboard1 == "Jack" %} selected {% endif %}>Jack</option>
+							<option value="Ten" {% if numbersboard1 is not empty and numbersboard1 == "Ten" %} selected {% endif %}>Ten</option>
+							<option value="9" {% if numbersboard1 is not empty and numbersboard1 == "9" %} selected {% endif %}>9</option>
+							<option value="8" {% if numbersboard1 is not empty and numbersboard1 == "8" %} selected {% endif %}>8</option>
+							<option value="7" {% if numbersboard1 is not empty and numbersboard1 == "7" %} selected {% endif %}>7</option>
+							<option value="6" {% if numbersboard1 is not empty and numbersboard1 == "6" %} selected {% endif %}>6</option>
+							<option value="5" {% if numbersboard1 is not empty and numbersboard1 == "5" %} selected {% endif %}>5</option>
+							<option value="4" {% if numbersboard1 is not empty and numbersboard1 == "4" %} selected {% endif %}>4</option>
+							<option value="3" {% if numbersboard1 is not empty and numbersboard1 == "3" %} selected {% endif %}>3</option>
+							<option value="2" {% if numbersboard1 is not empty and numbersboard1 == "2" %} selected {% endif %}>2</option>
+						</select>
+					</td>
+					<td>
+						<select name="numbersboard2" id="numbersboard2select" onchange="afficherCarte2Board()">
+							<option value="Ace" >Ace</option>
+							<option value="King" >King</option>
+							<option value="Queen" >Queen</option>
+							<option value="Jack" >Jack</option>
+							<option value="Ten" >Ten</option>
+							<option value="9" >9</option>
+							<option value="8" >8</option>
+							<option value="7" >7</option>
+							<option value="6" >6</option>
+							<option value="5" >5</option>
+							<option value="4" >4</option>
+							<option value="3" >3</option>
+							<option value="2" >2</option>	
+						</select>
+					</td>
+					<td>
+						<select name="numbersboard3" id="numbersboard3select" onchange="afficherCarte3Board()">
+							<option value="Ace" >Ace</option>
+							<option value="King" >King</option>
+							<option value="Queen" >Queen</option>
+							<option value="Jack" >Jack</option>
+							<option value="Ten" >Ten</option>
+							<option value="9" >9</option>
+							<option value="8" >8</option>
+							<option value="7" >7</option>
+							<option value="6" >6</option>
+							<option value="5" >5</option>
+							<option value="4" >4</option>
+							<option value="3" >3</option>
+							<option value="2" >2</option>			
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>suits</td>
+					<td>					
+						<select name="suitsboard1" id="suitsboard1select" onchange="afficherCarte1Board()">
+							<option value="Clubs" {% if suitsboard1 is not empty and suitsboard1 == "Clubs" %} selected {% endif %}>Clubs</option>
+							<option value="Spades" {% if suitsboard1 is not empty and suitsboard1 == "Spades" %} selected {% endif %}>Spades</option>
+							<option value="Diamonds" {% if suitsboard1 is not empty and suitsboard1 == "Diamonds" %} selected {% endif %}>Diamonds</option>
+							<option value="Hearts" {% if suitsboard1 is not empty and suitsboard1 == "Hearts" %} selected {% endif %}>Hearts</option>
+						</select>
+					</td>
+					<td>
+						<select name="suitsboard2" id="suitsboard2select" onchange="afficherCarte2Board()">
+							<option value="Clubs" >Clubs</option>
+							<option value="Spades" >Spades</option>
+							<option value="Diamonds" >Diamonds</option>
+							<option value="Hearts" >Hearts</option>
+						</select>					
+					</td>
+					<td>
+						<select name="suitsboard3" id="suitsboard3select" onchange="afficherCarte3Board()">
+							<option value="Clubs" >Clubs</option>
+							<option value="Spades" >Spades</option>
+							<option value="Diamonds" >Diamonds</option>
+							<option value="Hearts" >Hearts</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>selection</td>
+					<td>
+						<input id="boardcards1" type="text" name="boardcards1" value="Ac"></input>
+					</td>
+					<td>
+						<input id="boardcards2" type="text" name="boardcards2" value="Ac"></input>
+					</td>
+					<td>
+						<input id="boardcards3" type="text" name="boardcards3" value="Ac"></input>
+					</td>
+				</tr>
+			</thead>
+		</table>
+		
+		<br/>
+		
+		<p>Hole</p>
+		<table>
+			<thead>
+				<tr>
+					<th></th>
+					<th>first card</th>
+					<th>second card</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>numbers</td>
+					<td>
+						<select name="numbershole1" id="numbershole1select" onchange="afficherCarte1Hole()">
+							<option value="Ace" >Ace</option>
+							<option value="King" >King</option>
+							<option value="Queen" >Queen</option>
+							<option value="Jack" >Jack</option>
+							<option value="Ten" >Ten</option>
+							<option value="9" >9</option>
+							<option value="8" >8</option>
+							<option value="7" >7</option>
+							<option value="6" >6</option>
+							<option value="5" >5</option>
+							<option value="4" >4</option>
+							<option value="3" >3</option>
+							<option value="2" >2</option>			
+						</select>
+					</td>
+					<td>						
+						<select name="numbershole2" id="numbershole2select" onchange="afficherCarte2Hole()">
+							<option value="Ace" >Ace</option>
+							<option value="King" >King</option>
+							<option value="Queen" >Queen</option>
+							<option value="Jack" >Jack</option>
+							<option value="Ten" >Ten</option>
+							<option value="9" >9</option>
+							<option value="8" >8</option>
+							<option value="7" >7</option>
+							<option value="6" >6</option>
+							<option value="5" >5</option>
+							<option value="4" >4</option>
+							<option value="3" >3</option>
+							<option value="2" >2</option>				
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>suits</td>
+					<td>					
+						<select name="suitshole1" id="suitshole1select" onchange="afficherCarte1Hole()">
+							<option value="Clubs" >Clubs</option>
+							<option value="Spades" >Spades</option>
+							<option value="Diamonds" >Diamonds</option>
+							<option value="Hearts" >Hearts</option>
+						</select>
+					</td>
+					<td>
+						<select name="suitshole2" id="suitshole2select" onchange="afficherCarte2Hole()">
+							<option value="Clubs" >Clubs</option>
+							<option value="Spades" >Spades</option>
+							<option value="Diamonds" >Diamonds</option>
+							<option value="Hearts" >Hearts</option>
+						</select>					
+					</td>
+				</tr>
+				<tr>
+					<td>selection</td>
+					<td>
+						<input id="holecards1" type="text" name="holecards1" value="Ac"></input>
+					</td>
+					<td>
+						<input id="holecards2" type="text" name="holecards2" value="Ac"></input>
+					</td>
+				</tr>
+			</thead>
+		</table>
+		
+		</br>		
+		<input type="submit" value="Get statistics"/>
+		</br>
+		<p><span>Hit one pair : </span>{% if hit1P is not empty %}{{ hit1P }}{% endif %}</p>
+		<p><span>Hit two pairs : </span>{% if hit2P is not empty %}{{ hit2P }}{% endif %}</p>
+		<p><span>Hit three a kind : </span>{% if hit3K is not empty %}{{ hit3K }}{% endif %}</p>
+	</form>
+{% endblock %}
