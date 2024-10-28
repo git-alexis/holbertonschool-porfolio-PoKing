@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}View general Ranking{% endblock %}
+
+{% block body %}
+    <h2>View general Ranking</h2>
+
+    <div class="table_div">
+        <table>
+            <thead>
+                <tr>
+                    <th>Pseudo</th>
+                    {% for event in events %}
+                        <th>{{ event.label }}</th>
+                    {% endfor %}
+                    <th>Total Points</th>
+                    <th>Total Kills</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in ranking %}
+                    <tr>
+                        <td>{{ item.pseudo }}</td>
+                        {% for event in events %}
+                            <td>{{ item.pointsPerEvent[event.id] }}</td>
+                        {% endfor %}
+                        <td>{{ item.totalPoints }}</td>
+                        <td>{{ item.totalKills }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
