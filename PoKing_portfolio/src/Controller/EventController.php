@@ -6,8 +6,11 @@ use App\Entity\Event;
 use App\Entity\Registration;
 use App\Form\EventFormType;
 use App\Repository\EventRepository;
+use App\Repository\RanckingRepository;
 use App\Repository\RegistrationRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -120,41 +123,23 @@ final class EventController extends AbstractController
     {
         $registrations = $registrationRepository->findBy(['event' => $id]);
 
+        $options = new Options();
+        $options->set('defaultFont', 'Arial');
+
+        $dompdf = new Dompdf($options);
+
         $html = $this->renderView('event/registration_list.html.twig', [
             'registrations' => $registrations,
         ]);
 
-        $apiUrl = 'https://us1.pdfgeneratorapi.com/api/v3/templates';
+        $dompdf->loadHtml($html);
 
-        $apiKey = 'TON_API_KEY';
+        $dompdf->setPaper('A4', 'portrait');
 
-        $client = HttpClient::create();
+        $dompdf->render();
 
-        $response = $client->request('POST', $apiUrl, [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $apiKey,
-            ],
-            'json' => [
-                'template' => [
-                    'format' => 'pdf',
-                    'name' => 'Liste des inscrits',
-                ],
-                'data' => [
-                    'content' => $html,
-                ],
-            ],
-        ]);
-
-        if ($response->getStatusCode() !== 200) {
-            throw new \Exception('Erreur lors de la génération du PDF');
-        }
-
-        $pdfContent = $response->getContent();
-
-        return new Response($pdfContent, 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'attachment; filename="inscrits.pdf"',
+        return $dompdf->stream('inscrits.pdf', [
+            'Attachment' => true,
         ]);
     }
 
@@ -180,13 +165,22 @@ final class EventController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_event_delete', methods: ['POST'])]
-    public function delete(Request $request, Event $event, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Event $event, RanckingRepository $ranckingRepository, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$event->getId(), $request->getPayload()->getString('_token'))) {
             $registrations = $entityManager->getRepository(Registration::class)->findBy(['event' => $event]);
+            $ranckings = $ranckingRepository->findBy(['event' => $event]);
 
             foreach ($registrations as $registration) {
                 $entityManager->remove($registration);
+
+                $entityManager->flush();
+            }
+
+            foreach ($ranckings as $rancking) {
+                $entityManager->remove($rancking);
+
+                $entityManager->flush();
             }
 
             $entityManager->remove($event);
