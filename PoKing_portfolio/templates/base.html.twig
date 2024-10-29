@@ -22,11 +22,21 @@
                 </div>
             </div>
             <ul id="nav_list">
-                <li><a href={{ path('app_my_account') }}>My_Account</a></li>
-                <li><a href={{ path('app_event_listing') }}>Events</a></li>
-                <li><a href={{ path('app_rancking_listing') }}>Rankings</a></li>
-                <li><a href={{ path('app_statistics') }}>Statistics</a></li>
-                <li class="right_navbar"><a href={{ path('app_logout') }}>Log Out</a></li>
+                <li>
+                    <a href={{ path('app_my_account') }} class="{% if app.request.attributes.get('_route') == 'app_my_account' %}active{% endif %}">My_Account</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_event_listing') }}" class="{% if app.request.attributes.get('_route') in ['app_event_listing', 'app_event_create', 'app_event_view', 'app_event_update'] %}active{% endif %}">Events</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_rancking_listing') }}" class="{% if app.request.attributes.get('_route') in ['app_rancking_listing', 'app_rancking_view_general', 'app_rancking_view', 'app_rancking_create'] %}active{% endif %}">Rankings</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_statistics') }}" class="{% if app.request.attributes.get('_route') == 'app_statistics' %}active{% endif %}">Statistics</a>
+                </li>
+                <li class="right_navbar">
+                    <a href={{ path('app_logout') }}>Log Out</a>
+                </li>
             </ul>
         </header>
         <main>
@@ -49,7 +59,7 @@
                         <p class="footer_p">Find us :</p>
                     </h1>
                     <p class="footer_p">
-                        <a href={{ path('app_contact_us') }}>Contact us</a>
+                        <a href="{{ path('app_contact_us') }}" class="{% if app.request.attributes.get('_route') == 'app_contact_us' %}active{% endif %}">Contact us</a>
                     </p>
                 </div>
                 <div class="footer_child">
@@ -57,7 +67,7 @@
                         <p class="footer_p">More information :</p>
                     </h1>
                     <p class="footer_p">
-                        <a href={{ path('app_legals_mentions') }}>Legal Mentions</a>
+                        <a href="{{ path('app_legals_mentions') }}" class="{% if app.request.attributes.get('_route') == 'app_legals_mentions' %}active{% endif %}">Legal Mentions</a>
                     </p>
                 </div>
             </div>
