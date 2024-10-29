@@ -21,23 +21,25 @@
                     <img src="{{ asset('images/poking.svg') }}" alt="Logo PoKing Club">
                 </div>
             </div>
-            <ul id="nav_list">
-                <li>
-                    <a href={{ path('app_my_account') }} class="{% if app.request.attributes.get('_route') == 'app_my_account' %}active{% endif %}">My_Account</a>
-                </li>
-                <li>
-                    <a href="{{ path('app_event_listing') }}" class="{% if app.request.attributes.get('_route') in ['app_event_listing', 'app_event_create', 'app_event_view', 'app_event_update'] %}active{% endif %}">Events</a>
-                </li>
-                <li>
-                    <a href="{{ path('app_rancking_listing') }}" class="{% if app.request.attributes.get('_route') in ['app_rancking_listing', 'app_rancking_view_general', 'app_rancking_view', 'app_rancking_create'] %}active{% endif %}">Rankings</a>
-                </li>
-                <li>
-                    <a href="{{ path('app_statistics') }}" class="{% if app.request.attributes.get('_route') == 'app_statistics' %}active{% endif %}">Statistics</a>
-                </li>
-                <li class="right_navbar">
-                    <a href={{ path('app_logout') }}>Log Out</a>
-                </li>
-            </ul>
+            {% if app.user %}
+                <ul id="nav_list">
+                    <li>
+                        <a href={{ path('app_my_account') }} class="{% if app.request.attributes.get('_route') == 'app_my_account' %}active{% endif %}">My_Account</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_event_listing') }}" class="{% if app.request.attributes.get('_route') in ['app_event_listing', 'app_event_create', 'app_event_view', 'app_event_update'] %}active{% endif %}">Events</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_rancking_listing') }}" class="{% if app.request.attributes.get('_route') in ['app_rancking_listing', 'app_rancking_view_general', 'app_rancking_view', 'app_rancking_create'] %}active{% endif %}">Rankings</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_statistics') }}" class="{% if app.request.attributes.get('_route') == 'app_statistics' %}active{% endif %}">Statistics</a>
+                    </li>
+                    <li class="right_navbar">
+                        <a href={{ path('app_logout') }}>Log Out</a>
+                    </li>
+                </ul>
+            {% endif %}
         </header>
         <main>
             <style>
