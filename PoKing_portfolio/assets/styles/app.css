@@ -83,6 +83,10 @@ input:not([type="checkbox"]), select, textarea {
     font-size: 1.1rem;
 }
 
+#numbersboard1select, #numbersboard2select, #numbersboard3select, #suitsboard1select, #suitsboard2select, #suitsboard3select, #numbershole1select, #numbershole2select, #suitshole1select, #suitshole2select {
+    margin-top: 20px;
+}
+
 #length_season {
     width: 20%;
 }
