@@ -22,7 +22,7 @@ class ResetPasswordFormType extends AbstractType
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9._\-]+$/',
-                        'message' => 'Caractères autorisés : a-z, A-Z, 0-9, ., _ et -',
+                        'message' => 'Allowed characters : a-z, A-Z, 0-9, ., _ et -',
                     ]),
                 ],
             ])
@@ -32,7 +32,7 @@ class ResetPasswordFormType extends AbstractType
                 'constraints' => [
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Minimum 8 caractères',
+                        'minMessage' => '8 characters minimum',
                     ]),
                 ],
             ])
@@ -42,7 +42,7 @@ class ResetPasswordFormType extends AbstractType
                 'constraints' => [
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Minimum 8 caractères',
+                        'minMessage' => '8 characters minimum',
                     ]),
                 ],
             ])
