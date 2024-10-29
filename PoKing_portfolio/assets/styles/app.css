@@ -58,6 +58,10 @@ li a:hover {
     background-color: #99001b;
 }
 
+.active {
+    background-color: rgb(53, 119, 22);
+}
+
 .right_navbar {
     float: right;
 }
