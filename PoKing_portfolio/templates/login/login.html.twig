@@ -6,7 +6,7 @@
     <h2>Login to your account</h2>
 
     {% for message in app.flashes('error') %}
-        <div class="alert">
+        <div class="alert alert-danger">
             {{ message }}
         </div>
     {% endfor %}
@@ -25,15 +25,14 @@
                value="{{ csrf_token('authenticate') }}"
         >
 
-        <div class="checkbox mb-3">
+        <div class="checkbox">
             <input type="checkbox" name="_remember_me" id="_remember_me">
             <label for="_remember_me">Remember me</label>
         </div>
 
-
-        <button class="btn" type="submit">
-            Sign in
-        </button>
+        <div class="div_button_center div_one_width">
+            <button class="btn btn_one_width">Sign in</button>
+        </div>
     </form>
 
     </br>
@@ -41,6 +40,6 @@
         <a href="{{ path('app_register') }}">No account ? Create one</a>
     </p>
     <p class="login_links">
-        <a href="{{ path('app_reset_password') }}">Forgot your password ?</a>
+        <a href="{{ path('app_forgot_password') }}">Forgot your password ?</a>
     </p>
 {% endblock %}

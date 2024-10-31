@@ -19,8 +19,16 @@
 
     <p><span>*</span> : mandatory field</p>
 
-    {{ form_start(registerForm) }}
+    {{ form_start(registerForm, {'attr': {'id': 'registerForm'}}) }}
     {{ form_end(registerForm) }}
 
-    <a href="{{ path('app_login') }}" class="btn_href">Back to connexion</a>
+
+    <div class="div_parent_button">
+        <div class="div_button div_button_center">
+            <button class="btn btn_too_width" onclick="document.getElementById('registerForm').submit();">Save account</button>
+        </div>
+        <div class="div_button div_button_center">
+            <button onclick="window.location.href='{{ path('app_login') }}'" class="btn_href btn_too_width">Back to connexion</button>
+        </div>
+    </div>
 {% endblock %}

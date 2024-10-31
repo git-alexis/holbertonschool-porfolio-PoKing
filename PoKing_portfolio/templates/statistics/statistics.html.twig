@@ -3,9 +3,9 @@
 {% block title %}Get statistics{% endblock %}
 
 {% block body %}
-<h2>Statistics calculator</h2>
-<p><span>*</span> : mandatory field</p>
-<form method="post" action="{{ path('app_statistics') }}">
+    <h2>Statistics calculator</h2>
+    <p><span>*</span> : mandatory field</p>
+    <form method="post" action="{{ path('app_statistics') }}">
         <h3>Board</h3>
         <div class="table_div">
         <table>
@@ -195,7 +195,9 @@
         </table>
         </div>
         </br>
-        <input type="submit" value="Get statistics" class="btn"/>
+        <div class="div_button_center div_one_width">
+            <button class="btn btn_one_width">Get statistics</button>
+        </div>
         </br>
         <p>Hit one pair : {% if hit1P is not empty %}{{ hit1P }}{% endif %} %</p>
         <p>Hit two pairs : {% if hit2P is not empty %}{{ hit2P }}{% endif %} %</p>

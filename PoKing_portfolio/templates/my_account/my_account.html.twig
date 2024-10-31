@@ -19,13 +19,10 @@
 
     <p><span>*</span> : mandatory field</p>
 
-    {{ form_start(myAccountForm) }}
+    {{ form_start(myAccountForm, {'attr': {'id': 'myAccountForm'}}) }}
     {{ form_end(myAccountForm) }}
 
-    <br>
-    <form method="post" action="{{ path('app_delete_account') }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
-        <input type="hidden" name="_method" value="DELETE">
-        <button type="submit" class="btn">Delete account</button>
-    </form>
-
+    <div class="div_button_center div_one_width">
+        <button class="btn btn_one_width" onclick="document.getElementById('myAccountForm').submit();">Update account</button>
+    </div>
 {% endblock %}
