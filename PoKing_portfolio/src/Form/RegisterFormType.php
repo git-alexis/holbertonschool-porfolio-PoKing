@@ -119,9 +119,6 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('register', SubmitType::class, [
-                'label' => 'Save account',
-            ])
         ;
     }
 

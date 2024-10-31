@@ -115,9 +115,6 @@ class MyAccountFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('update', SubmitType::class, [
-                'label' => 'Update account',
-            ])
         ;
     }
 

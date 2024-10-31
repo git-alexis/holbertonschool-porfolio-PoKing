@@ -10,22 +10,12 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\Regex;
 
 class ResetPasswordFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('pseudo', TextType::class, [
-                'label' => '* Pseudo ',
-                'constraints' => [
-                    new Regex([
-                        'pattern' => '/^[a-zA-Z0-9._\-]+$/',
-                        'message' => 'Allowed characters : a-z, A-Z, 0-9, ., _ et -',
-                    ]),
-                ],
-            ])
             ->add('plainPassword', PasswordType::class, [
                 'label' => '* New password ',
                 'mapped' => false,
@@ -45,9 +35,6 @@ class ResetPasswordFormType extends AbstractType
                         'minMessage' => '8 characters minimum',
                     ]),
                 ],
-            ])
-            ->add('reinitialize', SubmitType::class, [
-                'label' => 'Reinitialize',
             ])
         ;
     }
