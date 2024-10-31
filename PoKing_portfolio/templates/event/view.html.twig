@@ -4,70 +4,85 @@
 
 {% block body %}
     <h2>Event details : {{ event.label }}</h2>
-
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}
         </div>
     {% endfor %}
-
     {% for message in app.flashes('error') %}
         <div class="alert alert-danger">
             {{ message }}
         </div>
     {% endfor %}
-
-    <form action="{{ path('app_event_register', {'id': event.id}) }}" method="post">
-        <button type="submit" class="btn">Register</button>
-    </form>
-
-    <form action="{{ path('app_event_unregister', {'id': event.id}) }}" method="post">
-        <button type="submit" class="btn">Unregister</button>
-    </form>
-
-    <form action="{{ path('app_event_pdf_export', {'id': event.id}) }}" method="post">
-        <button type="submit" class="btn">Registration list PDF export</button>
-    </form>
-
-    <button onclick="window.location.href='{{ path('app_event_update', {'id': event.id}) }}'" class="btn_href">Update</button>
-
-    {{ include('event/_delete_form.html.twig') }}
-
-    <p>Registration opens on {{ event.registrationOpeningDate | date('d/m/Y') }} at {{ event.RegistrationOpeningTime | date('H:i') }}</p>
-    <p>registration closes on {{ event.registrationClosingDate | date('d/m/Y') }} at {{ event.registrationClosingTime | date('H:i') }}</p>
-    <p>start the {{ event.startingDate | date('d/m/Y') }} at {{ event.startingTime | date('H:i') }}</p>
-    <p>finish the {{ event.finishDate | date('d/m/Y') }} at {{ event.finishTime | date('H:i') }}</p>
-    <p>{{ event.place.name }}</p>
-    <p>{{ event.place.address }} {{ event.place.city }} {{ event.place.postcode }}</p>
-    <p>Comment : {{ event.comment }}</p>
-    <p>If you have specific questions or problems :</p>
-    <p>{{ event.contact.surname }} {{ event.contact.name }} {{ event.contact.role }}</p>
-    <p>Contact me :</p>
-    <p>my email {{ event.contact.mail }}</p>
-    <p>my phone number {{ event.contact.phoneNumber }}</p>
-
-    <h3>Registration list :</h3>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Pseudo</th>
-                <th>Surname</th>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for registration in registrations %}
-            <tr>
-                <td>{{ registration.user ? registration.user.pseudo : '' }}</td>
-                <td>{{ registration.user ? registration.user.surname : '' }}</td>
-                <td>{{ registration.user ? registration.user.name : '' }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no player found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div id="div_parent_view">
+        <div id="left_div_view">
+            <p>Registration opens on {{ event.registrationOpeningDate | date('d/m/Y') }} at {{ event.RegistrationOpeningTime | date('H:i') }}</p>
+            <p>registration closes on {{ event.registrationClosingDate | date('d/m/Y') }} at {{ event.registrationClosingTime | date('H:i') }}</p>
+            <p>start the {{ event.startingDate | date('d/m/Y') }} at {{ event.startingTime | date('H:i') }}</p>
+            <p>finish the {{ event.finishDate | date('d/m/Y') }} at {{ event.finishTime | date('H:i') }}</p>
+            <p>{{ event.place.name }}</p>
+            <p>{{ event.place.address }} {{ event.place.city }} {{ event.place.postcode }}</p>
+            <p>Stack : {{ event.stack }}</p>
+            <p>Comment : {{ event.comment }}</p>
+            <p>If you have specific questions or problems :</p>
+            <p>{{ event.contact.surname }} {{ event.contact.name }} {{ event.contact.role }}</p>
+            <p>Contact me :</p>
+            <p>my email {{ event.contact.mail }}</p>
+            <p>my phone number {{ event.contact.phoneNumber }}</p>
+        </div>
+        <div id="right_div_view">
+            <h3>Registration list :</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pseudo</th>
+                        <th>Surname</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for registration in registrations %}
+                    <tr>
+                        <td>{{ registration.user ? registration.user.pseudo : '' }}</td>
+                        <td>{{ registration.user ? registration.user.surname : '' }}</td>
+                        <td>{{ registration.user ? registration.user.name : '' }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">no player found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="div_parent_button">
+        <div class="div_button">
+            <form action="{{ path('app_event_register', {'id': event.id}) }}" method="post">
+                <div class="div_button_center">
+                    <button type="submit" class="btn btn_view_width">Register</button>
+                </div>
+            </form>
+        </div>
+        <div class="div_button">
+            <form action="{{ path('app_event_unregister', {'id': event.id}) }}" method="post">
+                <div class="div_button_center">
+                    <button type="submit" class="btn btn_view_width">Unregister</button>
+                </div>
+            </form>
+        </div>
+        <div class="div_button">
+            <form action="{{ path('app_event_pdf_export', {'id': event.id}) }}" method="post">
+                <div class="div_button_center">
+                    <button type="submit" class="btn btn_view_width">PDF export</button>
+                </div>
+            </form>
+        </div>
+        <div class="div_button div_button_center">
+            <button onclick="window.location.href='{{ path('app_event_update', {'id': event.id}) }}'" class="btn_href btn_view_width">Update</button>
+        </div>
+        <div class="div_button">
+            {{ include('event/_delete_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}
