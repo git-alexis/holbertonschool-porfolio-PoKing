@@ -66,6 +66,26 @@ li a:hover {
     float: right;
 }
 
+#div_parent_view, #div_parent_contact {
+    display: flex;
+}
+
+#div_parent_contact {
+    justify-content: space-between;
+}
+
+#left_div_view, #right_div_view {
+    flex: 1;
+}
+
+#left_div_contact, #right_div_contact {
+    width: 48%;
+}
+
+#right_div_view > h3, #left_div_contact > h3, #right_div_contact > h3 {
+    text-align: center;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -80,7 +100,6 @@ label {
 input:not([type="checkbox"]), select, textarea {
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
     border-radius: 4px;
     width: 100%;
     box-sizing: border-box;
@@ -97,6 +116,24 @@ input:not([type="checkbox"]), select, textarea {
 
 .checkbox {
     margin-bottom: 10px;
+    text-align: center;
+}
+
+.div_parent_button {
+    display: flex;
+}
+
+.div_button {
+    flex: 1;
+}
+
+.div_one_width {
+    width: 100%;
+}
+
+.div_button_center {
+    vertical-align: middle;
+    text-align: center;
 }
 
 .btn, #register_form_register, #my_account_form_update, #reset_password_form_reinitialize {
@@ -109,11 +146,6 @@ input:not([type="checkbox"]), select, textarea {
     border-radius: 4px;
     cursor: pointer;
     font-size: 1.1rem;
-    width: 100%;
-}
-
-.btn:hover, #register_form_register:hover, #my_account_form_update:hover, #reset_password_form_reinitialize:hover {
-    background-color: #5d0513;
 }
 
 .btn_href {
@@ -126,7 +158,22 @@ input:not([type="checkbox"]), select, textarea {
     border-radius: 4px;
     cursor: pointer;
     font-size: 1.1rem;
-    width: 100%;
+}
+
+.btn_view_width {
+    width: 90%;
+}
+
+.btn_too_width {
+    width: 60%;
+}
+
+.btn_one_width {
+    width: 50%;
+}
+
+.btn:hover, #register_form_register:hover, #my_account_form_update:hover, #reset_password_form_reinitialize:hover {
+    background-color: #42000b;
 }
 
 .btn_href:hover {
@@ -203,7 +250,7 @@ span {
 }
 
 table {
-    margin: auto;
+    margin-bottom: 20px;
     border-collapse: collapse;
     width: 100%;
     border-left: 2px solid #000000;
