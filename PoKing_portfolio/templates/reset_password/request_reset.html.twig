@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande de réinitialisation de mot de passe{% endblock %}
+
+{% block body %}
+    <h2>Forgot your password ?</h2>
+
+    <p>Please enter the pseudo you used to create your account</p>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
+    <form method="post" action="{{ path('app_forgot_password') }}" id="forgotPasswordForm">
+        <label for="pseudo">* Pseudo </label>
+        <input type="text" id="pseudo" name="pseudo" required>
+    </form>
+
+    <div class="div_parent_button">
+        <div class="div_button div_button_center">
+            <button class="btn btn_too_width" onclick="document.getElementById('forgotPasswordForm').submit();">Envoyer le lien de réinitialisation</button>
+        </div>
+        <div class="div_button div_button_center">
+            <button onclick="window.location.href='{{ path('app_login') }}'" class="btn_href btn_too_width">Back to connexion</button>
+        </div>
+    </div>
+{% endblock %}
