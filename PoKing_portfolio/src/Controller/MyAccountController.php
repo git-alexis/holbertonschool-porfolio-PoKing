@@ -31,13 +31,4 @@ class MyAccountController extends AbstractController
             'myAccountForm' => $form->createView(),
         ]);
     }
-
-    #[Route('/delete', name: 'app_delete_account', methods: ['GET', 'POST', 'DELETE'])]
-    public function deleteAccount(EntityManagerInterface $entityManager): Response
-    {
-        $user = $this->getUser();
-
-        $entityManager->remove($user);
-        $entityManager->flush();
-    }
 }
