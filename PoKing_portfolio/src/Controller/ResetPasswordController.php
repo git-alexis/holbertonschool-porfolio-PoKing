@@ -2,46 +2,82 @@
 
 namespace App\Controller;
 
-use App\Form\ResetPasswordFormType;
 use App\Entity\User;
+use App\Form\ResetPasswordFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class ResetPasswordController extends AbstractController
 {
-    #[Route('/reset-password', name: 'app_reset_password')]
-    public function resetPassword(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    #[Route('/request-reset', name: 'app_forgot_password')]
+    public function requestReset(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
-        $user = new User();
+        if ($request->isMethod('POST')) {
+            $pseudo = $request->request->get('pseudo');
+            $user = $entityManager->getRepository(User::class)->findOneBy(['pseudo' => $pseudo]);
+
+            if ($user) {
+                $resetToken = bin2hex(random_bytes(32));
+                $user->setResetToken($resetToken);
+
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                $resetUrl = $this->generateUrl('app_reset_password', ['token' => $resetToken], UrlGeneratorInterface::ABSOLUTE_URL);
+
+                $email = (new Email())
+                    ->from('no-reply@poking.com')
+                    ->to($user->getMail())
+                    ->subject('Reset your password')
+                    ->html("<p>Click on this link to reset your password : <a href='$resetUrl'>Reset my password</a></p>");
+
+                $mailer->send($email);
+
+                $this->addFlash('success', 'A reset email has been sent to the email address associated with your account');
+            } else {
+                $this->addFlash('error', 'Pseudo not found');
+            }
+        }
+
+        return $this->render('reset_password/request_reset.html.twig');
+    }
+
+    #[Route('/reset-password/{token}', name: 'app_reset_password')]
+    public function resetPassword(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, string $token): Response
+    {
+        $user = $entityManager->getRepository(User::class)->findOneBy(['resetToken' => $token]);
+
+        if (!$user) {
+            $this->addFlash('error', 'Lien de réinitialisation invalide.');
+            return $this->redirectToRoute('app_forgot_password');
+        }
 
         $form = $this->createForm(ResetPasswordFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $pseudo = $form->get('pseudo')->getData();
-            $user = $entityManager->getRepository(User::class)->findOneBy(['pseudo' => $pseudo]);
+            $newPassword = $form->get('plainPassword')->getData();
+            $confirmPassword = $form->get('confirmPassword')->getData();
 
-            if (!$user) {
-                $this->addFlash('error', 'Utilisateur non trouvé.');
+            if ($newPassword !== $confirmPassword) {
+                $this->addFlash('error', 'Les mots de passe ne correspondent pas.');
             } else {
-                $newPassword = $form->get('plainPassword')->getData();
-                $confirmPassword = $form->get('confirmPassword')->getData();
+                $hashedPassword = $passwordHasher->hashPassword($user, $newPassword);
 
-                if ($newPassword !== $confirmPassword) {
-                    $this->addFlash('error', 'Les mots de passe ne correspondent pas.');
-                } else {
-                    $hashedPassword = $passwordHasher->hashPassword($user, $newPassword);
-                    $user->setPassword($hashedPassword);
+                $user->setPassword($hashedPassword);
+                $user->setResetToken(null);
 
-                    $entityManager->persist($user);
-                    $entityManager->flush();
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-                    $this->addFlash('success', 'Mot de passe réinitialisé avec succès.');
-                }
+                return $this->redirectToRoute('app_login');
             }
         }
 
