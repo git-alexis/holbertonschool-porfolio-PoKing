@@ -1,6 +1,6 @@
 <form method="POST" action="{{ path('app_rancking_create', {'id': event.id}) }}">
 
-<label>* Season : </label>
+<label>* Season </label>
 <input type="text" name="season" value="{{ formData['season']|default('') }}" id="length_season">
 
 <div class="table_div">
@@ -38,7 +38,13 @@
     </table>
 </div>
 
-<input type="submit" name="calculate" value="Calculates points" class="btn"/>
-<input type="submit" name="save" value="Save" class="btn"/>
+<div class="div_parent_button">
+    <div class="div_button div_button_center">
+        <button name="calculate" value="calculate" class="btn btn_too_width">Calculate points</button>
+    </div>
+    <div class="div_button div_button_center">
+        <button name="save" value="save" class="btn btn_too_width">Save ranking</button>
+    </div>
+</div>
 
 </form>

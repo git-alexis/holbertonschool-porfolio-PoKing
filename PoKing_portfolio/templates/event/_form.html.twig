@@ -1,4 +1,5 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'id': 'eventForm'}}) }}
 {{ form_end(form) }}
+<div class="div_button_center div_one_width">
+    <button class="btn btn_one_width" onclick="document.getElementById('eventForm').submit();">Save event</button>
+</div>
