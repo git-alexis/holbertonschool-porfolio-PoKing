@@ -37,7 +37,7 @@ class MyAccountFormType extends AbstractType
                 ],
             ])
             ->add('surname', TextType::class, [
-                'label' => '* Name ( example : BILLEMONT ) ',
+                'label' => '* Surname ( example : BILLEMONT ) ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[A-Z\'\- ]+$/',
@@ -46,7 +46,7 @@ class MyAccountFormType extends AbstractType
                 ],
             ])
             ->add('name', TextType::class, [
-                'label' => '* Surname ( example : Alexis ) ',
+                'label' => '* Name ( example : Alexis ) ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[A-Z][a-z\'\- ]+$/',
