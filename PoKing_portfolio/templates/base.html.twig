@@ -16,57 +16,51 @@
     </head>
     <body>
         <header>
-            <div id="header">
-                <div id="poking">
-                    <img src="{{ asset('images/poking.svg') }}" alt="Logo PoKing Club">
-                </div>
-            </div>
+
+            <img src="{{ asset('images/banner.png') }}" id="banner">
+
+            <a href="{{ path('app_logout') }}"><img src="{{ asset('images/logout-icon.png') }}" id="logout"></a>
+
             {% if app.user %}
-                <ul id="nav_list">
-                    <li>
-                        <a href={{ path('app_my_account') }} class="{% if app.request.attributes.get('_route') == 'app_my_account' %}active{% endif %}">My_Account</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_event_listing') }}" class="{% if app.request.attributes.get('_route') in ['app_event_listing', 'app_event_create', 'app_event_view', 'app_event_update'] %}active{% endif %}">Events</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_rancking_listing') }}" class="{% if app.request.attributes.get('_route') in ['app_rancking_listing', 'app_rancking_view_general', 'app_rancking_view', 'app_rancking_create'] %}active{% endif %}">Rankings</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_statistics') }}" class="{% if app.request.attributes.get('_route') == 'app_statistics' %}active{% endif %}">Statistics</a>
-                    </li>
-                    <li class="right_navbar">
-                        <a href={{ path('app_logout') }}>Log Out</a>
-                    </li>
-                </ul>
+                <nav>
+                    <ul>
+                        <li><a href="{{ path('app_my_account') }}" class="{% if app.request.attributes.get('_route') == 'app_my_account' %}active{% endif %}">ACCOUNT</a></li>
+                        <li><a href="{{ path('app_event_listing') }}" class="{% if app.request.attributes.get('_route') in ['app_event_listing', 'app_event_create', 'app_event_view', 'app_event_update'] %}active{% endif %}">EVENTS</a></li>
+                        <li><a href="{{ path('app_rancking_listing') }}" class="{% if app.request.attributes.get('_route') in ['app_rancking_listing', 'app_rancking_view_general', 'app_rancking_view', 'app_rancking_create'] %}active{% endif %}">RANKINGS</a></li>
+                        <li><a href="{{ path('app_statistics') }}" class="{% if app.request.attributes.get('_route') == 'app_statistics' %}active{% endif %}">STATISTICS</a></li>
+                    </ul>
+                </nav>
             {% endif %}
+
+            <img src="{{ asset('images/poking.png') }}" id="poking">
         </header>
+
         <main>
-            {% block body %}{% endblock %}
+            <img src="{{ asset('images/patternGauche.png') }}" class="pattern">
+            <div id="main_content">
+                </br>
+                {% block body %}{% endblock %}
+                </br>
+            </div>
+            <img src="{{ asset('images/patternDroite.png') }}" class="pattern">
         </main>
+
         <footer>
-            <div id="footer_parent">
-                <div class="footer_child">
-                    <p class="footer_p">PoKing club</p>
-                    <p class="footer_p">107 Rue de Babylone,</p>
-                    <p class="footer_p">Villeneuve-d'Ascq 59650</p>
-                </div>
-                <div class="footer_child">
-                    <h1>
-                        <p class="footer_p">Find us :</p>
-                    </h1>
-                    <p class="footer_p">
-                        <a href="{{ path('app_contact_us') }}" class="{% if app.request.attributes.get('_route') == 'app_contact_us' %}active{% endif %}">Contact us</a>
-                    </p>
-                </div>
-                <div class="footer_child">
-                    <h1>
-                        <p class="footer_p">More information :</p>
-                    </h1>
-                    <p class="footer_p">
-                        <a href="{{ path('app_legals_mentions') }}" class="{% if app.request.attributes.get('_route') == 'app_legals_mentions' %}active{% endif %}">Legal Mentions</a>
-                    </p>
-                </div>
+            <div class="footer_child">
+                <p class="footer_p">© POKING</p>
+                <p class="footer_p">107 Rue de Babylone, 59650 Villeneuve-d'Ascq</p>
+            </div>
+            <div class="footer_child">
+                <p class="footer_p">Find us :</p>
+                <p class="footer_p">
+                    <a href="{{ path('app_contact_us') }}" class="{% if app.request.attributes.get('_route') == 'app_contact_us' %}active{% endif %}">Contact us</a>
+                </p>
+            </div>
+            <div class="footer_child">
+                <p class="footer_p">More information :</p>
+                <p class="footer_p">
+                    <a href="{{ path('app_legals_mentions') }}" class="{% if app.request.attributes.get('_route') == 'app_legals_mentions' %}active{% endif %}">Legal Mentions</a>
+                </p>
             </div>
         </footer>
     </body>
