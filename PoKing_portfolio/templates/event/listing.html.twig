@@ -6,7 +6,7 @@
     {% set today = "now"|date("Ymd") %}
     {% set currentTime = "now"|date("H:i") %}
 
-    <h2>All Events</h2>
+    <h1>ALL EVENTS</h1>
     {% if is_granted('ROLE_ADMIN') %}
         <div class="right_button">
             <a href="{{ path('app_event_create') }}" class="btn_href">Create new</a>
@@ -14,17 +14,16 @@
     {% endif %}
     </br>
     </br>
-    <div class="table_div">
         <table>
             <thead>
                 <tr>
                     <th>Label</th>
-                    <th>RegistrationOpeningDate</th>
-                    <th>RegistrationClosingDate</th>
+                    <th>Registration opening date</th>
+                    <th>Registration closing date</th>
                     <th>Stack</th>
-                    <th>Status</th>
+                    <th>Registration status</th>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <th colspan="2">actions</th>
+                        <th colspan="2">Actions</th>
                     {% endif %}
                 </tr>
             </thead>
@@ -35,48 +34,70 @@
                 {% set registrationClosingDate = event.registrationClosingDate|date('Ymd') %}
                 {% set registrationClosingTime = event.registrationClosingTime|date("H:i") %}
                 <tr>
-                    <td>
+                    <td class="rounded_left">
                         <a href="{{ path('app_event_view', {'id': event.id}) }}">{{ event.label }}</a>
                     </td>
                     <td>
-                        {{ event.registrationOpeningDate ? event.registrationOpeningDate|date('Y-m-d') : '' }}
+                        {{ event.registrationOpeningDate ? event.registrationOpeningDate|date('d/m/Y') : '' }}
                     </td>
                     <td>
-                        {{ event.registrationClosingDate ? event.registrationClosingDate|date('Y-m-d') : '' }}
+                        {{ event.registrationClosingDate ? event.registrationClosingDate|date('d/m/Y') : '' }}
                     </td>
-                    <td>{{ event.stack }}</td>
-                    {% if today < registrationOpeningDate %}
-                        <td>not opened registrations</td>
-                    {% elseif today == registrationOpeningDate %}
-                        {% if currentTime < registrationOpeningTime %}
-                            <td>not opened registrations</td>
-                        {% else %}
-                            <td>current registrations</td>
-                        {% endif %}
-                    {% elseif today == registrationClosingDate %}
-                        {% if currentTime < registrationClosingTime %}
-                            <td>current registrations</td>
-                        {% else %}
-                            <td>closed registrations</td>
-                        {% endif %}
-                    {% elseif today > registrationClosingDate %}
-                        <td>closed registrations</td>
-                    {% endif %}
+                    <td>
+                        {{ event.stack }}
+                    </td>
                     {% if is_granted('ROLE_ADMIN') %}
+                        {% if today < registrationOpeningDate %}
+                            <td>not opened</td>
+                        {% elseif today == registrationOpeningDate %}
+                            {% if currentTime < registrationOpeningTime %}
+                                <td>not opened</td>
+                            {% else %}
+                                <td>current</td>
+                            {% endif %}
+                        {% elseif today == registrationClosingDate %}
+                            {% if currentTime < registrationClosingTime %}
+                                <td>current</td>
+                            {% else %}
+                                <td>closed</td>
+                            {% endif %}
+                        {% elseif today > registrationClosingDate %}
+                            <td>closed</td>
+                        {% endif %}
                         <td>
-                            <a href="{{ path('app_event_update', {'id': event.id}) }}" class="btn_href">Update</a>
+                            <a href="{{ path('app_event_update', {'id': event.id}) }}" class="blue_link">Update</a>
                         </td>
-                        <td>
-                           {{ include('event/_delete_form.html.twig') }}
+                        <td class="rounded_right">
+                            <a href="#" class="red_link" onclick="event.preventDefault(); document.querySelector('#delete-form-{{ event.id }} button').click();">
+                                Delete
+                            </a>
+                            <span style="display: none;">{{ include('event/_delete_form.html.twig') }}</span>
                         </td>
+                    {% else %}
+                        {% if today < registrationOpeningDate %}
+                            <td class="rounded_right">not opened</td>
+                        {% elseif today == registrationOpeningDate %}
+                            {% if currentTime < registrationOpeningTime %}
+                                <td class="rounded_right">not opened</td>
+                            {% else %}
+                                <td class="rounded_right">current</td>
+                            {% endif %}
+                        {% elseif today == registrationClosingDate %}
+                            {% if currentTime < registrationClosingTime %}
+                                <td class="rounded_right">current</td>
+                            {% else %}
+                                <td class="rounded_right">closed</td>
+                            {% endif %}
+                        {% elseif today > registrationClosingDate %}
+                            <td class="rounded_right">closed</td>
+                        {% endif %}
                     {% endif %}
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="6">no events found</td>
+                    <td colspan="6" class="rounded_all">no events found</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-    </div>
 {% endblock %}
