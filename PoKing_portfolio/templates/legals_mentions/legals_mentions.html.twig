@@ -3,6 +3,38 @@
 {% block title %}Hello LegalsMentionsController!{% endblock %}
 
 {% block body %}
+    <h1>LEGAL MENTIONS</h1>
+
+    <div id="div_mentions">
+        <p class="mentions_title"><b>Publisher</b></p>
+        <p class="paragraph"><span style="color: #c0c0c0;">Poking</span>, an association under the law of 1901, headquartered at 107 rue de Babylone 59650 Villeneuve d'Ascq</p>
+        <p class="paragraph"><span style="color: #c0c0c0;">The publication director</span> is our president, <span style="color: #c0c0c0;">Alexis Billemont.</span></p>
+        </br>
+        <p class="mentions_title"><b>Hosting</b></p>
+        <p class="paragraph">Our website: http://poking.fr is hosted in France by :</p>
+        <p class="paragraph">
+            <span style="color: #c0c0c0;">O2Switch</span>
+            </br>
+            Siret : 510 909 80700024 – RCS Clermont Ferrand
+            </br>
+            SARL with capital of €100,000
+            </br>
+            ARCEP-registered telecom operator - Network owner AS50474
+        </p>
+        </br>
+        <p class="mentions_title"><b>Personal data</b></p>
+        <p class="paragraph">User : Internet user connecting to or using the site.</p>
+        <p class="paragraph">
+            In France, personal data is protected by law no. 78-87 of January 6, 1978, law no. 2004-801 of August 6, 2004, article L. 226-13 of the Criminal Code and the European Directive of October 24, 1995.
+            We will ask you for information in order to create an account so that you can register for our events. The user provides this information with full knowledge of the facts, in particular when he/she enters it him/herself.
+            Site users are informed whether or not they are required to provide this information.
+        </p>
+        <p class="paragraph">
+            In accordance with the provisions of articles 38 et seq. of the French Data Protection Act 78-17 of January 6, 1978, all users have the right to access, rectify, delete and oppose any personal data concerning them.
+            To exercise this right, please send your request to the following e-mail address: webmaster's e-mail address. No personal information of the site user is published without the user's knowledge, exchanged, transferred, assigned or sold on any medium whatsoever to third parties.								
+        </p>
+    </div>
+
     {% if not app.user %}
         <div class="div_button_center div_one_width">
             <button onclick="window.location.href='{{ path('app_login') }}'" class="btn_href btn_one_width">Back to connexion</button>
