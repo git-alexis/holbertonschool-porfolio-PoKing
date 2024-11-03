@@ -21,7 +21,7 @@
             <p>start the {{ event.startingDate | date('d/m/Y') }} at {{ event.startingTime | date('H:i') }}</p>
             <p>finish the {{ event.finishDate | date('d/m/Y') }} at {{ event.finishTime | date('H:i') }}</p>
             <p>{{ event.place.name }}</p>
-            <p>{{ event.place.address }} {{ event.place.city }} {{ event.place.postcode }}</p>
+            <p>{{ event.place.address }} {{ event.place.postcode }} {{ event.place.city }}</p>
             <p>Stack : {{ event.stack }}</p>
             <p>Comment : {{ event.comment }}</p>
             <p>If you have specific questions or problems :</p>
