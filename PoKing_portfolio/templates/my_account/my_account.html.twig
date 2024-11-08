@@ -5,74 +5,70 @@
 {% block body %}
     <h1>MY ACCOUNT</h1>
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
+    <div id="div_form">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success rounded_all">
+                {{ message }}
+            </div>
+        {% endfor %}
 
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger rounded_all">
+                {{ message }}
+            </div>
+        {% endfor %}
 
-    <div id="div_my_account">
         <p class="p_mandatory"><span class="span_mandatory">*</span> : mandatory field</p>
 
         {{ form_start(myAccountForm, {'attr': {'id': 'myAccountForm'}}) }}
 
-        <div>
-            {{ form_label(myAccountForm.pseudo) }}
-            {{ form_widget(myAccountForm.pseudo, {'attr': {'class': 'form_input'}}) }}
-        </div>
-        
-        <div>
-            {{ form_label(myAccountForm.plainPassword) }}
-            {{ form_widget(myAccountForm.plainPassword, {'attr': {'class': 'form_input'}}) }}
-        </div>
+        {{ form_label(myAccountForm.pseudo) }}
+        {{ form_widget(myAccountForm.pseudo, {'attr': {'class': 'form_input'}}) }}
+        {{ form_errors(myAccountForm.pseudo, {'attr': {'class': 'form_errors'}}) }}
 
-        <div>
-            {{ form_label(myAccountForm.surname) }}
-            {{ form_widget(myAccountForm.surname, {'attr': {'class': 'form_input'}}) }}
-        </div>
+        {{ form_label(myAccountForm.plainPassword) }}
+        {{ form_widget(myAccountForm.plainPassword, {'attr': {'class': 'form_input'}}) }}
+        {{ form_errors(myAccountForm.plainPassword, {'attr': {'class': 'form_errors'}}) }}
 
-        <div>
-            {{ form_label(myAccountForm.name) }}
-            {{ form_widget(myAccountForm.name, {'attr': {'class': 'form_input'}}) }}
-        </div>
-        
-        <div>
-            {{ form_label(myAccountForm.mail) }}
-            {{ form_widget(myAccountForm.mail, {'attr': {'class': 'form_input'}}) }}
-        </div>
+        {{ form_label(myAccountForm.surname) }}
+        {{ form_widget(myAccountForm.surname, {'attr': {'class': 'form_input'}}) }}
+        {{ form_errors(myAccountForm.surname, {'attr': {'class': 'form_errors'}}) }}
 
-        <div>
-            {{ form_label(myAccountForm.phoneNumber) }}
-            {{ form_widget(myAccountForm.phoneNumber, {'attr': {'class': 'form_input'}}) }}
-        </div>
+        {{ form_label(myAccountForm.name) }}
+        {{ form_widget(myAccountForm.name, {'attr': {'class': 'form_input'}}) }}
+        {{ form_errors(myAccountForm.name, {'attr': {'class': 'form_errors'}}) }}
+
+        {{ form_label(myAccountForm.mail) }}
+        {{ form_widget(myAccountForm.mail, {'attr': {'class': 'form_input'}}) }}
+        {{ form_errors(myAccountForm.mail, {'attr': {'class': 'form_errors'}}) }}
+
+        {{ form_label(myAccountForm.phoneNumber) }}
+        {{ form_widget(myAccountForm.phoneNumber, {'attr': {'class': 'form_input'}}) }}
+        {{ form_errors(myAccountForm.phoneNumber, {'attr': {'class': 'form_errors'}}) }}
 
         <div class="div_birthday_cp_city">
             {{ form_label(myAccountForm.birthday) }}
             {{ form_widget(myAccountForm.birthday, {'attr': {'class': 'form_birthday'}}) }}
+            {{ form_errors(myAccountForm.birthday, {'attr': {'class': 'form_errors'}}) }}
         </div>
-        
-        <div>
-            {{ form_label(myAccountForm.address) }}
-            {{ form_widget(myAccountForm.address, {'attr': {'class': 'form_input'}}) }}
-        </div>
+
+        {{ form_label(myAccountForm.address) }}
+        {{ form_widget(myAccountForm.address, {'attr': {'class': 'form_input'}}) }}
+        {{ form_errors(myAccountForm.address, {'attr': {'class': 'form_errors'}}) }}
 
         <div class="div_birthday_cp_city">
             {{ form_label(myAccountForm.postcode) }}
             {{ form_widget(myAccountForm.postcode, {'attr': {'class': 'form_postcode'}}) }}
+            {{ form_errors(myAccountForm.postcode, {'attr': {'class': 'form_errors'}}) }}
             {{ form_label(myAccountForm.city) }}
             {{ form_widget(myAccountForm.city, {'attr': {'class': 'form_city'}}) }}
+            {{ form_errors(myAccountForm.city, {'attr': {'class': 'form_errors'}}) }}
+        </div>
+
+        <div class="div_button_center div_one_width">
+            <button class="btn btn_one_width" type="submit">Update account</button>
         </div>
 
         {{ form_end(myAccountForm) }}
-    </div>
-
-    <div class="div_button_center div_one_width">
-        <button class="btn btn_one_width" onclick="document.getElementById('myAccountForm').submit();">Update account</button>
     </div>
 {% endblock %}

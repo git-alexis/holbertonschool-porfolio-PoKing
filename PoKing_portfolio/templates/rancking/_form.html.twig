@@ -1,9 +1,10 @@
 <form method="POST" action="{{ path('app_rancking_create', {'id': event.id}) }}">
 
-<label>* Season </label>
-<input type="text" name="season" value="{{ formData['season']|default('') }}" id="length_season">
+    <label>* Season : </label>
+    <input type="text" name="season" value="{{ formData['season']|default('') }}" id="length_season">
+    </br>
+    </br>
 
-<div class="table_div">
     <table>
         <thead>
             <tr>
@@ -16,27 +17,26 @@
         <tbody>
         {% for pseudo in pseudoList %}
             <tr>
-                <td>
-                    <input type="text" name="pseudo_{{ loop.index }}" value="{{ pseudo }}" readonly>
+                <td class="rounded_left">
+                    <input type="text" name="pseudo_{{ loop.index }}" value="{{ pseudo }}" id="pseudo" readonly>
                 </td>
                 <td>
-                    <input type="number" name="rank_{{ loop.index }}" value="{{ formData['rank_' ~ loop.index]|default('') }}" required>
+                    <input type="number" name="rank_{{ loop.index }}" value="{{ formData['rank_' ~ loop.index]|default('') }}" id="rank" required>
                 </td>
                 <td>
-                    <input type="number" name="points_{{ loop.index }}" value="{{ points[loop.index]|default(formData['points_' ~ loop.index]|default(0)) }}" readonly>
+                    <input type="number" name="points_{{ loop.index }}" value="{{ points[loop.index]|default(formData['points_' ~ loop.index]|default(0)) }}" id="points" readonly>
                 </td>
-                <td>
-                    <input type="number" name="kills_{{ loop.index }}" value="{{ formData['kills_' ~ loop.index]|default('') }}" required>
+                <td class="rounded_right">
+                    <input type="number" name="kills_{{ loop.index }}" value="{{ formData['kills_' ~ loop.index]|default('') }}" id="kills" required>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no registration found</td>
+                <td colspan="4" class="rounded_all">no registration found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-</div>
 
 <div class="div_parent_button">
     <div class="div_button div_button_center">

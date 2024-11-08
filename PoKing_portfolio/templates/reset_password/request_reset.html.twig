@@ -3,26 +3,35 @@
 {% block title %}Demande de réinitialisation de mot de passe{% endblock %}
 
 {% block body %}
-    <h2>Forgot your password ?</h2>
+    <h1>FORGOT YOUR PASSWORD ?</h1>
 
-    <p>Please enter the pseudo you used to create your account</p>
+    </br>
+    <div id="div_form">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">{{ message }}</div>
-    {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+        </br>
 
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">{{ message }}</div>
-    {% endfor %}
+        <p class="paragraph">Please enter the pseudo you used to create your account</p>
+        </br>
 
-    <form method="post" action="{{ path('app_forgot_password') }}" id="forgotPasswordForm">
-        <label for="pseudo">* Pseudo </label>
-        <input type="text" id="pseudo" name="pseudo" required>
-    </form>
+        <p class="p_mandatory"><span class="span_mandatory">*</span> : mandatory field</p>
+
+        </br>
+        <form method="post" action="{{ path('app_forgot_password') }}" id="forgotPasswordForm">
+            <label for="pseudo">* Pseudo </label>
+            <input type="text" id="pseudo" name="pseudo" class="form_input" required>
+        </form>
+    </div>
+    </br>
 
     <div class="div_parent_button">
         <div class="div_button div_button_center">
-            <button class="btn btn_too_width" onclick="document.getElementById('forgotPasswordForm').submit();">Envoyer le lien de réinitialisation</button>
+            <button class="btn btn_too_width" onclick="document.getElementById('forgotPasswordForm').submit();">Send the reset link</button>
         </div>
         <div class="div_button div_button_center">
             <button onclick="window.location.href='{{ path('app_login') }}'" class="btn_href btn_too_width">Back to connexion</button>

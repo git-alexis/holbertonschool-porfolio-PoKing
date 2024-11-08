@@ -3,32 +3,77 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h2>Create an account</h2>
+    <h1>CREATE AN ACCOUNT</h1>
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
+    <div id="div_form">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success rounded_all">
+                {{ message }}
+            </div>
+        {% endfor %}
 
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger rounded_all">
+                {{ message }}
+            </div>
+        {% endfor %}
 
-    <p><span>*</span> : mandatory field</p>
+        <p class="p_mandatory"><span class="span_mandatory">*</span> : mandatory field</p>
 
-    {{ form_start(registerForm, {'attr': {'id': 'registerForm'}}) }}
-    {{ form_end(registerForm) }}
+        {{ form_start(registerForm, {'attr': {'id': 'registerForm'}}) }}
 
+            {{ form_label(registerForm.pseudo) }}
+            {{ form_widget(registerForm.pseudo, {'attr': {'class': 'form_input'}}) }}
+            {{ form_errors(registerForm.pseudo, {'attr': {'class': 'form_errors'}}) }}
 
-    <div class="div_parent_button">
-        <div class="div_button div_button_center">
-            <button class="btn btn_too_width" onclick="document.getElementById('registerForm').submit();">Save account</button>
-        </div>
-        <div class="div_button div_button_center">
-            <button onclick="window.location.href='{{ path('app_login') }}'" class="btn_href btn_too_width">Back to connexion</button>
-        </div>
+            {{ form_label(registerForm.plainPassword) }}
+            {{ form_widget(registerForm.plainPassword, {'attr': {'class': 'form_input'}}) }}
+            {{ form_errors(registerForm.plainPassword, {'attr': {'class': 'form_errors'}}) }}
+
+            {{ form_label(registerForm.surname) }}
+            {{ form_widget(registerForm.surname, {'attr': {'class': 'form_input'}}) }}
+            {{ form_errors(registerForm.surname, {'attr': {'class': 'form_errors'}}) }}
+
+            {{ form_label(registerForm.name) }}
+            {{ form_widget(registerForm.name, {'attr': {'class': 'form_input'}}) }}
+            {{ form_errors(registerForm.name, {'attr': {'class': 'form_errors'}}) }}
+
+            {{ form_label(registerForm.mail) }}
+            {{ form_widget(registerForm.mail, {'attr': {'class': 'form_input'}}) }}
+            {{ form_errors(registerForm.mail, {'attr': {'class': 'form_errors'}}) }}
+
+            {{ form_label(registerForm.phoneNumber) }}
+            {{ form_widget(registerForm.phoneNumber, {'attr': {'class': 'form_input'}}) }}
+            {{ form_errors(registerForm.phoneNumber, {'attr': {'class': 'form_errors'}}) }}
+
+            <div class="div_birthday_cp_city">
+                {{ form_label(registerForm.birthday) }}
+                {{ form_widget(registerForm.birthday, {'attr': {'class': 'form_birthday'}}) }}
+                {{ form_errors(registerForm.birthday, {'attr': {'class': 'form_errors'}}) }}
+            </div>
+
+            {{ form_label(registerForm.address) }}
+            {{ form_widget(registerForm.address, {'attr': {'class': 'form_input'}}) }}
+            {{ form_errors(registerForm.address, {'attr': {'class': 'form_errors'}}) }}
+
+            <div class="div_birthday_cp_city">
+                {{ form_label(registerForm.postcode) }}
+                {{ form_widget(registerForm.postcode, {'attr': {'class': 'form_postcode'}}) }}
+                {{ form_errors(registerForm.postcode, {'attr': {'class': 'form_errors'}}) }}
+                {{ form_label(registerForm.city) }}
+                {{ form_widget(registerForm.city, {'attr': {'class': 'form_city'}}) }}
+                {{ form_errors(registerForm.city, {'attr': {'class': 'form_errors'}}) }}
+            </div>
+
+            <div class="div_parent_button">
+                <div class="div_button div_button_center">
+                    <button class="btn btn_too_width" type="submit">Save account</button>
+                </div>
+                <div class="div_button div_button_center">
+                    <button onclick="window.location.href='{{ path('app_login') }}'" class="btn_href btn_too_width">Back to connexion</button>
+                </div>
+            </div>
+
+        {{ form_end(registerForm) }}
     </div>
 {% endblock %}

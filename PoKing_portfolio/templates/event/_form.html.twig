@@ -1,5 +1,95 @@
-{{ form_start(form, {'attr': {'id': 'eventForm'}}) }}
-{{ form_end(form) }}
-<div class="div_button_center div_one_width">
-    <button class="btn btn_one_width" onclick="document.getElementById('eventForm').submit();">Save event</button>
+<div id="div_form">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success rounded_all">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger rounded_all">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <p class="p_mandatory"><span class="span_mandatory">*</span> : mandatory field</p>
+
+        {{ form_start(form, {'attr': {'id': 'eventForm'}}) }}
+
+        {{ form_label(form.season) }}
+        {{ form_widget(form.season, {'attr': {'class': 'form_input'}}) }}
+        {{ form_errors(form.season, {'attr': {'class': 'form_errors'}}) }}
+
+        {{ form_label(form.label) }}
+        {{ form_widget(form.label, {'attr': {'class': 'form_input'}}) }}
+        {{ form_errors(form.label, {'attr': {'class': 'form_errors'}}) }}
+
+        <div class="div_birthday_cp_city">
+            {{ form_label(form.registrationOpeningDate) }}
+            {{ form_widget(form.registrationOpeningDate, {'attr': {'class': 'form_date'}}) }}
+            {{ form_errors(form.registrationOpeningDate, {'attr': {'class': 'form_errors'}}) }}
+        </div>
+
+        <div class="div_birthday_cp_city">
+            {{ form_label(form.registrationOpeningTime) }}
+            {{ form_widget(form.registrationOpeningTime, {'attr': {'class': 'form_time'}}) }}
+            {{ form_errors(form.registrationOpeningTime, {'attr': {'class': 'form_errors'}}) }}
+        </div>
+
+        <div class="div_birthday_cp_city">
+            {{ form_label(form.registrationClosingDate) }}
+            {{ form_widget(form.registrationClosingDate, {'attr': {'class': 'form_date'}}) }}
+            {{ form_errors(form.registrationClosingDate, {'attr': {'class': 'form_errors'}}) }}
+        </div>
+
+        <div class="div_birthday_cp_city">
+            {{ form_label(form.registrationClosingTime) }}
+            {{ form_widget(form.registrationClosingTime, {'attr': {'class': 'form_time'}}) }}
+            {{ form_errors(form.registrationClosingTime, {'attr': {'class': 'form_errors'}}) }}
+        </div>
+
+        <div class="div_birthday_cp_city">
+            {{ form_label(form.startingDate) }}
+            {{ form_widget(form.startingDate, {'attr': {'class': 'form_date'}}) }}
+            {{ form_errors(form.startingDate, {'attr': {'class': 'form_errors'}}) }}
+        </div>
+
+        <div class="div_birthday_cp_city">
+            {{ form_label(form.startingTime) }}
+            {{ form_widget(form.startingTime, {'attr': {'class': 'form_time'}}) }}
+            {{ form_errors(form.startingTime, {'attr': {'class': 'form_errors'}}) }}
+        </div>
+
+        <div class="div_birthday_cp_city">
+            {{ form_label(form.finishDate) }}
+            {{ form_widget(form.finishDate, {'attr': {'class': 'form_date'}}) }}
+            {{ form_errors(form.finishDate, {'attr': {'class': 'form_errors'}}) }}
+        </div>
+
+        <div class="div_birthday_cp_city">
+            {{ form_label(form.finishTime) }}
+            {{ form_widget(form.finishTime, {'attr': {'class': 'form_time'}}) }}
+            {{ form_errors(form.finishTime, {'attr': {'class': 'form_errors'}}) }}
+        </div>
+
+        {{ form_label(form.place) }}
+        {{ form_widget(form.place, {'attr': {'class': 'form_input form_place_contact'}}) }}
+        {{ form_errors(form.place, {'attr': {'class': 'form_errors'}}) }}
+
+        {{ form_label(form.contact) }}
+        {{ form_widget(form.contact, {'attr': {'class': 'form_input form_place_contact'}}) }}
+        {{ form_errors(form.contact, {'attr': {'class': 'form_errors'}}) }}
+
+        {{ form_label(form.stack) }}
+        {{ form_widget(form.stack, {'attr': {'class': 'form_input'}}) }}
+        {{ form_errors(form.stack, {'attr': {'class': 'form_errors'}}) }}
+
+        {{ form_label(form.comment) }}
+        {{ form_widget(form.comment, {'attr': {'class': 'form_input'}}) }}
+        {{ form_errors(form.comment, {'attr': {'class': 'form_errors'}}) }}
+
+        <div class="div_button_center div_one_width">
+            <button class="btn btn_one_width" type="submit">Save event</button>
+        </div>
+
+        {{ form_end(form) }}
 </div>
