@@ -16,10 +16,11 @@
     </head>
     <body>
         <header>
-
             <img src="{{ asset('images/banner.png') }}" id="banner">
 
             <a href="{{ path('app_logout') }}"><img src="{{ asset('images/logout-icon.png') }}" id="logout"></a>
+
+            <img src="{{ asset('images/poking.png') }}" id="poking">
 
             {% if app.user %}
                 <nav>
@@ -31,8 +32,6 @@
                     </ul>
                 </nav>
             {% endif %}
-
-            <img src="{{ asset('images/poking.png') }}" id="poking">
         </header>
 
         <main>
