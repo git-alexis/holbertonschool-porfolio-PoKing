@@ -3,10 +3,10 @@
 {% block title %}Contact us{% endblock %}
 
 {% block body %}
-    <h2>Contact us</h2>
+    <h1>CONTACT US</h1>
     <div id="div_parent_contact">
         <div id="left_div_contact">
-            <h3>Contact us by email</h3>
+            <h2>Contact us by email</h2>
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success">
                     {{ message }}
@@ -20,30 +20,32 @@
             <form method="post">
                 <div>
                     <label for="mail">Your email : </label>
-                    <input type="text" id="mail" name="email">
+                    <input type="text" id="mail" name="email" class="form_input">
                 </div>
                 <div>
                     <label for="sujet">Object : </label>
-                    <input type="text" id="sujet" name="subject" maxlength="40">
+                    <input type="text" id="sujet" name="subject" maxlength="40" class="form_input">
                 </div>
                 <div>
                     <label for="message">Message : </label>
-                    <textarea id="message" name="message"></textarea>
+                    <textarea id="textarea_contact" maxlength="1000" name="message"></textarea>
                 </div>
                 <div class="div_button_center div_one_width">
                     <button class="btn btn_one_width">Send</button>
                 </div>
             </form>
-            {% if not app.user %}
-                <div class="div_button_center div_one_width">
-                    <button onclick="window.location.href='{{ path('app_login') }}'" class="btn_href btn_one_width">Back to connexion</button>
-                </div>
-            {% endif %}
         </div>
         <div id="right_div_contact">
-            <h3>Meet us</h3>
-            <p>You can meet us every Friday evening from 7:00 pm at the Maison de Quartier PASTEUR in Villeneuve d'Ascq.</p>
-            <div></div>
+            <h2>Meet us</h2>
+            <p class="paragraph">You can meet us every Friday evening from 7:00 pm at the Maison de Quartier PASTEUR in Villeneuve d'Ascq.</p>
+            <div class="contact_map">
+                <img src="{{ asset('images/screen_contact_poking.jpg') }}" class="contact_map">
+            </div>
         </div>
     </div>
+    {% if not app.user %}
+        <div class="div_button_center div_one_width">
+            <button onclick="window.location.href='{{ path('app_login') }}'" class="btn_href btn_one_width">Back to connexion</button>
+        </div>
+    {% endif %}
 {% endblock %}
