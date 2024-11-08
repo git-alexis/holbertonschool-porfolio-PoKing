@@ -3,9 +3,8 @@
 {% block title %}View general Ranking{% endblock %}
 
 {% block body %}
-    <h2>View general Ranking</h2>
+    <h1>VIEW GENERAL RANKING</h1>
 
-    <div class="table_div">
         <table>
             <thead>
                 <tr>
@@ -20,15 +19,14 @@
             <tbody>
                 {% for item in ranking %}
                     <tr>
-                        <td>{{ item.pseudo }}</td>
+                        <td class="rounded_left">{{ item.pseudo }}</td>
                         {% for event in events %}
                             <td>{{ item.pointsPerEvent[event.id] }}</td>
                         {% endfor %}
                         <td>{{ item.totalPoints }}</td>
-                        <td>{{ item.totalKills }}</td>
+                        <td class="rounded_right">{{ item.totalKills }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div>
 {% endblock %}

@@ -3,37 +3,62 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <h2>Login to your account</h2>
+    <h1>LOGIN TO YOUR ACCOUNT</h1>
 
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
+    </br>
 
-    <p><span>*</span> : mandatory field</p>
+    <div id="div_form">
+        <h2>Welcome to Poking - Experience live poker with us !</h2>
+        </br>
+        <p class="paragraph">
+            Do you love poker ? You've come to the right place! Join our club of poker enthusiasts in Villeneuve d'Ascq, near Lille in northern France.
+            </br>
+            Join us every Friday evening to play poker in a friendly atmosphere against other players of all levels.
+            </br>
+            Whether you're a beginner or an experienced player, we also offer tournaments on certain weekends, with prizes (gift cards, etc.).
+            </br>
+            </br>
+            Ready to take up the challenge ?
+            </br>
+            Create your free account and start your poker adventure today !
+            </br>
+            Get two free trial sessions before you join !
+            </br>
+            </br>
+        </p>
 
-    <form method="post">
-        <label for="username">* Pseudo</label>
-        <input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="username" required autofocus>
-        <br>
-        <br>
-        <label for="password">* Password</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
 
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
+        <p class="p_mandatory"><span class="span_mandatory">*</span> : mandatory field</p>
 
-        <div class="checkbox">
-            <input type="checkbox" name="_remember_me" id="_remember_me">
-            <label for="_remember_me">Remember me</label>
-        </div>
+        <form method="post">
+            <label for="username">* Pseudo</label>
+            <input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control form_input" autocomplete="username" required autofocus>
+            <br>
+            <br>
+            <label for="password">* Password</label>
+            <input type="password" name="_password" id="password" class="form-control form_input" autocomplete="current-password" required>
 
-        <div class="div_button_center div_one_width">
-            <button class="btn btn_one_width">Sign in</button>
-        </div>
-    </form>
+            <input type="hidden" name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}"
+            >
+
+            </br>
+            <div class="checkbox">
+                <input type="checkbox" name="_remember_me" id="_remember_me">
+                <label for="_remember_me">Remember me</label>
+            </div>
+            </br>
+
+            <div class="div_button_center div_one_width">
+                <button class="btn btn_one_width">Sign in</button>
+            </div>
+        </form>
+    </div>
 
     </br>
     <p class="login_links">

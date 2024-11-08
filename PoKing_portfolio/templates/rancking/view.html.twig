@@ -3,10 +3,9 @@
 {% block title %}View Ranking{% endblock %}
 
 {% block body %}
-    <h2>View Ranking</h2>
+    <h1>RANKING DETAILS : {{ event.label }}</h1>
 
-    <div class="table_div">
-        <table class="table">
+        <table>
             <thead>
                 <tr>
                     <th>Pseudo</th>
@@ -18,19 +17,18 @@
             <tbody>
             {% for rancking in ranckings %}
                 <tr>
-                    <td>{{ rancking.getUser().getPseudo() }}</td>
+                    <td class="rounded_left">{{ rancking.getUser().getPseudo() }}</td>
                     <td>{{ rancking.rankingPosition }}</td>
                     <td>{{ rancking.points }}</td>
-                    <td>{{ rancking.killsNumber }}</td>
+                    <td class="rounded_right">{{ rancking.killsNumber }}</td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="4">no ranking found</td>
+                    <td colspan="4" class="rounded_all">no ranking found</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-    </div>
 
     {{ include('rancking/_delete_form.html.twig') }}
 {% endblock %}
