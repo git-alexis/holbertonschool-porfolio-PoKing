@@ -3,6 +3,7 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
+    background-color: #c0c0c0;
 }
 
 header {
@@ -43,7 +44,7 @@ nav > ul {
 }
 
 nav > ul > li {
-    margin: 0 85px;
+    margin: 0px 70px;
 }
 
 nav > ul > li > a {
@@ -77,12 +78,6 @@ main, footer {
     width: 100%;
 }
 
-footer {
-    margin-top: 4px;
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
-
 .pattern {
     flex: 1;
 }
@@ -91,10 +86,14 @@ footer {
     flex: 6;
 }
 
-h1, h3 {
+h1, h2 {
     font-family: Chalet book;
     color: #f1f1f1;
     text-align: center;
+}
+
+.title_results {
+    text-align: left;
 }
 
 .btn, .btn_href {
@@ -159,7 +158,7 @@ h1, h3 {
 table {
     margin: auto;
     border-spacing: 0 10px;
-    width: 90%;
+    width: 100%;
 }
 
 th {
@@ -189,7 +188,13 @@ td {
     border-radius: 10px 10px 10px 10px;
 }
 
-#div_my_account {
+#div_table_ranking {
+    margin: auto;
+    border-spacing: 0 10px;
+    width: 100%;
+}
+
+#div_form {
     margin: auto;
     width: 80%;
 }
@@ -210,6 +215,10 @@ label {
     border-radius: 4px;
     width: 99%;
     font-size: 20px;
+}
+
+.form_place_contact {
+    width: 100%;
 }
 
 .div_birthday_cp_city {
@@ -240,13 +249,67 @@ label {
     padding: 5px;
 }
 
+.form_date {
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 20px;
+    margin-left: 5px;
+    width: 12%;
+}
+
+.form_time {
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 20px;
+    margin-left: 5px;
+    width: 5.5%;
+}
+
+form > ul {
+    list-style: none;
+}
+
+form > ul > li {
+    color: #cb2c4f;
+    font-size: 22px;
+    font-family: Chalet book;
+}
+
 #length_season {
     width: 20%;
+    font-size: 20px;
+    font-family: Chalet book;
+}
+
+#textarea_event {
+    width: 95%;
+    height: 100px;
+    resize: none;
+    font-size: 20px;
+    font-family: Chalet book;
+}
+
+#textarea_contact {
+    width: 100%;
+    height: 400px;
+    resize: none;
+    font-size: 20px;
+    font-family: Chalet book;
+    margin-top: 10px;
 }
 
 .checkbox {
+    margin-top: 10px;
     margin-bottom: 10px;
     text-align: center;
+}
+
+#numbersboard1select, #numbersboard2select, #numbersboard3select, #suitsboard1select, #suitsboard2select, #suitsboard3select, #boardcards1, #boardcards2, #boardcards3,
+#numbershole1select, #numbershole2select, #suitshole1select, #suitshole2select, #holecards1, #holecards2, #pseudo, #rank, #points, #kills {
+    font-size: 20px;
+    font-family: Chalet book;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .blue_link {
@@ -257,6 +320,11 @@ label {
 .red_link {
     color: #cb2c4f;
     text-decoration: none;
+}
+
+.contact_map {
+    width: 100%;
+    height: auto;
 }
 
 .div_parent_button {
@@ -288,6 +356,26 @@ label {
     width: 15%;
 }
 
+#stats_result_parent {
+    display: flex;
+}
+
+.stats_result_child {
+    flex: 1;
+}
+
+.stats_result_p {
+    color: #f1f1f1;
+    font-family: Chalet book;
+    font-size: 20px;
+}
+
+footer {
+    margin-top: 4px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
 .footer_child {
     flex: 1;
 }
@@ -307,4 +395,49 @@ label {
 .active {
     color: #cb2c4f;
     font-weight: bolder;
+}
+
+#div_parent_view, #div_parent_contact {
+    display: flex;
+}
+
+#div_parent_contact {
+    justify-content: space-between;
+}
+
+#left_div_view, #right_div_view {
+    flex: 1;
+}
+
+#left_div_contact, #right_div_contact {
+    width: 48%;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    color: #f1f1f1;
+    font-size: 20px;
+    font-family: Chalet book;
+}
+
+.alert-success {
+    background-color: #027ec7;
+    border: 1px solid #00253b;
+}
+
+.alert-danger {
+    background-color: #cb2c4f;
+    border: 1px solid #490e1b;
+}
+
+.login_links {
+    text-align: center;
+}
+
+.login_links > a {
+    color: #027ec7;
+    font-size: 20px;
+    font-family: Chalet book;
 }
