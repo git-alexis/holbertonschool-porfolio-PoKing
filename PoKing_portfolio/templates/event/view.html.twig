@@ -3,7 +3,7 @@
 {% block title %}View Event{% endblock %}
 
 {% block body %}
-    <h2>Event details : {{ event.label }}</h2>
+    <h1>EVENT DETAILS : {{ event.label }}</h1>
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}
@@ -16,22 +16,24 @@
     {% endfor %}
     <div id="div_parent_view">
         <div id="left_div_view">
-            <p>Registration opens on {{ event.registrationOpeningDate | date('d/m/Y') }} at {{ event.RegistrationOpeningTime | date('H:i') }}</p>
-            <p>registration closes on {{ event.registrationClosingDate | date('d/m/Y') }} at {{ event.registrationClosingTime | date('H:i') }}</p>
-            <p>start the {{ event.startingDate | date('d/m/Y') }} at {{ event.startingTime | date('H:i') }}</p>
-            <p>finish the {{ event.finishDate | date('d/m/Y') }} at {{ event.finishTime | date('H:i') }}</p>
-            <p>{{ event.place.name }}</p>
-            <p>{{ event.place.address }} {{ event.place.postcode }} {{ event.place.city }}</p>
-            <p>Stack : {{ event.stack }}</p>
-            <p>Comment : {{ event.comment }}</p>
-            <p>If you have specific questions or problems :</p>
-            <p>{{ event.contact.surname }} {{ event.contact.name }} {{ event.contact.role }}</p>
-            <p>Contact me :</p>
-            <p>my email {{ event.contact.mail }}</p>
-            <p>my phone number {{ event.contact.phoneNumber }}</p>
+            <p class="paragraph">Registration opens on {{ event.registrationOpeningDate | date('d/m/Y') }} at {{ event.RegistrationOpeningTime | date('H:i') }}</p>
+            <p class="paragraph">Registration closes on {{ event.registrationClosingDate | date('d/m/Y') }} at {{ event.registrationClosingTime | date('H:i') }}</p>
+            <p class="paragraph">Start the {{ event.startingDate | date('d/m/Y') }} at {{ event.startingTime | date('H:i') }}</p>
+            <p class="paragraph">Finish the {{ event.finishDate | date('d/m/Y') }} at {{ event.finishTime | date('H:i') }}</p>
+            <p class="paragraph">{{ event.place.name }}</p>
+            <p class="paragraph">{{ event.place.address }} {{ event.place.postcode }} {{ event.place.city }}</p>
+            <p class="paragraph">Stack : {{ event.stack }}</p>
+
+            <p class="paragraph">Comment :</p>
+            <textarea id="textarea_event" maxlength="255" readonly>{{ event.comment }}</textarea>
+
+            <p class="paragraph">If you have specific questions or problems :</p>
+            <p class="paragraph">{{ event.contact.surname }} {{ event.contact.name }}, {{ event.contact.role }}</p>
+            <p class="paragraph">My email : {{ event.contact.mail }}</p>
+            <p class="paragraph">My phone number : {{ event.contact.phoneNumber }}</p>
         </div>
         <div id="right_div_view">
-            <h3>Registration list :</h3>
+            <h2>Registration list</h2>
             <table class="table">
                 <thead>
                     <tr>
@@ -43,13 +45,13 @@
                 <tbody>
                 {% for registration in registrations %}
                     <tr>
-                        <td>{{ registration.user ? registration.user.pseudo : '' }}</td>
+                        <td class="rounded_left">{{ registration.user ? registration.user.pseudo : '' }}</td>
                         <td>{{ registration.user ? registration.user.surname : '' }}</td>
-                        <td>{{ registration.user ? registration.user.name : '' }}</td>
+                        <td class="rounded_right">{{ registration.user ? registration.user.name : '' }}</td>
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="3">no player found</td>
+                        <td colspan="3" class="rounded_all">no player found</td>
                     </tr>
                 {% endfor %}
                 </tbody>
