@@ -3,11 +3,24 @@
 {% block title %}Get statistics{% endblock %}
 
 {% block body %}
-    <h2>Statistics calculator</h2>
-    <p><span>*</span> : mandatory field</p>
+    <h1>STATISTICS CALCULATOR</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <p class="p_mandatory"><span class="span_mandatory">*</span> : mandatory field</p>
+
     <form method="post" action="{{ path('app_statistics') }}">
-        <h3>Board</h3>
-        <div class="table_div">
+        <h2>Board :</h2>
         <table>
             <thead>
                 <tr>
@@ -19,7 +32,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>* numbers</td>
+                    <td class="rounded_left">* numbers</td>
                     <td>
                         <select name="numbersboard1" id="numbersboard1select" onchange="afficherCarte1Board()" required>
                             <option value="Ace" {% if numbersboard1 is not empty and numbersboard1 == "Ace" %} selected {% endif %}>Ace</option>
@@ -39,41 +52,41 @@
                     </td>
                     <td>
                         <select name="numbersboard2" id="numbersboard2select" onchange="afficherCarte2Board()" required>
-                            <option value="Ace" >Ace</option>
-                            <option value="King" >King</option>
-                            <option value="Queen" >Queen</option>
-                            <option value="Jack" >Jack</option>
-                            <option value="Ten" >Ten</option>
-                            <option value="9" >9</option>
-                            <option value="8" >8</option>
-                            <option value="7" >7</option>
-                            <option value="6" >6</option>
-                            <option value="5" >5</option>
-                            <option value="4" >4</option>
-                            <option value="3" >3</option>
-                            <option value="2" >2</option>
+                            <option value="Ace" {% if numbersboard2 is not empty and numbersboard2 == "Ace" %} selected {% endif %}>Ace</option>
+                            <option value="King" {% if numbersboard2 is not empty and numbersboard2 == "King" %} selected {% endif %}>King</option>
+                            <option value="Queen" {% if numbersboard2 is not empty and numbersboard2 == "Queen" %} selected {% endif %}>Queen</option>
+                            <option value="Jack" {% if numbersboard2 is not empty and numbersboard2 == "Jack" %} selected {% endif %}>Jack</option>
+                            <option value="Ten" {% if numbersboard2 is not empty and numbersboard2 == "Ten" %} selected {% endif %}>Ten</option>
+                            <option value="9" {% if numbersboard2 is not empty and numbersboard2 == "9" %} selected {% endif %}>9</option>
+                            <option value="8" {% if numbersboard2 is not empty and numbersboard2 == "8" %} selected {% endif %}>8</option>
+                            <option value="7" {% if numbersboard2 is not empty and numbersboard2 == "7" %} selected {% endif %}>7</option>
+                            <option value="6" {% if numbersboard2 is not empty and numbersboard2 == "6" %} selected {% endif %}>6</option>
+                            <option value="5" {% if numbersboard2 is not empty and numbersboard2 == "5" %} selected {% endif %}>5</option>
+                            <option value="4" {% if numbersboard2 is not empty and numbersboard2 == "4" %} selected {% endif %}>4</option>
+                            <option value="3" {% if numbersboard2 is not empty and numbersboard2 == "3" %} selected {% endif %}>3</option>
+                            <option value="2" {% if numbersboard2 is not empty and numbersboard2 == "2" %} selected {% endif %}>2</option>
                         </select>
                     </td>
-                    <td>
+                    <td class="rounded_right">
                         <select name="numbersboard3" id="numbersboard3select" onchange="afficherCarte3Board()" required>
-                            <option value="Ace" >Ace</option>
-                            <option value="King" >King</option>
-                            <option value="Queen" >Queen</option>
-                            <option value="Jack" >Jack</option>
-                            <option value="Ten" >Ten</option>
-                            <option value="9" >9</option>
-                            <option value="8" >8</option>
-                            <option value="7" >7</option>
-                            <option value="6" >6</option>
-                            <option value="5" >5</option>
-                            <option value="4" >4</option>
-                            <option value="3" >3</option>
-                            <option value="2" >2</option>
+                            <option value="Ace" {% if numbersboard3 is not empty and numbersboard3 == "Ace" %} selected {% endif %}>Ace</option>
+                            <option value="King" {% if numbersboard3 is not empty and numbersboard3 == "King" %} selected {% endif %}>King</option>
+                            <option value="Queen" {% if numbersboard3 is not empty and numbersboard3 == "Queen" %} selected {% endif %}>Queen</option>
+                            <option value="Jack" {% if numbersboard3 is not empty and numbersboard3 == "Jack" %} selected {% endif %}>Jack</option>
+                            <option value="Ten" {% if numbersboard3 is not empty and numbersboard3 == "Ten" %} selected {% endif %}>Ten</option>
+                            <option value="9" {% if numbersboard3 is not empty and numbersboard3 == "9" %} selected {% endif %}>9</option>
+                            <option value="8" {% if numbersboard3 is not empty and numbersboard3 == "8" %} selected {% endif %}>8</option>
+                            <option value="7" {% if numbersboard3 is not empty and numbersboard3 == "7" %} selected {% endif %}>7</option>
+                            <option value="6" {% if numbersboard3 is not empty and numbersboard3 == "6" %} selected {% endif %}>6</option>
+                            <option value="5" {% if numbersboard3 is not empty and numbersboard3 == "5" %} selected {% endif %}>5</option>
+                            <option value="4" {% if numbersboard3 is not empty and numbersboard3 == "4" %} selected {% endif %}>4</option>
+                            <option value="3" {% if numbersboard3 is not empty and numbersboard3 == "3" %} selected {% endif %}>3</option>
+                            <option value="2" {% if numbersboard3 is not empty and numbersboard3 == "2" %} selected {% endif %}>2</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>* suits</td>
+                    <td class="rounded_left">* suits</td>
                     <td>
                         <select name="suitsboard1" id="suitsboard1select" onchange="afficherCarte1Board()" required>
                             <option value="Clubs" {% if suitsboard1 is not empty and suitsboard1 == "Clubs" %} selected {% endif %}>Clubs</option>
@@ -84,39 +97,37 @@
                     </td>
                     <td>
                         <select name="suitsboard2" id="suitsboard2select" onchange="afficherCarte2Board()" required>
-                            <option value="Clubs" >Clubs</option>
-                            <option value="Spades" >Spades</option>
-                            <option value="Diamonds" >Diamonds</option>
-                            <option value="Hearts" >Hearts</option>
+                            <option value="Clubs" {% if suitsboard2 is not empty and suitsboard2 == "Clubs" %} selected {% endif %}>Clubs</option>
+                            <option value="Spades" {% if suitsboard2 is not empty and suitsboard2 == "Spades" %} selected {% endif %}>Spades</option>
+                            <option value="Diamonds" {% if suitsboard2 is not empty and suitsboard2 == "Diamonds" %} selected {% endif %}>Diamonds</option>
+                            <option value="Hearts" {% if suitsboard2 is not empty and suitsboard2 == "Hearts" %} selected {% endif %}>Hearts</option>
                         </select>
                     </td>
-                    <td>
+                    <td class="rounded_right">
                         <select name="suitsboard3" id="suitsboard3select" onchange="afficherCarte3Board()" required>
-                            <option value="Clubs" >Clubs</option>
-                            <option value="Spades" >Spades</option>
-                            <option value="Diamonds" >Diamonds</option>
-                            <option value="Hearts" >Hearts</option>
+                            <option value="Clubs" {% if suitsboard3 is not empty and suitsboard3 == "Clubs" %} selected {% endif %}>Clubs</option>
+                            <option value="Spades" {% if suitsboard3 is not empty and suitsboard3 == "Spades" %} selected {% endif %}>Spades</option>
+                            <option value="Diamonds" {% if suitsboard3 is not empty and suitsboard3 == "Diamonds" %} selected {% endif %}>Diamonds</option>
+                            <option value="Hearts" {% if suitsboard3 is not empty and suitsboard3 == "Hearts" %} selected {% endif %}>Hearts</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>selection</td>
+                    <td class="rounded_left">selection</td>
                     <td>
-                        <input id="boardcards1" type="text" name="boardcards1" value="Ac" readonly></input>
+                        <input id="boardcards1" type="text" name="boardcards1" value="{{ (numbersboard1 | first ~ suitsboard1 | first | lower) | default('Ac') }}" readonly></input>
                     </td>
                     <td>
-                        <input id="boardcards2" type="text" name="boardcards2" value="Ac" readonly></input>
+                        <input id="boardcards2" type="text" name="boardcards2" value="{{ (numbersboard2 | first ~ suitsboard2 | first | lower) | default('Ac') }}" readonly></input>
                     </td>
-                    <td>
-                        <input id="boardcards3" type="text" name="boardcards3" value="Ac" readonly></input>
+                    <td class="rounded_right">
+                        <input id="boardcards3" type="text" name="boardcards3" value="{{ (numbersboard3 | first ~ suitsboard3 | first | lower) | default('Ac') }}" readonly></input>
                     </td>
                 </tr>
             </thead>
         </table>
-        </div>
         </br>
-        <h3>Hole</h3>
-        <div class="table_div">
+        <h2>Hole :</h2>
         <table>
             <thead>
                 <tr>
@@ -127,80 +138,93 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>* numbers</td>
+                    <td class="rounded_left">* numbers</td>
                     <td>
                         <select name="numbershole1" id="numbershole1select" onchange="afficherCarte1Hole()" required>
-                            <option value="Ace" >Ace</option>
-                            <option value="King" >King</option>
-                            <option value="Queen" >Queen</option>
-                            <option value="Jack" >Jack</option>
-                            <option value="Ten" >Ten</option>
-                            <option value="9" >9</option>
-                            <option value="8" >8</option>
-                            <option value="7" >7</option>
-                            <option value="6" >6</option>
-                            <option value="5" >5</option>
-                            <option value="4" >4</option>
-                            <option value="3" >3</option>
-                            <option value="2" >2</option>
+                            <option value="Ace" {% if numbershole1 is not empty and numbershole1 == "Ace" %} selected {% endif %}>Ace</option>
+                            <option value="King" {% if numbershole1 is not empty and numbershole1 == "King" %} selected {% endif %}>King</option>
+                            <option value="Queen" {% if numbershole1 is not empty and numbershole1 == "Queen" %} selected {% endif %}>Queen</option>
+                            <option value="Jack" {% if numbershole1 is not empty and numbershole1 == "Jack" %} selected {% endif %}>Jack</option>
+                            <option value="Ten" {% if numbershole1 is not empty and numbershole1 == "Ten" %} selected {% endif %}>Ten</option>
+                            <option value="9" {% if numbershole1 is not empty and numbershole1 == "9" %} selected {% endif %}>9</option>
+                            <option value="8" {% if numbershole1 is not empty and numbershole1 == "8" %} selected {% endif %}>8</option>
+                            <option value="7" {% if numbershole1 is not empty and numbershole1 == "7" %} selected {% endif %}>7</option>
+                            <option value="6" {% if numbershole1 is not empty and numbershole1 == "6" %} selected {% endif %}>6</option>
+                            <option value="5" {% if numbershole1 is not empty and numbershole1 == "5" %} selected {% endif %}>5</option>
+                            <option value="4" {% if numbershole1 is not empty and numbershole1 == "4" %} selected {% endif %}>4</option>
+                            <option value="3" {% if numbershole1 is not empty and numbershole1 == "3" %} selected {% endif %}>3</option>
+                            <option value="2" {% if numbershole1 is not empty and numbershole1 == "2" %} selected {% endif %}>2</option>
                         </select>
                     </td>
-                    <td>
+                    <td class="rounded_right">
                         <select name="numbershole2" id="numbershole2select" onchange="afficherCarte2Hole()" required>
-                            <option value="Ace" >Ace</option>
-                            <option value="King" >King</option>
-                            <option value="Queen" >Queen</option>
-                            <option value="Jack" >Jack</option>
-                            <option value="Ten" >Ten</option>
-                            <option value="9" >9</option>
-                            <option value="8" >8</option>
-                            <option value="7" >7</option>
-                            <option value="6" >6</option>
-                            <option value="5" >5</option>
-                            <option value="4" >4</option>
-                            <option value="3" >3</option>
-                            <option value="2" >2</option>
+                            <option value="Ace" {% if numbershole2 is not empty and numbershole2 == "Ace" %} selected {% endif %}>Ace</option>
+                            <option value="King" {% if numbershole2 is not empty and numbershole2 == "King" %} selected {% endif %}>King</option>
+                            <option value="Queen" {% if numbershole2 is not empty and numbershole2 == "Queen" %} selected {% endif %}>Queen</option>
+                            <option value="Jack" {% if numbershole2 is not empty and numbershole2 == "Jack" %} selected {% endif %}>Jack</option>
+                            <option value="Ten" {% if numbershole2 is not empty and numbershole2 == "Ten" %} selected {% endif %}>Ten</option>
+                            <option value="9" {% if numbershole2 is not empty and numbershole2 == "9" %} selected {% endif %}>9</option>
+                            <option value="8" {% if numbershole2 is not empty and numbershole2 == "8" %} selected {% endif %}>8</option>
+                            <option value="7" {% if numbershole2 is not empty and numbershole2 == "7" %} selected {% endif %}>7</option>
+                            <option value="6" {% if numbershole2 is not empty and numbershole2 == "6" %} selected {% endif %}>6</option>
+                            <option value="5" {% if numbershole2 is not empty and numbershole2 == "5" %} selected {% endif %}>5</option>
+                            <option value="4" {% if numbershole2 is not empty and numbershole2 == "4" %} selected {% endif %}>4</option>
+                            <option value="3" {% if numbershole2 is not empty and numbershole2 == "3" %} selected {% endif %}>3</option>
+                            <option value="2" {% if numbershole2 is not empty and numbershole2 == "2" %} selected {% endif %}>2</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>* suits</td>
+                    <td class="rounded_left">* suits</td>
                     <td>
                         <select name="suitshole1" id="suitshole1select" onchange="afficherCarte1Hole()" required>
-                            <option value="Clubs" >Clubs</option>
-                            <option value="Spades" >Spades</option>
-                            <option value="Diamonds" >Diamonds</option>
-                            <option value="Hearts" >Hearts</option>
+                            <option value="Clubs" {% if suitshole1 is not empty and suitshole1 == "Clubs" %} selected {% endif %}>Clubs</option>
+                            <option value="Spades" {% if suitshole1 is not empty and suitshole1 == "Spades" %} selected {% endif %}>Spades</option>
+                            <option value="Diamonds" {% if suitshole1 is not empty and suitshole1 == "Diamonds" %} selected {% endif %}>Diamonds</option>
+                            <option value="Hearts" {% if suitshole1 is not empty and suitshole1 == "Hearts" %} selected {% endif %}>Hearts</option>
                         </select>
                     </td>
-                    <td>
+                    <td class="rounded_right">
                         <select name="suitshole2" id="suitshole2select" onchange="afficherCarte2Hole()" required>
-                            <option value="Clubs" >Clubs</option>
-                            <option value="Spades" >Spades</option>
-                            <option value="Diamonds" >Diamonds</option>
-                            <option value="Hearts" >Hearts</option>
+                            <option value="Clubs" {% if suitshole2 is not empty and suitshole2 == "Clubs" %} selected {% endif %}>Clubs</option>
+                            <option value="Spades" {% if suitshole2 is not empty and suitshole2 == "Spades" %} selected {% endif %}>Spades</option>
+                            <option value="Diamonds" {% if suitshole2 is not empty and suitshole2 == "Diamonds" %} selected {% endif %}>Diamonds</option>
+                            <option value="Hearts" {% if suitshole2 is not empty and suitshole2 == "Hearts" %} selected {% endif %}>Hearts</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>selection</td>
+                    <td class="rounded_left">selection</td>
                     <td>
-                        <input id="holecards1" type="text" name="holecards1" value="Ac" readonly></input>
+                        <input id="holecards1" type="text" name="holecards1" value="{{ (numbershole1 | first ~ suitshole1 | first | lower) | default('Ac') }}" readonly></input>
                     </td>
-                    <td>
-                        <input id="holecards2" type="text" name="holecards2" value="Ac" readonly></input>
+                    <td class="rounded_right">
+                        <input id="holecards2" type="text" name="holecards2" value="{{ (numbershole2 | first ~ suitshole2 | first | lower) | default('Ac') }}" readonly></input>
                     </td>
                 </tr>
             </thead>
         </table>
-        </div>
         </br>
         <div class="div_button_center div_one_width">
             <button class="btn btn_one_width">Get statistics</button>
         </div>
-        </br>
-        <p>Hit one pair : {% if hit1P is not empty %}{{ hit1P }}{% endif %} %</p>
-        <p>Hit two pairs : {% if hit2P is not empty %}{{ hit2P }}{% endif %} %</p>
-        <p>Hit three a kind : {% if hit3K is not empty %}{{ hit3K }}{% endif %} %</p>
+        <h2 class="title_results">Result :</h2>
+        <div id="stats_result_parent">
+            <div class="stats_result_child">
+                <p class="stats_result_p">Hit the max high : {% if hitHC is not empty %}{{ hitHC }}{% endif %} %</p>
+                <p class="stats_result_p">Hit three a kind : {% if hit3K is not empty %}{{ hit3K }}{% endif %} %</p>
+                <p class="stats_result_p">Hit the full : {% if hitFH is not empty %}{{ hitFH }}{% endif %} %</p>
+            </div>
+            <div class="stats_result_child">
+                <p class="stats_result_p">Hit one pair : {% if hit1P is not empty %}{{ hit1P }}{% endif %} %</p>
+                <p class="stats_result_p">Hit the straight : {% if hitST is not empty %}{{ hitST }}{% endif %} %</p>
+                <p class="stats_result_p">Hit four of a kind : {% if hit4K is not empty %}{{ hit4K }}{% endif %} %</p>
+            </div>
+            <div class="stats_result_child">
+                <p class="stats_result_p">Hit two pairs : {% if hit2P is not empty %}{{ hit2P }}{% endif %} %</p>
+                <p class="stats_result_p">Hit the colour : {% if hitFL is not empty %}{{ hitFL }}{% endif %} %</p>
+                <p class="stats_result_p">Hit the straight flush : {% if hitSF is not empty %}{{ hitSF }}{% endif %} %</p>
+            </div>
+        </div>
     </form>
 {% endblock %}
