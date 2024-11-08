@@ -3,7 +3,7 @@
 {% block title %}New Ranking{% endblock %}
 
 {% block body %}
-    <h2>{{ event.label }} ranking</h2>
+    <h1>NEW RANKING</h1>
 
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
@@ -17,7 +17,7 @@
         </div>
     {% endfor %}
 
-    <p><span>*</span> : mandatory field</p>
+    <p class="p_mandatory"><span class="span_mandatory">*</span> : mandatory field</p>
 
     {{ include('rancking/_form.html.twig') }}
 {% endblock %}

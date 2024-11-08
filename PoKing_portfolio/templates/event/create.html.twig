@@ -3,21 +3,7 @@
 {% block title %}New Event{% endblock %}
 
 {% block body %}
-    <h2>Create new Event</h2>
-
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
-
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
-
-    <p><span>*</span> : mandatory field</p>
+    <h1>CREATE NEW EVENT</h1>
 
     {{ include('event/_form.html.twig') }}
 {% endblock %}
