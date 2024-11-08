@@ -24,7 +24,7 @@ class MyAccountController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash('success', 'Compte mis à jour avec succès.');
+            $this->addFlash('success', 'Account successfully updated.');
         }
 
         return $this->render('my_account/my_account.html.twig', [

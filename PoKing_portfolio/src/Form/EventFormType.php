@@ -44,8 +44,8 @@ class EventFormType extends AbstractType
                 ],
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
-                        'message' => 'Allowed characters : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
+                        'pattern' => '/^[a-zA-Z0-9\'._\- \/]+$/',
+                        'message' => 'Allowed characters : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\', \' \' and \'/\'',
                     ]),
                     new Length(['min' => 1, 'minMessage' => 'Label must be filled in']),
                 ],
@@ -61,8 +61,8 @@ class EventFormType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Length([
-                        'max' => 1000,
-                        'maxMessage' => '1000 characters maximum',
+                        'max' => 255,
+                        'maxMessage' => '255 characters maximum',
                     ]),
                 ],
             ])

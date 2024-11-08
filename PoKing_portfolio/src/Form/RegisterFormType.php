@@ -41,7 +41,7 @@ class RegisterFormType extends AbstractType
                 ],
             ])
             ->add('surname', TextType::class, [
-                'label' => '* Name ( example : BILLEMONT ) ',
+                'label' => '* Surname ( example : BILLEMONT ) ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[A-Z\'\- ]+$/',
@@ -50,7 +50,7 @@ class RegisterFormType extends AbstractType
                 ],
             ])
             ->add('name', TextType::class, [
-                'label' => '* Surname ( example : Alexis ) ',
+                'label' => '* Name ( example : Alexis ) ',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[A-Z][a-z\'\- ]+$/',
@@ -68,11 +68,11 @@ class RegisterFormType extends AbstractType
                 ],
             ])
             ->add('phoneNumber', TextType::class, [
-                'label' => '* Phone number ',
+                'label' => '* Phone number ( exanple : 01.02.03.04.05 ) ',
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^\d{10}$/',
-                        'message' => 'Valid phone number : 10 numbers',
+                        'pattern' => '/^(0[1-9])(\.[0-9]{2}){4}$/',
+                        'message' => 'Valid phone number : 01.02.03.04.05',
                     ]),
                 ],
             ])

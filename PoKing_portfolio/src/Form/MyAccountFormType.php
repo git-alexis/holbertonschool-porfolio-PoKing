@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Positive;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,6 +31,9 @@ class MyAccountFormType extends AbstractType
                 'label' => '* Password ',
                 'mapped' => false,
                 'constraints' => [
+                    new NotBlank([
+                        'message' => 'This field cannot be empty.',
+                    ]),
                     new Length([
                         'min' => 8,
                         'minMessage' => '8 characters minimum',
@@ -38,25 +42,37 @@ class MyAccountFormType extends AbstractType
             ])
             ->add('surname', TextType::class, [
                 'label' => '* Surname ( example : BILLEMONT ) ',
+                'empty_data' => '',
                 'constraints' => [
+                    new NotBlank([
+                        'message' => 'This field cannot be empty.',
+                    ]),
                     new Regex([
                         'pattern' => '/^[A-Z\'\- ]+$/',
-                        'message' => 'Allowed characters : A-Z, \', \'-\', et \' \'',
+                        'message' => 'Allowed characters : A-Z, \', \'-\', and \' \'',
                     ]),
                 ],
             ])
             ->add('name', TextType::class, [
                 'label' => '* Name ( example : Alexis ) ',
+                'empty_data' => '',
                 'constraints' => [
+                    new NotBlank([
+                        'message' => 'This field cannot be empty.',
+                    ]),
                     new Regex([
                         'pattern' => '/^[A-Z][a-z\'\- ]+$/',
-                        'message' => 'Allowed characters : A-Z, a-z, \', \'-\', et \' \'',
+                        'message' => 'Allowed characters : A-Z, a-z, \', \'-\', and \' \'',
                     ]),
                 ],
             ])
             ->add('mail', EmailType::class, [
                 'label' => '* E-mail ',
+                'empty_data' => '',
                 'constraints' => [
+                    new NotBlank([
+                        'message' => 'This field cannot be empty.',
+                    ]),
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9._\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/',
                         'message' => 'Valid e-mail ( example : nom@example.com )',
@@ -64,11 +80,15 @@ class MyAccountFormType extends AbstractType
                 ],
             ])
             ->add('phoneNumber', TextType::class, [
-                'label' => '* Phone number ',
+                'label' => '* Phone number ( exanple : 01.02.03.04.05 ) ',
+                'empty_data' => '',
                 'constraints' => [
+                    new NotBlank([
+                        'message' => 'This field cannot be empty.',
+                    ]),
                     new Regex([
-                        'pattern' => '/^\d{10}$/',
-                        'message' => 'Valid phone number : 10 numbers',
+                        'pattern' => '/^(0[1-9])(\.[0-9]{2}){4}$/',
+                        'message' => 'Valid phone number : 01.02.03.04.05',
                     ]),
                 ],
             ])
@@ -82,7 +102,7 @@ class MyAccountFormType extends AbstractType
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
-                        'message' => 'Allowed characters : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
+                        'message' => 'Allowed characters : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' and \' \'',
                     ]),
                     new Length([
                         'max' => 100,
@@ -96,7 +116,7 @@ class MyAccountFormType extends AbstractType
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
-                        'message' => 'Allowed characters : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
+                        'message' => 'Allowed characters : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' and \' \'',
                     ]),
                     new Length([
                         'max' => 100,

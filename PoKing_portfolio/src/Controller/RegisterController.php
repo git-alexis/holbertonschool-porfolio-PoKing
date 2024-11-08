@@ -30,7 +30,7 @@ class RegisterController extends AbstractController
             $existingUser = $entityManager->getRepository(User::class)->findOneBy(['pseudo' => $pseudo]);
 
             if ($existingUser) {
-                $this->addFlash('error', 'Le pseudo est déjà utilisé. Veuillez en choisir un autre.');
+                $this->addFlash('error', 'Pseudo already used. Please choose a new one.');
             } else {
                 $profile = $entityManager->getRepository(Profile::class)->findOneBy(['label' => 'noMember']);
 
@@ -46,7 +46,7 @@ class RegisterController extends AbstractController
                 $entityManager->persist($new_user);
                 $entityManager->flush();
 
-                $this->addFlash('success', 'Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter');
+                $this->addFlash('success', 'Account created successfully. You can now log in.');
             }
         }
 

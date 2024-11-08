@@ -55,7 +55,7 @@ class ResetPasswordController extends AbstractController
         $user = $entityManager->getRepository(User::class)->findOneBy(['resetToken' => $token]);
 
         if (!$user) {
-            $this->addFlash('error', 'Lien de réinitialisation invalide.');
+            $this->addFlash('error', 'Invalid reset link.');
             return $this->redirectToRoute('app_forgot_password');
         }
 
@@ -66,18 +66,20 @@ class ResetPasswordController extends AbstractController
             $newPassword = $form->get('plainPassword')->getData();
             $confirmPassword = $form->get('confirmPassword')->getData();
 
-            if ($newPassword !== $confirmPassword) {
-                $this->addFlash('error', 'Les mots de passe ne correspondent pas.');
-            } else {
-                $hashedPassword = $passwordHasher->hashPassword($user, $newPassword);
+            if ($newPassword !== '' and $confirmPassword !== '') {
+                if ($newPassword !== $confirmPassword) {
+                    $this->addFlash('error', 'The two passwords don\'t match.');
+                } else {
+                    $hashedPassword = $passwordHasher->hashPassword($user, $newPassword);
 
-                $user->setPassword($hashedPassword);
-                $user->setResetToken(null);
+                    $user->setPassword($hashedPassword);
+                    $user->setResetToken(null);
 
-                $entityManager->persist($user);
-                $entityManager->flush();
+                    $entityManager->persist($user);
+                    $entityManager->flush();
 
-                return $this->redirectToRoute('app_login');
+                    return $this->redirectToRoute('app_login');
+                }
             }
         }
 

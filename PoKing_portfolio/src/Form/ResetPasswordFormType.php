@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ResetPasswordFormType extends AbstractType
 {
@@ -20,6 +21,9 @@ class ResetPasswordFormType extends AbstractType
                 'label' => '* New password ',
                 'mapped' => false,
                 'constraints' => [
+                    new NotBlank([
+                        'message' => 'This field cannot be empty.',
+                    ]),
                     new Length([
                         'min' => 8,
                         'minMessage' => '8 characters minimum',
@@ -30,6 +34,9 @@ class ResetPasswordFormType extends AbstractType
                 'label' => '* Confirm new password ',
                 'mapped' => false,
                 'constraints' => [
+                    new NotBlank([
+                        'message' => 'This field cannot be empty.',
+                    ]),
                     new Length([
                         'min' => 8,
                         'minMessage' => '8 characters minimum',

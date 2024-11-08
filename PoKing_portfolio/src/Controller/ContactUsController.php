@@ -27,10 +27,10 @@ class ContactUsController extends AbstractController
 
                 $mailer->send($email);
 
-                $this->addFlash('success', 'Votre demande a été envoyée avec succès');
+                $this->addFlash('success', 'Request sent successfully');
+            } else {
+                $this->addFlash('error', 'Invalid email, valid format: test@example.com');
             }
-
-            $this->addFlash('error', 'Votre email est invalide, format valide : test@example.com');
         }
 
         return $this->render('contact_us/contact_us.html.twig', [

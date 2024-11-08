@@ -17,7 +17,7 @@ class LoginController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         if ($error) {
-            $this->addFlash('error', 'Erreur lors de la connexion. Veuillez vérifier vos identifiants.');
+            $this->addFlash('error', 'Connection error. Please check your login details.');
         }
 
         return $this->render('login/login.html.twig', [
