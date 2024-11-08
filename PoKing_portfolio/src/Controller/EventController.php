@@ -44,12 +44,27 @@ final class EventController extends AbstractController
             $existingLabel = $entityManager->getRepository(Event::class)->findOneBy(['label' => $label]);
 
             if ($existingLabel) {
-                $this->addFlash('error', 'Le libellé est déjà utilisé. Veuillez en choisir un autre.');
+                $this->addFlash('error', 'Label already used. Please choose another.');
             } else {
-                $entityManager->persist($event);
-                $entityManager->flush();
+                $registrationOpeningDate = $form->get('registrationOpeningDate')->getData();
+                $registrationClosingDate = $form->get('registrationClosingDate')->getData();
+                $startingDate = $form->get('startingDate')->getData();
+                $finishDate = $form->get('finishDate')->getData();
 
-                $this->addFlash('success', 'La manche a été créé avec succès. Vous pouvez maintenant en créer d\'autre.');
+                $formattedRegistrationOpeningDate = $registrationOpeningDate->format('Ymd');
+                $formattedRegistrationClosingDate = $registrationClosingDate->format('Ymd');
+                $formattedStartingDate = $startingDate->format('Ymd');
+                $formattedFinishDate = $finishDate->format('Ymd');
+
+                if ( !($formattedRegistrationOpeningDate < $formattedRegistrationClosingDate && ($formattedRegistrationClosingDate < $formattedStartingDate || $formattedRegistrationClosingDate == $formattedStartingDate)
+                && ($formattedStartingDate < $formattedFinishDate || $formattedStartingDate == $formattedFinishDate))) {
+                    $this->addFlash('error', 'Wrong dates, right order : current date <= registration opening date < registration closing date <= event starting date <= event finish date.');
+                } else {
+                    $entityManager->persist($event);
+                    $entityManager->flush();
+
+                    $this->addFlash('success', 'Event created successfully. You can now create another.');
+                }
             }
         }
 
@@ -90,9 +105,9 @@ final class EventController extends AbstractController
             $entityManager->persist($registration);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Vous êtes inscrit à cet événement.');
+            $this->addFlash('success', 'You are registered for this event.');
         } else {
-            $this->addFlash('error', 'Vous êtes déjà inscrit à cet événement.');
+            $this->addFlash('error', 'You have already registered for this event.');
         }
 
         return $this->redirectToRoute('app_event_view', ['id' => $event->getId()]);
@@ -110,9 +125,9 @@ final class EventController extends AbstractController
             $entityManager->remove($existingRegistration);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Votre désinscription a été effectuée.');
+            $this->addFlash('success', 'You have been de-registered.');
         } else {
-            $this->addFlash('error', 'Vous n\'êtes pas inscrit à cet événement.');
+            $this->addFlash('error', 'You are not already registered for this event.');
         }
 
         return $this->redirectToRoute('app_event_view', ['id' => $event->getId()]);
@@ -153,9 +168,24 @@ final class EventController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $registrationOpeningDate = $form->get('registrationOpeningDate')->getData();
+            $registrationClosingDate = $form->get('registrationClosingDate')->getData();
+            $startingDate = $form->get('startingDate')->getData();
+            $finishDate = $form->get('finishDate')->getData();
 
-            return $this->redirectToRoute('app_event_view', ['id' => $event->getId()], Response::HTTP_SEE_OTHER);
+            $formattedRegistrationOpeningDate = $registrationOpeningDate->format('Ymd');
+            $formattedRegistrationClosingDate = $registrationClosingDate->format('Ymd');
+            $formattedStartingDate = $startingDate->format('Ymd');
+            $formattedFinishDate = $finishDate->format('Ymd');
+
+            if ( !($formattedRegistrationOpeningDate < $formattedRegistrationClosingDate && ($formattedRegistrationClosingDate < $formattedStartingDate || $formattedRegistrationClosingDate == $formattedStartingDate)
+            && ($formattedStartingDate < $formattedFinishDate || $formattedStartingDate == $formattedFinishDate))) {
+                $this->addFlash('error', 'Wrong dates, right order : registration opening date < registration closing date <= event starting date <= event finish date.');
+            } else {
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_event_view', ['id' => $event->getId()], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->render('event/update.html.twig', [
