@@ -125,9 +125,9 @@ final class EventController extends AbstractController
             $entityManager->remove($existingRegistration);
             $entityManager->flush();
 
-            $this->addFlash('success', 'You have been de-registered.');
+            $this->addFlash('success', 'You are no longer registered for this event.');
         } else {
-            $this->addFlash('error', 'You are not already registered for this event.');
+            $this->addFlash('error', 'You are not yet registered for this event.');
         }
 
         return $this->redirectToRoute('app_event_view', ['id' => $event->getId()]);
