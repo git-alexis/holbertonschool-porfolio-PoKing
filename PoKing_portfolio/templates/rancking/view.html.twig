@@ -30,5 +30,7 @@
             </tbody>
         </table>
 
-    {{ include('rancking/_delete_form.html.twig') }}
+    {% if is_granted('ROLE_ADMIN') %}
+        {{ include('rancking/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}
