@@ -105,7 +105,6 @@ h1, h2 {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1.1rem;
     text-decoration: none;
     font-family: Chalet book;
     font-size: 22px;
@@ -245,7 +244,7 @@ label {
     border-radius: 4px;
     font-size: 20px;
     margin-left: 5px;
-    width: 78.5%;
+    width: 50%;
     padding: 5px;
 }
 
@@ -254,7 +253,6 @@ label {
     border-radius: 4px;
     font-size: 20px;
     margin-left: 5px;
-    width: 12%;
 }
 
 .form_time {
@@ -262,7 +260,6 @@ label {
     border-radius: 4px;
     font-size: 20px;
     margin-left: 5px;
-    width: 5.5%;
 }
 
 form > ul {
@@ -305,7 +302,7 @@ form > ul > li {
 }
 
 #numbersboard1select, #numbersboard2select, #numbersboard3select, #suitsboard1select, #suitsboard2select, #suitsboard3select, #boardcards1, #boardcards2, #boardcards3,
-#numbershole1select, #numbershole2select, #suitshole1select, #suitshole2select, #holecards1, #holecards2, #pseudo, #rank, #points, #kills {
+#numbershole1select, #numbershole2select, #suitshole1select, #suitshole2select, #holecards1, #holecards2, #pseudo, #rank, #points, #kills, .pseudo_font {
     font-size: 20px;
     font-family: Chalet book;
     margin-top: 10px;
@@ -353,7 +350,7 @@ form > ul > li {
 }
 
 .btn_one_width {
-    width: 15%;
+    width: 20%;
 }
 
 #stats_result_parent {
@@ -399,18 +396,15 @@ footer {
 
 #div_parent_view, #div_parent_contact {
     display: flex;
-}
-
-#div_parent_contact {
     justify-content: space-between;
 }
 
-#left_div_view, #right_div_view {
-    flex: 1;
+#left_div_view, #right_div_view, #left_div_contact, #right_div_contact {
+    width: 48%;
 }
 
-#left_div_contact, #right_div_contact {
-    width: 48%;
+#left_div_view > .paragraph {
+    text-align: unset;
 }
 
 .alert {
@@ -440,4 +434,138 @@ footer {
     color: #027ec7;
     font-size: 20px;
     font-family: Chalet book;
+}
+
+@media screen and (min-width: 1920px) {
+    .paragraph {
+        font-size: 45px; /* 55 */ /*35*/
+    }
+
+    .p_mandatory {
+        font-size: 45px; /**/
+    }
+
+    .span_mandatory {
+        font-size: 55px; /**/
+    }
+
+    h1 {
+        font-size: 60px; /* 55 */ /* 45 */
+    }
+
+    h2 {
+        font-size: 52px; /* 48 */ /* 38 */
+    }
+
+    label {
+        font-size: 45px; /**/
+    }
+
+    input[type="checkbox"] {
+        transform: scale(2); /**/
+    }
+
+    .btn, .btn_href {
+        font-size: 40px; /**/
+    }
+
+    .login_links > a {
+        font-size: 40px; /**/
+    }
+
+    .form_input {
+        font-size: 45px; /**/
+    }
+
+    form > ul > li {
+        font-size: 45px; /**/
+    }
+
+    .alert {
+        font-size: 45px;
+    }
+
+    .footer_p, .footer_p a:not(.active) {
+        font-size: 40px;
+    }
+
+    #textarea_event, #textarea_contact {
+        font-size: 45px;
+    }
+
+    .mentions_title {
+        font-size: 45px;
+    }
+
+    nav {
+        top: 80%;
+    }
+
+    nav > ul > li > a {
+        font-size: 45px;
+    }
+
+    #numbersboard1select, #numbersboard2select, #numbersboard3select, #suitsboard1select, #suitsboard2select, #suitsboard3select, #boardcards1, #boardcards2, #boardcards3,
+    #numbershole1select, #numbershole2select, #suitshole1select, #suitshole2select, #holecards1, #holecards2, #pseudo, #rank, #points, #kills, .pseudo_font {
+        font-size: 45px;
+    }
+
+    #pseudo {
+        width: 90%;
+    }
+
+    #rank, #points, #kills {
+        width: 30%;
+    }
+
+    #boardcards1, #boardcards2, #boardcards3, #holecards1, #holecards2 {
+        width: 75%;
+    }
+
+    .form_birthday {
+        font-size: 45px;
+    }
+
+    .form_postcode {
+        font-size: 45px;
+        width: 10%;
+    }
+
+    .form_city {
+        font-size: 45px;
+        width: 50%;
+    }
+
+    .form_date {
+        font-size: 45px;
+    }
+
+    .form_time {
+        font-size: 45px;
+    }
+
+    th, td {
+        font-size: 43px;
+    }
+
+    .table_stats > tbody > tr > td:first-child {
+        width: 25%;
+    }
+
+    .stats_result_p {
+        font-size: 45px;
+    }
+
+    .btn_one_width {
+        width: 30%;
+    }
+
+    #delete_padding_left {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #length_season {
+        font-size: 45px;
+    }
 }
