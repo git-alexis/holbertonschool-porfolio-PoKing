@@ -70,7 +70,7 @@
                             <a href="{{ path('app_event_update', {'id': event.id}) }}" class="blue_link">Update</a>
                         </td>
                         <td class="rounded_right">
-                            <a href="#" class="red_link" onclick="event.preventDefault(); document.querySelector('#delete-form-{{ event.id }} button').click();">
+                            <a href="#" class="red_link" id="delete_padding_left" onclick="event.preventDefault(); document.querySelector('#delete-form-{{ event.id }} button').click();">
                                 Delete
                             </a>
                             <span style="display: none;">{{ include('event/_delete_form.html.twig') }}</span>
@@ -85,7 +85,7 @@
                                 <td class="rounded_right">current</td>
                             {% endif %}
                         {% elseif today > registrationOpeningDate and today < registrationClosingDate %}
-                            <td>current</td>
+                            <td class="rounded_right">current</td>
                         {% elseif today == registrationClosingDate %}
                             {% if currentTime < registrationClosingTime %}
                                 <td class="rounded_right">current</td>
