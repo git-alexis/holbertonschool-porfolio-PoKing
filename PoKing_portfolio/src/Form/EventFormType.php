@@ -28,11 +28,11 @@ class EventFormType extends AbstractType
 
         $builder
             ->add('season', TextType::class, [
-                'label' => '* Season ',
+                'label' => '* Season ( example : 2024/2025 )',
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[a-zA-Z0-9\'._\- ]+$/',
-                        'message' => 'Allowed characters : a-z, A-Z, 0-9, \', \'.\', \'_\', \'-\' et \' \'',
+                        'pattern' => '/^\d{4}\/\d{4}$/',
+                        'message' => 'Valid season : year ( yyyy )/year ( yyyy )',
                     ]),
                     new Length(['min' => 1, 'minMessage' => 'Season must be filled in']),
                 ],
@@ -102,14 +102,14 @@ class EventFormType extends AbstractType
                 'label' => '* Place ',
                 'class' => Place::class,
                 'choice_label' => function (Place $place) {
-                    return $place->getName() . ' - ' . $place->getAddress() . ' - ' . $place->getCity() . ' - ' . $place->getPostcode();
+                    return $place->getName() . ', ' . $place->getAddress() . ', ' . $place->getPostcode() . ' ' . $place->getCity();
                 },
             ])
             ->add('contact', EntityType::class, [
                 'label' => '* Contact ',
                 'class' => Contact::class,
                 'choice_label' => function (Contact $contact) {
-                    return $contact->getSurname() . ' - ' . $contact->getName() . ' - ' . $contact->getRole();
+                    return $contact->getSurname() . ' ' . $contact->getName() . ', ' . $contact->getRole();
                 },
             ])
         ;
