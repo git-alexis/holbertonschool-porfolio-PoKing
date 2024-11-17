@@ -33,21 +33,25 @@ class Place
     #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'place')]
     private Collection $events;
 
+    // Constructor of the class
     public function __construct()
     {
-        $this->events = new ArrayCollection();
+        $this->events = new ArrayCollection(); // Initializes the collection of events
     }
 
+    // Retrieves the unique identifier
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    // Retrieves the name
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    // Sets the name
     public function setName(string $name): static
     {
         $this->name = $name;
@@ -55,11 +59,13 @@ class Place
         return $this;
     }
 
+    // Retrieves the address
     public function getAddress(): ?string
     {
         return $this->address;
     }
 
+    // Sets the address
     public function setAddress(string $address): static
     {
         $this->address = $address;
@@ -67,11 +73,13 @@ class Place
         return $this;
     }
 
+    // Retrieves the postcode
     public function getPostcode(): ?string
     {
         return $this->postcode;
     }
 
+    // Sets the postcode
     public function setPostcode(string $postcode): static
     {
         $this->postcode = $postcode;
@@ -79,11 +87,13 @@ class Place
         return $this;
     }
 
+    // Retrieves the city
     public function getCity(): ?string
     {
         return $this->city;
     }
 
+    // Sets the city
     public function setCity(string $city): static
     {
         $this->city = $city;
@@ -92,13 +102,14 @@ class Place
     }
 
     /**
-     * @return Collection<int, Event>
+     * @return Collection<int, Event> // Retrieves the collection of events
      */
     public function getEvents(): Collection
     {
         return $this->events;
     }
 
+    // Adds an event to the collection of events
     public function addEvent(Event $event): static
     {
         if (!$this->events->contains($event)) {
@@ -109,6 +120,7 @@ class Place
         return $this;
     }
 
+    // Removes an event from the collection of events
     public function removeEvent(Event $event): static
     {
         if ($this->events->removeElement($event)) {

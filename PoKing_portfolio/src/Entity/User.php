@@ -69,22 +69,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Registration::class, mappedBy: 'user')]
     private Collection $registrations;
 
+    // Constructor of the class
     public function __construct()
     {
-        $this->ranckings = new ArrayCollection();
-        $this->registrations = new ArrayCollection();
+        $this->ranckings = new ArrayCollection(); // Initializes the collection of rankings
+        $this->registrations = new ArrayCollection(); // Initializes the collection of registrations
     }
 
+    // Retrieves the unique identifier
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    // Retrieves the profile
     public function getProfile(): ?Profile
     {
         return $this->profile;
     }
 
+    // Sets the profile
     public function setProfile(?Profile $profile): static
     {
         $this->profile = $profile;
@@ -92,11 +96,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Retrieves the pseudo
     public function getPseudo(): ?string
     {
         return $this->pseudo;
     }
 
+    // Sets the pseudo
     public function setPseudo(string $pseudo): static
     {
         $this->pseudo = $pseudo;
@@ -104,16 +110,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Retrieves the user identifier
     public function getUserIdentifier(): string
     {
         return (string) $this->pseudo;
     }
 
+    // Retrieves the password
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
+    // Sets the password
     public function setPassword(string $password): static
     {
         $this->password = $password;
@@ -121,11 +130,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Retrieves the name
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    // Sets the name
     public function setName(string $name): static
     {
         $this->name = $name;
@@ -133,11 +144,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Retrieves the surname
     public function getSurname(): ?string
     {
         return $this->surname;
     }
 
+    // Sets the surname
     public function setSurname(string $surname): static
     {
         $this->surname = $surname;
@@ -145,11 +158,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Retrieves the email
     public function getMail(): ?string
     {
         return $this->mail;
     }
 
+    // Sets the email
     public function setMail(string $mail): static
     {
         $this->mail = $mail;
@@ -157,11 +172,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Retrieves the address
     public function getAddress(): ?string
     {
         return $this->address;
     }
 
+    // Sets the address
     public function setAddress(?string $address): static
     {
         $this->address = $address;
@@ -169,11 +186,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Retrieves the postcode
     public function getPostcode(): ?string
     {
         return $this->postcode;
     }
 
+    // Sets the postcode
     public function setPostcode(?string $postcode): static
     {
         $this->postcode = $postcode;
@@ -181,11 +200,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Retrieves the city
     public function getCity(): ?string
     {
         return $this->city;
     }
 
+    // Sets the city
     public function setCity(?string $city): static
     {
         $this->city = $city;
@@ -193,11 +214,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Retrieves the phone number
     public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
 
+    // Sets the phone number
     public function setPhoneNumber(string $phoneNumber): static
     {
         $this->phoneNumber = $phoneNumber;
@@ -205,11 +228,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Retrieves the birthday
     public function getBirthday(): ?\DateTimeInterface
     {
         return $this->birthday;
     }
 
+    // Sets the birthday
     public function setBirthday(\DateTimeInterface $birthday): static
     {
         $this->birthday = $birthday;
@@ -217,6 +242,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Retrieves the roles
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -226,6 +252,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
+    // Sets the roles
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
@@ -233,11 +260,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Retrieves the reset token
     public function getResetToken(): ?string
     {
         return $this->resetToken;
     }
 
+    // Sets the reset token
     public function setResetToken(?string $resetToken): static
     {
         $this->resetToken = $resetToken;
@@ -246,13 +275,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Rancking>
+     * @return Collection<int, Rancking>  // Returns a collection of ranking objects
      */
     public function getRanckings(): Collection
     {
         return $this->ranckings;
     }
 
+    // Adds a ranking to the collection
     public function addRancking(Rancking $rancking): static
     {
         if (!$this->ranckings->contains($rancking)) {
@@ -263,6 +293,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Removes a ranking from the collection
     public function removeRancking(Rancking $rancking): static
     {
         if ($this->ranckings->removeElement($rancking)) {
@@ -276,13 +307,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Registration>
+     * @return Collection<int, Registration> // Returns a collection of registration objects
      */
     public function getRegistrations(): Collection
     {
         return $this->registrations;
     }
 
+    // Adds a registration to the collection
     public function addRegistration(Registration $registration): static
     {
         if (!$this->registrations->contains($registration)) {
@@ -293,6 +325,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Removes a registration from the collection
     public function removeRegistration(Registration $registration): static
     {
         if ($this->registrations->removeElement($registration)) {

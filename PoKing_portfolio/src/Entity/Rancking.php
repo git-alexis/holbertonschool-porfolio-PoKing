@@ -31,16 +31,19 @@ class Rancking
     #[ORM\Column]
     private ?int $killsNumber = null;
 
+    // Retrieves the unique identifier
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    // Retrieves the event
     public function getEvent(): ?Event
     {
         return $this->event;
     }
 
+    // Sets the event
     public function setEvent(?Event $event): static
     {
         $this->event = $event;
@@ -48,11 +51,13 @@ class Rancking
         return $this;
     }
 
+    // Retrieves the user
     public function getUser(): ?User
     {
         return $this->user;
     }
 
+    // Sets the user
     public function setUser(?User $user): static
     {
         $this->user = $user;
@@ -60,11 +65,13 @@ class Rancking
         return $this;
     }
 
+    // Retrieves the season
     public function getSeason(): ?string
     {
         return $this->season;
     }
 
+    // Sets the season
     public function setSeason(?string $season): static
     {
         $this->season = $season;
@@ -72,11 +79,13 @@ class Rancking
         return $this;
     }
 
+    // Retrieves the points
     public function getPoints(): ?int
     {
         return $this->points;
     }
 
+    // Sets the points
     public function setPoints(int $points): static
     {
         $this->points = $points;
@@ -84,11 +93,13 @@ class Rancking
         return $this;
     }
 
+    // Retrieves the rankingPosition
     public function getRankingPosition(): ?int
     {
         return $this->rankingPosition;
     }
 
+    // Sets the rankingPosition
     public function setRankingPosition(int $rankingPosition): static
     {
         $this->rankingPosition = $rankingPosition;
@@ -96,11 +107,13 @@ class Rancking
         return $this;
     }
 
+    // Retrieves the killsNumber
     public function getKillsNumber(): ?int
     {
         return $this->killsNumber;
     }
 
+    // Sets the killsNumber
     public function setKillsNumber(int $killsNumber): static
     {
         $this->killsNumber = $killsNumber;

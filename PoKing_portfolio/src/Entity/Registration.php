@@ -26,16 +26,19 @@ class Registration
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $registrationTime = null;
 
+    // Retrieves the unique identifier
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    // Retrieves the event
     public function getEvent(): ?Event
     {
         return $this->event;
     }
 
+    // Sets the event
     public function setEvent(?Event $event): static
     {
         $this->event = $event;
@@ -43,11 +46,13 @@ class Registration
         return $this;
     }
 
+    // Retrieves the user
     public function getUser(): ?User
     {
         return $this->user;
     }
 
+    // Sets the user
     public function setUser(?User $user): static
     {
         $this->user = $user;
@@ -55,11 +60,13 @@ class Registration
         return $this;
     }
 
+    // Retrieves the registrationDate
     public function getRegistrationDate(): ?\DateTimeInterface
     {
         return $this->registrationDate;
     }
 
+    // Sets the registrationDate
     public function setRegistrationDate(\DateTimeInterface $registrationDate): static
     {
         $this->registrationDate = $registrationDate;
@@ -67,11 +74,13 @@ class Registration
         return $this;
     }
 
+    // Retrieves the registrationTime
     public function getRegistrationTime(): ?\DateTimeInterface
     {
         return $this->registrationTime;
     }
 
+    // Sets the registrationTime
     public function setRegistrationTime(\DateTimeInterface $registrationTime): static
     {
         $this->registrationTime = $registrationTime;

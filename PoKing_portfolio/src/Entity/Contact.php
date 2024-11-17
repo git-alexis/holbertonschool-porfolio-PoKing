@@ -36,21 +36,25 @@ class Contact
     #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'contact')]
     private Collection $events;
 
+    // Constructor of the class
     public function __construct()
     {
-        $this->events = new ArrayCollection();
+        $this->events = new ArrayCollection(); // Initializes the collection of events
     }
 
+    // Retrieves the unique identifier
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    // Retrieves the name
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    // Sets the name
     public function setName(string $name): static
     {
         $this->name = $name;
@@ -58,11 +62,13 @@ class Contact
         return $this;
     }
 
+    // Retrieves the surname
     public function getSurname(): ?string
     {
         return $this->surname;
     }
 
+    // Sets the surname
     public function setSurname(string $surname): static
     {
         $this->surname = $surname;
@@ -70,11 +76,13 @@ class Contact
         return $this;
     }
 
+    // Retrieves the email address
     public function getMail(): ?string
     {
         return $this->mail;
     }
 
+    // Sets the email address
     public function setMail(string $mail): static
     {
         $this->mail = $mail;
@@ -82,11 +90,13 @@ class Contact
         return $this;
     }
 
+    // Retrieves the phone number
     public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
 
+    // Sets the phone number
     public function setPhoneNumber(string $phoneNumber): static
     {
         $this->phoneNumber = $phoneNumber;
@@ -94,11 +104,13 @@ class Contact
         return $this;
     }
 
+    // Retrieves the role
     public function getRole(): ?string
     {
         return $this->role;
     }
 
+    // Sets the role
     public function setRole(string $role): static
     {
         $this->role = $role;
@@ -107,13 +119,14 @@ class Contact
     }
 
     /**
-     * @return Collection<int, Event>
+     * @return Collection<int, Event> // Retrieves a collection of Event objects
      */
     public function getEvents(): Collection
     {
         return $this->events;
     }
 
+    // Adds an event to the list of events
     public function addEvent(Event $event): static
     {
         if (!$this->events->contains($event)) {
@@ -124,6 +137,7 @@ class Contact
         return $this;
     }
 
+    // Removes an event from the list of events
     public function removeEvent(Event $event): static
     {
         if ($this->events->removeElement($event)) {

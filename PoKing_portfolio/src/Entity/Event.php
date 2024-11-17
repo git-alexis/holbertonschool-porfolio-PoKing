@@ -72,22 +72,26 @@ class Event
     #[ORM\OneToMany(targetEntity: Registration::class, mappedBy: 'event')]
     private Collection $registrations;
 
+    // Constructor of the class
     public function __construct()
     {
-        $this->ranckings = new ArrayCollection();
-        $this->registrations = new ArrayCollection();
+        $this->ranckings = new ArrayCollection(); // Initializes the collection of rankings
+        $this->registrations = new ArrayCollection(); // Initializes the collection of registrations
     }
 
+    // Retrieves the unique identifier
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    // Retrieves the place
     public function getPlace(): ?Place
     {
         return $this->place;
     }
 
+    // Sets the place
     public function setPlace(?Place $place): static
     {
         $this->place = $place;
@@ -95,11 +99,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the contact
     public function getContact(): ?Contact
     {
         return $this->contact;
     }
 
+    // Sets the contact
     public function setContact(?Contact $contact): static
     {
         $this->contact = $contact;
@@ -107,11 +113,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the season
     public function getSeason(): ?string
     {
         return $this->season;
     }
 
+    // Sets the season
     public function setSeason(?string $season): static
     {
         $this->season = $season;
@@ -119,11 +127,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the label
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
+    // Sets the label
     public function setLabel(string $label): static
     {
         $this->label = $label;
@@ -131,11 +141,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the starting date
     public function getStartingDate(): ?\DateTimeInterface
     {
         return $this->startingDate;
     }
 
+    // Sets the starting date
     public function setStartingDate(\DateTimeInterface $startingDate): static
     {
         $this->startingDate = $startingDate;
@@ -143,11 +155,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the finish date
     public function getFinishDate(): ?\DateTimeInterface
     {
         return $this->finishDate;
     }
 
+    // Sets the finish date
     public function setFinishDate(\DateTimeInterface $finishDate): static
     {
         $this->finishDate = $finishDate;
@@ -155,11 +169,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the starting time
     public function getStartingTime(): ?\DateTimeInterface
     {
         return $this->startingTime;
     }
 
+    // Sets the starting time
     public function setStartingTime(\DateTimeInterface $startingTime): static
     {
         $this->startingTime = $startingTime;
@@ -167,11 +183,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the finish time
     public function getFinishTime(): ?\DateTimeInterface
     {
         return $this->finishTime;
     }
 
+    // Sets the finish time
     public function setFinishTime(\DateTimeInterface $finishTime): static
     {
         $this->finishTime = $finishTime;
@@ -179,11 +197,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the stack (number of chips)
     public function getStack(): ?int
     {
         return $this->stack;
     }
 
+    // Sets the stack (number of chips)
     public function setStack(int $stack): static
     {
         $this->stack = $stack;
@@ -191,11 +211,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the comment
     public function getComment(): ?string
     {
         return $this->comment;
     }
 
+    // Sets the comment
     public function setComment(?string $comment): static
     {
         $this->comment = $comment;
@@ -203,11 +225,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the registration opening date
     public function getRegistrationOpeningDate(): ?\DateTimeInterface
     {
         return $this->registrationOpeningDate;
     }
 
+    // Sets the registration opening date
     public function setRegistrationOpeningDate(\DateTimeInterface $registrationOpeningDate): static
     {
         $this->registrationOpeningDate = $registrationOpeningDate;
@@ -215,11 +239,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the registration closing date
     public function getRegistrationClosingDate(): ?\DateTimeInterface
     {
         return $this->registrationClosingDate;
     }
 
+    // Sets the registration closing date
     public function setRegistrationClosingDate(\DateTimeInterface $registrationClosingDate): static
     {
         $this->registrationClosingDate = $registrationClosingDate;
@@ -227,11 +253,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the registration opening time
     public function getRegistrationOpeningTime(): ?\DateTimeInterface
     {
         return $this->registrationOpeningTime;
     }
 
+    // Sets the registration opening time
     public function setRegistrationOpeningTime(\DateTimeInterface $registrationOpeningTime): static
     {
         $this->registrationOpeningTime = $registrationOpeningTime;
@@ -239,11 +267,13 @@ class Event
         return $this;
     }
 
+    // Retrieves the registration closing time
     public function getRegistrationClosingTime(): ?\DateTimeInterface
     {
         return $this->registrationClosingTime;
     }
 
+    // Sets the registration closing time
     public function setRegistrationClosingTime(\DateTimeInterface $registrationClosingTime): static
     {
         $this->registrationClosingTime = $registrationClosingTime;
@@ -252,13 +282,14 @@ class Event
     }
 
     /**
-     * @return Collection<int, Rancking>
+     * @return Collection<int, Rancking> // Returns a collection of ranking objects
      */
     public function getRanckings(): Collection
     {
         return $this->ranckings;
     }
 
+    // Adds a ranking to the collection
     public function addRancking(Rancking $rancking): static
     {
         if (!$this->ranckings->contains($rancking)) {
@@ -269,6 +300,7 @@ class Event
         return $this;
     }
 
+    // Removes a ranking from the collection
     public function removeRancking(Rancking $rancking): static
     {
         if ($this->ranckings->removeElement($rancking)) {
@@ -282,13 +314,14 @@ class Event
     }
 
     /**
-     * @return Collection<int, Registration>
+     * @return Collection<int, Registration> // Returns a collection of registration objects
      */
     public function getRegistrations(): Collection
     {
         return $this->registrations;
     }
 
+    // Adds a registration to the collection
     public function addRegistration(Registration $registration): static
     {
         if (!$this->registrations->contains($registration)) {
@@ -299,6 +332,7 @@ class Event
         return $this;
     }
 
+    // Removes a registration from the collection
     public function removeRegistration(Registration $registration): static
     {
         if ($this->registrations->removeElement($registration)) {
