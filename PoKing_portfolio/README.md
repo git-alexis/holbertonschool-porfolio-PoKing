@@ -1,4 +1,4 @@
-![Logo](/holbertonschool-porfolio-PoKing/PoKing_portfolio/assets/images/poking.png)
+![Logo](/assets/images/poking.png)
 
 Introduction :
 
