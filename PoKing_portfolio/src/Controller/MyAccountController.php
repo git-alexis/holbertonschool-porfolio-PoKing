@@ -21,6 +21,7 @@ class MyAccountController extends AbstractController
         $form = $this->createForm(MyAccountFormType::class, $user);
         $form->handleRequest($request);
 
+        // if there are no input errors, updates the account with success message
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($user);
             $entityManager->flush();

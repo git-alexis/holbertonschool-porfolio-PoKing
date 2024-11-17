@@ -34,6 +34,7 @@ class StatisticsController extends AbstractController
         $colorCard2Hole = '';
 
         if ($request->isMethod('POST')) {
+            // retrieves all selected cards
             $numberCard1Board = $request->request->get('numbersboard1');
             $numberCard2Board = $request->request->get('numbersboard2');
             $numberCard3Board = $request->request->get('numbersboard3');
@@ -53,14 +54,17 @@ class StatisticsController extends AbstractController
             $card1Hole = $request->request->get('holecards1');
             $card2Hole = $request->request->get('holecards2');
 
+            // if at least two identical cards are selected, error message
             if ($card1Board == $card2Board or $card1Board == $card3Board or $card1Board == $card1Hole or $card1Board == $card2Hole or $card2Board == $card3Board or $card2Board == $card1Hole
             or $card2Board == $card2Hole or $card3Board == $card1Hole or $card3Board == $card2Hole or $card1Hole == $card2Hole) {
                 $this->addFlash('error', '5 different cards must be selected.');
             } else {
                 $client = new \GuzzleHttp\Client(['verify' => false]);
-            
+
+                // builds the url
                 $url = "https://sf-api-on-demand-poker-odds-v1.p.rapidapi.com/flop?board=".$card1Board."%2C".$card2Board."%2C".$card3Board."&hole=".$card1Hole."%2C".$card2Hole;
 
+                // requests the API
                 $response = $client->request('GET', $url, [
                     'headers' => [
                         'x-rapidapi-host' => 'sf-api-on-demand-poker-odds-v1.p.rapidapi.com',
@@ -68,9 +72,11 @@ class StatisticsController extends AbstractController
                     ],
                 ]);
 
+                // retrieves data from the api in json format and converts it to an associative array
                 $json = $response->getBody();
                 $my_array = json_decode($json, true);
 
+                // retrieves the statistics by rounding them off to one decimal place
                 $hitHC = round($my_array['data']['me']['hit']['HC']*100, 1);
                 $hit1P = round($my_array['data']['me']['hit']['1P']*100, 1);
                 $hit2P = round($my_array['data']['me']['hit']['2P']*100, 1);

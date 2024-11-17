@@ -26,16 +26,19 @@ class RegisterController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $pseudo = $form->get('pseudo')->getData();
-
+            // check if the pseudo already exists in database
             $existingUser = $entityManager->getRepository(User::class)->findOneBy(['pseudo' => $pseudo]);
 
+            // if this is the case, error message
             if ($existingUser) {
                 $this->addFlash('error', 'Pseudo already used. Please choose a new one.');
             } else {
+                // retrieves the noMember profile
                 $profile = $entityManager->getRepository(Profile::class)->findOneBy(['label' => 'noMember']);
 
                 $new_user->setProfile($profile);
 
+                // hashes the password
                 $new_user->setPassword(
                     $passwordHasher->hashPassword(
                         $new_user,
@@ -43,6 +46,7 @@ class RegisterController extends AbstractController
                     )
                 );
 
+                // saves the account in the database with a success message
                 $entityManager->persist($new_user);
                 $entityManager->flush();
 

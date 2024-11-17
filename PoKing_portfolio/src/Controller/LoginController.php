@@ -16,6 +16,7 @@ class LoginController extends AbstractController
 
         $lastUsername = $authenticationUtils->getLastUsername();
 
+        // if the identifiers are incorrect, error message
         if ($error) {
             $this->addFlash('error', 'Connection error. Please check your login details.');
         }

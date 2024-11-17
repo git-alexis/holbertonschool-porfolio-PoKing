@@ -15,9 +15,12 @@ class ContactUsController extends AbstractController
     #[Route('/contact-us', name: 'app_contact_us')]
     public function index(Request $request, MailerInterface $mailer): Response
     {
+        // Checks whether the request is a form submission
         if ($request->isMethod('POST')) {
+            // Regular expression to validate email addresses
             $regex = '/^[a-zA-Z0-9._\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/';
 
+            // Validates the email format
             if (preg_match($regex, $request->request->get('email'))) {
                 $email = (new Email())
                     ->from($request->request->get('email'))
@@ -28,8 +31,10 @@ class ContactUsController extends AbstractController
 
                 $mailer->send($email);
 
+                // Success message
                 $this->addFlash('success', 'Request sent successfully');
             } else {
+                // Error message for invalid email
                 $this->addFlash('error', 'Invalid email, valid format: test@example.com');
             }
         }
