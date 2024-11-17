@@ -20,6 +20,7 @@ class RegisterFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // Add 'pseudo' field with a regex constraint for allowed characters
         $builder
             ->add('pseudo', TextType::class, [
                 'label' => '* Pseudo ',
@@ -30,6 +31,7 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add 'plainPassword' field with a length constraint (minimum 8 characters)
             ->add('plainPassword', PasswordType::class, [
                 'label' => '* Password ',
                 'mapped' => false,
@@ -40,6 +42,7 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add 'surname' field with a regex constraint for allowed characters
             ->add('surname', TextType::class, [
                 'label' => '* Surname ( example : BILLEMONT ) ',
                 'constraints' => [
@@ -49,6 +52,7 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add 'name' field with a regex constraint for allowed characters
             ->add('name', TextType::class, [
                 'label' => '* Name ( example : Alexis ) ',
                 'constraints' => [
@@ -58,6 +62,7 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add 'mail' field with a regex constraint for valid email format
             ->add('mail', EmailType::class, [
                 'label' => '* E-mail ',
                 'constraints' => [
@@ -67,6 +72,7 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add 'phoneNumber' field with a regex constraint for valid phone number format
             ->add('phoneNumber', TextType::class, [
                 'label' => '* Phone number ( exanple : 01.02.03.04.05 ) ',
                 'constraints' => [
@@ -76,10 +82,12 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add 'birthday' field with a date widget (single text input)
             ->add('birthday', DateType::class, [
                 'label' => '* Birthday ',
                 'widget' => 'single_text',
             ])
+            // Add 'address' field with a regex constraint and length limit
             ->add('address', TextType::class, [
                 'label' => 'Address ',
                 'required' => false,
@@ -94,6 +102,7 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add 'city' field with a regex constraint and length limit
             ->add('city', TextType::class, [
                 'label' => 'City ',
                 'required' => false,
@@ -108,6 +117,7 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add 'postcode' field with regex for valid postcode and positive number check
             ->add('postcode', TextType::class, [
                 'label' => 'Postcode ',
                 'required' => false,

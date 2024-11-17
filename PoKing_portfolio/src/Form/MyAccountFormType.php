@@ -20,6 +20,7 @@ class MyAccountFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // Add pseudo field (read-only, cannot be changed)
         $builder
             ->add('pseudo', TextType::class, [
                 'label' => '* Pseudo ',
@@ -27,6 +28,7 @@ class MyAccountFormType extends AbstractType
                     'readonly' => true,
                 ],
             ])
+            // Add password field with constraints (minimum 8 characters)
             ->add('plainPassword', PasswordType::class, [
                 'label' => '* Password ',
                 'mapped' => false,
@@ -40,6 +42,7 @@ class MyAccountFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add surname field (uppercase letters, valid special characters)
             ->add('surname', TextType::class, [
                 'label' => '* Surname ( example : BILLEMONT ) ',
                 'empty_data' => '',
@@ -53,6 +56,7 @@ class MyAccountFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add name field (first letter uppercase, valid special characters)
             ->add('name', TextType::class, [
                 'label' => '* Name ( example : Alexis ) ',
                 'empty_data' => '',
@@ -66,6 +70,7 @@ class MyAccountFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add email field with validation for valid format
             ->add('mail', EmailType::class, [
                 'label' => '* E-mail ',
                 'empty_data' => '',
@@ -79,6 +84,7 @@ class MyAccountFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add phone number field with specific format validation (e.g., 01.02.03.04.05)
             ->add('phoneNumber', TextType::class, [
                 'label' => '* Phone number ( exanple : 01.02.03.04.05 ) ',
                 'empty_data' => '',
@@ -92,10 +98,12 @@ class MyAccountFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add birthday field with date picker widget
             ->add('birthday', DateType::class, [
                 'label' => '* Birthday ',
                 'widget' => 'single_text',
             ])
+            // Add address field (optional, with special character and length validation)
             ->add('address', TextType::class, [
                 'label' => 'Address ',
                 'required' => false,
@@ -110,6 +118,7 @@ class MyAccountFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add city field (optional, with special character and length validation)
             ->add('city', TextType::class, [
                 'label' => 'City ',
                 'required' => false,
@@ -124,6 +133,7 @@ class MyAccountFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add postcode field (optional, with validation for 5 digits)
             ->add('postcode', TextType::class, [
                 'label' => 'Postcode ',
                 'required' => false,

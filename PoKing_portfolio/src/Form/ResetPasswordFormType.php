@@ -16,6 +16,7 @@ class ResetPasswordFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // Add the plainPassword field (new password)
         $builder
             ->add('plainPassword', PasswordType::class, [
                 'label' => '* New password ',
@@ -30,6 +31,7 @@ class ResetPasswordFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Add the confirmPassword field (confirm new password)
             ->add('confirmPassword', PasswordType::class, [
                 'label' => '* Confirm new password ',
                 'mapped' => false,
