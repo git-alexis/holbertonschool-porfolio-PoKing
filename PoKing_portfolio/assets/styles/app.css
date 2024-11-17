@@ -438,47 +438,47 @@ footer {
 
 @media screen and (min-width: 1920px) {
     .paragraph {
-        font-size: 45px; /* 55 */ /*35*/
+        font-size: 45px;
     }
 
     .p_mandatory {
-        font-size: 45px; /**/
+        font-size: 45px;
     }
 
     .span_mandatory {
-        font-size: 55px; /**/
+        font-size: 55px;
     }
 
     h1 {
-        font-size: 60px; /* 55 */ /* 45 */
+        font-size: 60px;
     }
 
     h2 {
-        font-size: 52px; /* 48 */ /* 38 */
+        font-size: 52px;
     }
 
     label {
-        font-size: 45px; /**/
+        font-size: 45px;
     }
 
     input[type="checkbox"] {
-        transform: scale(2); /**/
+        transform: scale(2);
     }
 
     .btn, .btn_href {
-        font-size: 40px; /**/
+        font-size: 40px;
     }
 
     .login_links > a {
-        font-size: 40px; /**/
+        font-size: 40px;
     }
 
     .form_input {
-        font-size: 45px; /**/
+        font-size: 45px;
     }
 
     form > ul > li {
-        font-size: 45px; /**/
+        font-size: 45px;
     }
 
     .alert {
