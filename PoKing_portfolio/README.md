@@ -1,36 +1,34 @@
-![Logo](/assets/images/poking.png)
+# PoKing - Event managment app
 
-Introduction :
+Let me introduce my project to you.
 
-Welcome to the Tank Information App! This web application is designed to provide detailed information on tanks, including their skills, strategies, and comparative characteristics. Users can register, log in, and explore various features related to tanks and their attributes.
+The aim of this project is to make it easier to run a poker club. My site helps them manage their events and rankings.
 
-My Deployed Site:
+My Deployed Site: https://vimeo.com/manage/videos/1030494936
 
-Final Project Blog Article:
+Final Project Blog Article: https://www.linkedin.com/pulse/my-poking-project-alexis-billemont--lgyce/
 
-My LinkedIn Profiles:
+My LinkedIn Profiles: https://www.linkedin.com/in/alexis-billemont-a985612a8/
 
 
 ## Installation
 Clone the Repository:
-* git clone https://github.com/git-alexis/Holberton-portfolio.git
+* git clone git@github.com:git-alexis/holbertonschool-porfolio-PoKing.git
 
 Navigate to the Project Directory:
-* cd tank-information-app
+* cd PoKing_portfolio
 
 Install Backend Dependencies:
 Ensure you have Symfony and PHP installed !
 * composer install
 
-Install Frontend Dependencies:
-* npm install
+Create your database
 
-Configure your database in .env:
-* DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name
-
-Create the database and:
-* php bin/console doctrine:database:create
+Generate and push your migrations:
+* php bin/console doctrine:migrations:diff
 * php bin/console doctrine:migrations:migrate
+
+Configure environment variables by creating a .env file based on the .env.example file
 
 Start the Development Server:
 * symfony server:start
