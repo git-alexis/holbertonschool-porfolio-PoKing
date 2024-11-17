@@ -13,7 +13,7 @@ My LinkedIn Profiles: https://www.linkedin.com/in/alexis-billemont-a985612a8/
 
 ## Installation
 Clone the Repository:
-'''
+'''bash
 git clone git@github.com:git-alexis/holbertonschool-porfolio-PoKing.git
 '''
 
