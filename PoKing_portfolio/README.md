@@ -34,47 +34,51 @@ Start the Development Server:
 * symfony server:start
 
 Access the Application:
-* Open your browser and go to http://localhost:8000
+* open your browser and go to http://localhost:8000
 
 
 ## Usage
-* Home Page: The main landing page of the application.
-* Register Page: Allows new users to create an account
-* Login Page: Enables existing users to log in.
+When you arrive on the home page of the site, you can:
+* log in
+* create an account
+* reset your password
 
-* Tank Pages: Create or update tanks and see their historical record.
-* Skill Pages: Create or update skills and see their historical record.
-* Strategy Pages: Create or update strategies and see their historical record.
+When you are logged in, menu links allow you to:
+* access your account to change your personal details
+* view events to register or unsubscribe
+* check the rankings for a particular event and the general rankings
+* generate statistics
 
-* Tank-Skill Page: Do connection between tanks and their skills.
-* Skill-Strategy Page: Do connection between skills and strategies.
-
-* Comparison Page: Allows users to compare tank characteristics using data from the World of Tanks API (currently non-functional due to expired API certificate).
+The footer links allow you to:
+* contact the club by e-mail to request information
+* consult the legal notices
 
 
 ## Contributing
-Fork the Repository:
-* Click the "Fork" button on the top-right of the repository page.
+Fork the repository:
+* click the "Fork" button on the top-right of the repository page.
 
-Clone Your Fork:
-* git clone https://github.com/your-username/tank-information-app.git
+Clone your fork:
+* git clone https://github.com/your-username/holbertonschool-porfolio-PoKing.git
 
-Create a New Branch:
-git checkout -b feature/your-feature
+Create a new branch:
+* git checkout -b feature/your-feature
 
-Make Changes and Commit:
+Make changes and commit:
 * git add file_name
 * git commit -m "Add a meaningful commit message"
 
-Push Changes:
+Push changes:
 * git push origin feature/your-feature
 
-Open a Pull Request:
-* Go to the original repository and open a pull request with a description of your changes.
+Open a pull request:
+* go to the original repository
+* open a pull request with a description of your changes
 
 
 ## Related Projects
-* World of Tanks API Integration - A project demonstrating how to integrate with the World of Tanks API.
+* landing page: https://statuesque-druid-f3ad85.netlify.app/
+* blog linkedin: https://www.linkedin.com/pulse/my-poking-project-alexis-billemont--lgyce/
 
 
 ## Bugs
@@ -82,4 +86,4 @@ The reset password functionnality doesn't work for the moment !
 
 
 ## License
-The Tank Tales app is free and open-source software licensed under the GNU General Public License.
+The PoKing app is free and open-source software licensed under the GNU General Public License.
