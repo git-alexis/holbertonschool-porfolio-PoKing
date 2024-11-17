@@ -9,6 +9,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mime\Email;
 
+
 class ContactUsController extends AbstractController
 {
     #[Route('/contact-us', name: 'app_contact_us')]
@@ -33,8 +34,6 @@ class ContactUsController extends AbstractController
             }
         }
 
-        return $this->render('contact_us/contact_us.html.twig', [
-            'controller_name' => 'ContactUsController',
-        ]);
+        return $this->render('contact_us/contact_us.html.twig');
     }
 }

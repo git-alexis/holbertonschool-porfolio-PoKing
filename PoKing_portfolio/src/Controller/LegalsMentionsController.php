@@ -11,8 +11,6 @@ class LegalsMentionsController extends AbstractController
     #[Route('/legals-mentions', name: 'app_legals_mentions')]
     public function index(): Response
     {
-        return $this->render('legals_mentions/legals_mentions.html.twig', [
-            'controller_name' => 'LegalsMentionsController',
-        ]);
+        return $this->render('legals_mentions/legals_mentions.html.twig');
     }
 }
