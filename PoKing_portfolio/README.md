@@ -87,3 +87,9 @@ The reset password functionnality doesn't work for the moment !
 
 ## License
 The PoKing app is free and open-source software licensed under the GNU General Public License.
+
+
+## Some screenshots of my app
+![event registration feature](assets/images/screen_event_registration_feature.jpg)
+![ranking details feature](assets/images/screen_rankings_feature.jpg)
+![statistics calculator feature](assets/images/screen_statistics_feature.jpg)
